@@ -39,8 +39,11 @@ public class LettersStatistics {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(entry -> sortedMapOfLetters.put(entry.getKey(), entry.getValue()));
 
+        int limit = 0;
         for (Map.Entry<String, Integer> entry: sortedMapOfLetters.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
+            limit++;
+            if (limit == 10) break;
         }
 
         in.close();
