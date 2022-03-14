@@ -26,10 +26,12 @@ public class LettersStatistics {
                 if (searchedLetter.equals(letter)) {
                     counter++;
                 }
-                mapOfDistinctLetters.put(searchedLetter, counter);
             }
+            mapOfDistinctLetters.put(searchedLetter, counter);
+            counter = 0;
         }
         System.out.println("unsorted map of letters: " + mapOfDistinctLetters);
 
+        in.close();
     }
 }
