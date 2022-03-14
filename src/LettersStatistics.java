@@ -19,5 +19,17 @@ public class LettersStatistics {
                         letter.equals("!")
                 );
         System.out.println("After: " + distinctLetters);
+        TreeMap<String, Integer> mapOfDistinctLetters = new TreeMap<>();
+        int counter = 0;
+        for (String searchedLetter: distinctLetters) {
+            for (String letter: listOfLetters) {
+                if (searchedLetter.equals(letter)) {
+                    counter++;
+                }
+                mapOfDistinctLetters.put(searchedLetter, counter);
+            }
+        }
+        System.out.println("unsorted map of letters: " + mapOfDistinctLetters);
+
     }
 }
