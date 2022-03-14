@@ -10,6 +10,14 @@ public class LettersStatistics {
         List<String> listOfLetters = Arrays.asList(line);
         //System.out.println(list);
         HashSet<String> distinctLetters = new HashSet<>(listOfLetters);
-        System.out.println(distinctLetters);
+        System.out.println("Before: " + distinctLetters);
+        distinctLetters.removeIf(letter->
+                        letter.equals(" ")||
+                        letter.equals(",")||
+                        letter.equals(".")||
+                        letter.equals("?")||
+                        letter.equals("!")
+                );
+        System.out.println("After: " + distinctLetters);
     }
 }
