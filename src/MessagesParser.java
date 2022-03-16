@@ -13,6 +13,12 @@ public class MessagesParser {
         words = in.nextLine().split(" ");
         lengthLimit = Integer.parseInt(in.nextLine());
 
+        for (String x: words) {
+            if (x.length() > lengthLimit) {
+                throw new MessagesParserException("Error");
+            }
+        }
+
         printLines();
 
         in.close();

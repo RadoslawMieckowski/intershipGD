@@ -1,4 +1,4 @@
-public class MessagesParserException extends Exception{
+public class MessagesParserException extends RuntimeException{
     public MessagesParserException(String message) {
         super(message);
     }
