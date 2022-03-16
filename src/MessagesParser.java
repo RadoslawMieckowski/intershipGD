@@ -3,51 +3,41 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MessagesParser {
+    static int wordPointer = 0;
+    static String[] words;
+    static int lengthLimit;
+
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("src/messagesParser.txt");
         Scanner in = new Scanner(file);
-        String[] words = in.nextLine().split(" ");
-        int limitLength = Integer.parseInt(in.nextLine());
-//        System.out.println(Arrays.toString(words));
-//        System.out.println(limitLength);
-        int pointer = 0;
-        while (pointer < words.length) {
-            String line = "";
-//            System.out.println("line: " + line);
-            int counter = 0;
-//            System.out.println("counter: " + counter);
-//            System.out.println("pointer: " + pointer);
-//            System.out.println("======wewn petla=======");
-            while (counter < limitLength) {
-                counter = words[pointer].length();
-//                System.out.println("counter: " + counter);
-                if (counter <= words.length) {
-                    counter++;
-//                    System.out.println("counter: " + counter);
-                    line = line.concat(words[pointer]).concat(" ");
-//                    System.out.println(line);
-                    pointer++;
-                    if (pointer == words.length) break;
-//                    System.out.println("pointer: " + pointer);
-                    counter += words[pointer].length() + 1;
-//                    System.out.println("counter: " + counter);
-                    line = line.concat(words[pointer]).concat(" ");
-//                    System.out.println(line);
+        words = in.nextLine().split(" ");
+        lengthLimit = Integer.parseInt(in.nextLine());
+
+        printLines();
+
+        in.close();
+    }
+    public static void printLines() {
+        String line = "";
+        while (wordPointer <= words.length) {
+            if (line.length() > lengthLimit) {
+                System.out.println(line);
+                printLines();
+                break;
+            } else {
+                if (wordPointer == words.length) {
+                    System.out.println(line);
+                    break;
                 }
-//                System.out.println("pointer: " + pointer);
-//                System.out.println(line);
-//                System.out.println("----------------------");
-                if (counter < limitLength - 1) {
-                    pointer++;
+                if (line.length() + words[wordPointer].length() > lengthLimit) {
+                    System.out.println(line);
+                    printLines();
+                    break;
+                } else {
+                    line = line.concat(words[wordPointer]).concat(" ");
+                    wordPointer++;
                 }
             }
-            System.out.println(line);
-            //System.out.println("counter: " + counter);
-            pointer++;
-            //System.out.println("pointer: " + pointer);
-
-            //System.out.println("======================");
         }
-        in.close();
     }
 }
