@@ -1,16 +1,27 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
 public class LettersStatistics {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         File file = new File("src/input.txt");
-        Scanner in = new Scanner(file);
-        String[] line = in.nextLine().toLowerCase().split("");
-        List<String> listOfLetters = Arrays.asList(line);
-        //System.out.println(list);
-        HashSet<String> distinctLetters = new HashSet<>(listOfLetters);
+        Scanner in = null;
+        try {
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        HashSet<String> distinctLetters = new HashSet<>();
+        List<String> listOfLetters = null;
+        while(in.hasNextLine()) {
+            String[] line = in.nextLine().toLowerCase().split("");
+            listOfLetters= Arrays.asList(line);
+            distinctLetters.addAll(listOfLetters);
+        }
         //System.out.println("Before: " + distinctLetters);
+
         distinctLetters.removeIf(letter->
                         letter.equals(" ")||
                         letter.equals(",")||
