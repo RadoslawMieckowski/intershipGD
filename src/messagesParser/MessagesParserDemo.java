@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MessagesParserDemo {
-    static int wordPointer = 0;
-    static String[] words;
-    static int lengthLimit;
+    private int wordPointer = 0;
+    private String[] words;
+    private int lengthLimit;
 
-    public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/messagesParser.txt");
+    public void parseMessage() throws FileNotFoundException {
+        File file = new File("src/data/messagesParser.txt");
         Scanner in = new Scanner(file);
         words = in.nextLine().split(" ");
         lengthLimit = Integer.parseInt(in.nextLine());
@@ -25,7 +25,7 @@ public class MessagesParserDemo {
 
         in.close();
     }
-    public static void printLines() {
+    private void printLines() {
         String line = "";
         while (wordPointer <= words.length) {
             if (line.length() > lengthLimit) {
