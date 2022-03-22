@@ -15,6 +15,7 @@ public class MessagesParserSolution {
         try {
             in = new Scanner(file);
         } catch (FileNotFoundException e) {
+            in.close();
             e.printStackTrace();
         }
         words = in.nextLine().split(" ");
