@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class NumberFormat {
+public class NumberFormatSolution {
     public static void main(String[] args) {
 
         String[] s = new String[10];
