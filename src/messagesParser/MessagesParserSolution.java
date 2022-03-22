@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class MessagesParserDemo {
+public class MessagesParserSolution {
     private int wordPointer = 0;
     private String[] words;
     private int lengthLimit;
