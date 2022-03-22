@@ -5,8 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class NumberFormatSolution {
-    public static void main(String[] args) {
 
+    public void printSortedStrings() {
         String[] s = new String[10];
         s[0] = "3";
         s[1] = "0.5";
