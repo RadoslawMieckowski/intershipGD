@@ -1,15 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.*;
 
-public class LettersStatistics {
+public class LettersStatisticsSolution {
     public static void main(String[] args) {
         File file = new File("src/input.txt");
         Scanner in = null;
         try {
             in = new Scanner(file);
         } catch (FileNotFoundException e) {
+            in.close();
             e.printStackTrace();
         }
 
@@ -30,8 +30,9 @@ public class LettersStatistics {
                         letter.equals("!")
                 );
         //System.out.println("After: " + distinctLetters);
-        TreeMap<String, Integer> mapOfDistinctLetters = new TreeMap<>();
-        int counter = 0;
+
+        TreeMap<String, Long> mapOfDistinctLetters = new TreeMap<>();
+        long counter = 0;
         for (String searchedLetter: distinctLetters) {
             for (String letter: listOfLetters) {
                 if (searchedLetter.equals(letter)) {
@@ -41,9 +42,13 @@ public class LettersStatistics {
             mapOfDistinctLetters.put(searchedLetter, counter);
             counter = 0;
         }
+
+//        Map<String, Long> mapOfDistinctLetters = distinctLetters.stream()
+//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
         //System.out.println("unsorted map of letters: " + mapOfDistinctLetters);
 
-        LinkedHashMap<String, Integer> sortedMapOfLetters = new LinkedHashMap<>();
+        LinkedHashMap<String, Long> sortedMapOfLetters = new LinkedHashMap<>();
 
         mapOfDistinctLetters.entrySet()
                 .stream()
@@ -51,12 +56,11 @@ public class LettersStatistics {
                 .forEachOrdered(entry -> sortedMapOfLetters.put(entry.getKey(), entry.getValue()));
 
         int limit = 0;
-        for (Map.Entry<String, Integer> entry: sortedMapOfLetters.entrySet()) {
+        for (Map.Entry<String, Long> entry: sortedMapOfLetters.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
             limit++;
             if (limit == 10) break;
         }
 
-        in.close();
     }
 }
