@@ -6,7 +6,7 @@ import java.util.*;
 
 public class LettersStatisticsSolution {
    public void printTopTenLetters() {
-       File file = new File("src/input.txt");
+       File file = new File("src/data/input.txt");
        Scanner in = null;
        try {
            in = new Scanner(file);
