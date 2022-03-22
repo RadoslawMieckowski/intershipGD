@@ -9,9 +9,14 @@ public class MessagesParserSolution {
     private String[] words;
     private int lengthLimit;
 
-    public void parseMessage() throws FileNotFoundException {
+    public void parseMessage() {
         File file = new File("src/data/messagesParser.txt");
-        Scanner in = new Scanner(file);
+        Scanner in = null;
+        try {
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         words = in.nextLine().split(" ");
         lengthLimit = Integer.parseInt(in.nextLine());
 
