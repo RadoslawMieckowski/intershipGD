@@ -8,9 +8,14 @@ public class MessagesParserSolution {
     private int wordPointer = 0;
     private String[] words;
     private int lengthLimit;
+    private String inputFilePath;
+
+    public MessagesParserSolution(String inputFilePath) {
+        this.inputFilePath = inputFilePath;
+    }
 
     public void parseMessage() {
-        File file = new File("src/data/messagesParser.txt");
+        File file = new File(inputFilePath);
         Scanner in = null;
         try {
             in = new Scanner(file);
