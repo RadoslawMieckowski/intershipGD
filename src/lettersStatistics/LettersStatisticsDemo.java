@@ -6,6 +6,4 @@ public class LettersStatisticsDemo {
         LettersStatisticsSolution lss = new LettersStatisticsSolution("src/data/input.txt");
         lss.printTopTenLetters();
     }
-
-
 }
