@@ -21,13 +21,17 @@ public class NumberFormatSolution {
 
         LinkedHashMap<String, Double> unsortedMap = new LinkedHashMap<>();
         Arrays.stream(arrayOfStrings).forEach(x -> unsortedMap.put(x, Double.parseDouble(x)));
-
-        LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
-        unsortedMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
-                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
-
         StringBuilder strbdr = new StringBuilder();
-        sortedMap.entrySet().forEach(x -> strbdr.append(x.getKey() + ", "));
+        unsortedMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(x -> strbdr.append(x.getKey() + ", "));
+
+//        LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
+//        unsortedMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
+//                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+//
+//        sortedMap.entrySet().forEach(x -> strbdr.append(x.getKey() + ", "));
         System.out.println(strbdr.substring(0, strbdr.length()-2));
 
     }
