@@ -25,8 +25,8 @@ public class LettersStatisticsSolution {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
-    protected LinkedHashMap<Character, Long> createSortedMapOfLetters(Map<Character, Long> mapOfDistinctLetters) {
-        LinkedHashMap<Character, Long> sortedMapOfLetters = new LinkedHashMap<>();
+    protected Map<Character, Long> createSortedMapOfLetters(Map<Character, Long> mapOfDistinctLetters) {
+        Map<Character, Long> sortedMapOfLetters = new LinkedHashMap<>();
         mapOfDistinctLetters.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
