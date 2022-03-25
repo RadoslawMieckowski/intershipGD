@@ -14,25 +14,31 @@ public class LettersStatisticsSolution {
     public LettersStatisticsSolution(String inputFilePath) {
        this.inputFilePath = inputFilePath;
    }
-    public void printTopTenLetters() {
 
-       String line = FileHandler.convertToOneString(inputFilePath);
-
-        Map<Character, Long> mapOfDistinctLetters = line.chars().mapToObj(c -> (char)c)
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
-       LinkedHashMap<Character, Long> sortedMapOfLetters = new LinkedHashMap<>();
-
-       mapOfDistinctLetters.entrySet()
-               .stream()
-               .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-               .forEachOrdered(entry -> sortedMapOfLetters.put(entry.getKey(), entry.getValue()));
-
-       int limit = 0;
-       for (Map.Entry<Character, Long> entry : sortedMapOfLetters.entrySet()) {
-           System.out.println(entry.getKey() + ": " + entry.getValue());
-           limit++;
-           if (limit == 10) break;
-       }
+   protected String readLineFromFile() {
+       return FileHandler.convertToOneString(inputFilePath);
    }
+
+    protected Map<Character, Long> createMapOfDistinctLetters(String line) {
+        return line.chars().mapToObj(c -> (char)c)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    protected LinkedHashMap<Character, Long> createSortedMapOfLetters(Map<Character, Long> mapOfDistinctLetters) {
+        LinkedHashMap<Character, Long> sortedMapOfLetters = new LinkedHashMap<>();
+        mapOfDistinctLetters.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(entry -> sortedMapOfLetters.put(entry.getKey(), entry.getValue()));
+        return sortedMapOfLetters;
+    }
+
+    protected void printFirstTenEntries(Map<Character, Long> map) {
+        int limit = 0;
+        for (Map.Entry<Character, Long> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+            limit++;
+            if (limit == 10) break;
+        }
+    }
 }
