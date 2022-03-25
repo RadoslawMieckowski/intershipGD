@@ -19,7 +19,7 @@ public class NumberFormatSolution {
         arrayOfStrings[8] = ".1";
         arrayOfStrings[9] = "-12";
 
-        LinkedHashMap<String, Double> map = new LinkedHashMap<>();
+        Map<String, Double> map = new LinkedHashMap<>();
         Arrays.stream(arrayOfStrings).forEach(x -> map.put(x, Double.parseDouble(x)));
         StringBuilder strbdr = new StringBuilder();
         map.entrySet()
