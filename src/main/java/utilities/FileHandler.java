@@ -8,7 +8,7 @@ public final class FileHandler {
 
     private FileHandler(){}
 
-    public static String convertToOneString(String path) {
+    public static StringBuilder convertToOneString(String path) {
         File file = new File(path);
         Scanner in = null;
         try {
@@ -19,12 +19,14 @@ public final class FileHandler {
         }
         StringBuilder lineBuilder = new StringBuilder("");
         while (in.hasNextLine()) {
-            lineBuilder.append(in.nextLine().toLowerCase());
+            lineBuilder.append(in.nextLine());
         }
+        return lineBuilder;
+    }
 
-        String stringToReturn = lineBuilder.toString()
+    public static String removeNonLetterAndMakeSmall(StringBuilder line) {
+        return line.toString()
+                .toLowerCase()
                 .replaceAll("[^a-z]", "");
-
-        return stringToReturn;
     }
 }

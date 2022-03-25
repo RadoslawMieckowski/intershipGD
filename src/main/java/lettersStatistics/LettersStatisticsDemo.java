@@ -1,5 +1,7 @@
 package lettersStatistics;
 
+import utilities.FileHandler;
+
 import java.util.Map;
 
 public class LettersStatisticsDemo {

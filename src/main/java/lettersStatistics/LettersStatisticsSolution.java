@@ -16,7 +16,8 @@ public class LettersStatisticsSolution {
    }
 
    protected String readLineFromFile() {
-       return FileHandler.convertToOneString(inputFilePath);
+        StringBuilder lineBuilder = FileHandler.convertToOneString(inputFilePath);
+        return FileHandler.removeNonLetterAndMakeSmall(lineBuilder);
    }
 
     protected Map<Character, Long> createMapOfDistinctLetters(String line) {
