@@ -28,7 +28,7 @@ public class MessagesParserSolution {
 
         for (String x: words) {
             if (x.length() > lengthLimit) {
-                throw new MessagesParserException("Error");
+                throw new MessagesParserException("Error: One of the words is longer than lengthLimit");
             }
         }
 
