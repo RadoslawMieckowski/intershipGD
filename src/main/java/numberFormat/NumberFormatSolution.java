@@ -19,20 +19,14 @@ public class NumberFormatSolution {
         arrayOfStrings[8] = ".1";
         arrayOfStrings[9] = "-12";
 
-        LinkedHashMap<String, Double> unsortedMap = new LinkedHashMap<>();
-        Arrays.stream(arrayOfStrings).forEach(x -> unsortedMap.put(x, Double.parseDouble(x)));
+        LinkedHashMap<String, Double> map = new LinkedHashMap<>();
+        Arrays.stream(arrayOfStrings).forEach(x -> map.put(x, Double.parseDouble(x)));
         StringBuilder strbdr = new StringBuilder();
-        unsortedMap.entrySet()
+        map.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(x -> strbdr.append(x.getKey() + ", "));
 
-//        LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
-//        unsortedMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
-//                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
-//
-//        sortedMap.entrySet().forEach(x -> strbdr.append(x.getKey() + ", "));
         System.out.println(strbdr.substring(0, strbdr.length()-2));
-
     }
 }
