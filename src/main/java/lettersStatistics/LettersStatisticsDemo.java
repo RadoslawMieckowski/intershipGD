@@ -3,7 +3,7 @@ package lettersStatistics;
 public class LettersStatisticsDemo {
 
     public static void main(String[] args) {
-        LettersStatisticsSolution lss = new LettersStatisticsSolution("src/data/input.txt");
+        LettersStatisticsSolution lss = new LettersStatisticsSolution("src/main/resources/data/input.txt");
         lss.printTopTenLetters();
     }
 }
