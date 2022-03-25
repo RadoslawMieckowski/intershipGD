@@ -7,7 +7,7 @@ import java.util.Map;
 public class NumberFormatSolution {
 
     public void printSortedStrings() {
-        String[] s = new String[10];
+        String[] arrayOfStrings = new String[10];
         s[0] = "3";
         s[1] = "0.5";
         s[2] = "0.1";
