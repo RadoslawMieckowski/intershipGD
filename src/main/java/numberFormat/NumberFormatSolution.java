@@ -8,19 +8,19 @@ public class NumberFormatSolution {
 
     public void printSortedStrings() {
         String[] arrayOfStrings = new String[10];
-        s[0] = "3";
-        s[1] = "0.5";
-        s[2] = "0.1";
-        s[3] = "35";
-        s[4] = "50.44";
-        s[5] = "000.000";
-        s[6] = "1.15022";
-        s[7] = ".5";
-        s[8] = ".1";
-        s[9] = "-12";
+        arrayOfStrings[0] = "3";
+        arrayOfStrings[1] = "0.5";
+        arrayOfStrings[2] = "0.1";
+        arrayOfStrings[3] = "35";
+        arrayOfStrings[4] = "50.44";
+        arrayOfStrings[5] = "000.000";
+        arrayOfStrings[6] = "1.15022";
+        arrayOfStrings[7] = ".5";
+        arrayOfStrings[8] = ".1";
+        arrayOfStrings[9] = "-12";
 
         LinkedHashMap<String, Double> unsortedMap = new LinkedHashMap<>();
-        Arrays.stream(s).forEach(x -> unsortedMap.put(x, Double.parseDouble(x)));
+        Arrays.stream(arrayOfStrings).forEach(x -> unsortedMap.put(x, Double.parseDouble(x)));
 
         LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
         unsortedMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
