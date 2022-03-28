@@ -42,16 +42,16 @@ public class MessagesParserSolution {
             if (line.length() > lengthLimit) {
                 System.out.println(line);
                 printLines();
-                break;
+                return;
             } else {
                 if (wordPointer == words.length) {
                     System.out.println(line);
-                    break;
+                    return;
                 }
                 if (line.length() + words[wordPointer].length() > lengthLimit) {
                     System.out.println(line);
                     printLines();
-                    break;
+                    return;
                 } else {
                     line = line.concat(words[wordPointer]).concat(" ");
                     wordPointer++;
