@@ -25,13 +25,11 @@ public class LettersStatisticsSolution {
     }
 
      Map<Character, Long> createSortedMapOfLetters(Map<Character, Long> mapOfDistinctLetters) {
-        Map<Character, Long> sortedMapOfLetters = new LinkedHashMap<>();
-        mapOfDistinctLetters.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .forEachOrdered(entry -> sortedMapOfLetters.put(entry.getKey(), entry.getValue()));
-        return sortedMapOfLetters;
-    }
+         return mapOfDistinctLetters.entrySet()
+                 .stream()
+                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+     }
 
      void printFirstTenEntries(Map<Character, Long> map) {
         int limit = 0;
