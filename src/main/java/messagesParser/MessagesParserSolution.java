@@ -1,50 +1,49 @@
 package messagesParser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import utilities.FileHandler;
+
+
 
 public class MessagesParserSolution {
     private int wordPointer = 0;
-    private String[] words;
-    private int lengthLimit;
     private String inputFilePath;
+    private int lengthLimit;
+    private String[] words;
 
     public MessagesParserSolution(String inputFilePath) {
         this.inputFilePath = inputFilePath;
     }
 
     public void parseMessage() {
-        File file = new File(inputFilePath);
-        Scanner in = null;
-        try {
-            in = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            in.close();
-            e.printStackTrace();
-        }
-        words = in.nextLine().split(" ");
-        lengthLimit = Integer.parseInt(in.nextLine());
-
-        for (String x: words) {
-            if (x.length() > lengthLimit) {
+       setWords();
+       setLengthLimit();
+       for (int i = 0; i < words.length-1; i++) {
+            if (words[i].length() > lengthLimit) {
                 throw new MessagesParserException("Error: One of the words is longer than lengthLimit");
             }
         }
-
         printLines();
-
-        in.close();
     }
+
+    private void setWords() {
+        words = FileHandler.convertToOneString(inputFilePath)
+                .toString()
+                .split(" ");
+    }
+
+    private void setLengthLimit() {
+        lengthLimit = Integer.parseInt(words[words.length-1]);
+    }
+
     private void printLines() {
         StringBuilder line = new StringBuilder();
-        while (wordPointer <= words.length) {
+        while (wordPointer < words.length) {
             if (line.length() > lengthLimit) {
                 System.out.println(line);
                 printLines();
                 return;
             } else {
-                if (wordPointer == words.length) {
+                if (wordPointer == words.length - 1) {
                     System.out.println(line);
                     return;
                 }

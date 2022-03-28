@@ -10,10 +10,10 @@ public final class FileHandler {
 
     public static StringBuilder convertToOneString(String path) {
         File file = new File(path);
-        StringBuilder lineBuilder = new StringBuilder("");
+        StringBuilder lineBuilder = new StringBuilder();
         try (Scanner in = new Scanner(file)){
             while (in.hasNextLine()) {
-                lineBuilder.append(in.nextLine());
+                lineBuilder.append(in.nextLine() + " ");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
