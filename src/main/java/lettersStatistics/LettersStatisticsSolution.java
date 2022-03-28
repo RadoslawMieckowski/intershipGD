@@ -14,17 +14,17 @@ public class LettersStatisticsSolution {
        this.inputFilePath = inputFilePath;
    }
 
-   protected String readLineFromFile() {
+    String readLineFromFile() {
         StringBuilder lineBuilder = FileHandler.convertToOneString(inputFilePath);
         return FileHandler.removeNonLetterAndMakeSmall(lineBuilder);
    }
 
-    protected Map<Character, Long> createMapOfDistinctLetters(String line) {
+     Map<Character, Long> createMapOfDistinctLetters(String line) {
         return line.chars().mapToObj(c -> (char)c)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
-    protected Map<Character, Long> createSortedMapOfLetters(Map<Character, Long> mapOfDistinctLetters) {
+     Map<Character, Long> createSortedMapOfLetters(Map<Character, Long> mapOfDistinctLetters) {
         Map<Character, Long> sortedMapOfLetters = new LinkedHashMap<>();
         mapOfDistinctLetters.entrySet()
                 .stream()
@@ -33,7 +33,7 @@ public class LettersStatisticsSolution {
         return sortedMapOfLetters;
     }
 
-    protected void printFirstTenEntries(Map<Character, Long> map) {
+     void printFirstTenEntries(Map<Character, Long> map) {
         int limit = 0;
         for (Map.Entry<Character, Long> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
