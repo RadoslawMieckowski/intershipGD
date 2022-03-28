@@ -37,7 +37,7 @@ public class MessagesParserSolution {
         in.close();
     }
     private void printLines() {
-        String line = "";
+        StringBuilder line = new StringBuilder();
         while (wordPointer <= words.length) {
             if (line.length() > lengthLimit) {
                 System.out.println(line);
@@ -53,7 +53,7 @@ public class MessagesParserSolution {
                     printLines();
                     return;
                 } else {
-                    line = line.concat(words[wordPointer]).concat(" ");
+                    line.append(words[wordPointer] + " ");
                     wordPointer++;
                 }
             }
