@@ -32,11 +32,9 @@ public class LettersStatisticsSolution {
      }
 
      void printFirstTenEntries(Map<Character, Long> map) {
-        int limit = 0;
-        for (Map.Entry<Character, Long> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-            limit++;
-            if (limit == 10) break;
-        }
+        map.entrySet()
+                .stream()
+                .limit(10)
+                .forEach(entry ->System.out.println(entry.getKey() + ": " + entry.getValue() ));
     }
 }
