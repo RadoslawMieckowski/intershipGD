@@ -21,12 +21,12 @@ public class NumberFormatSolution {
 
         Map<String, Double> map = new LinkedHashMap<>();
         Arrays.stream(arrayOfStrings).forEach(x -> map.put(x, Double.parseDouble(x)));
-        StringBuilder strbdr = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         map.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue())
-                .forEach(x -> strbdr.append(x.getKey() + ", "));
+                .forEach(x -> stringBuilder.append(x.getKey() + ", "));
 
-        System.out.println(strbdr.substring(0, strbdr.length()-2));
+        System.out.println(stringBuilder.substring(0, stringBuilder.length()-2));
     }
 }
