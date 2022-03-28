@@ -2,12 +2,11 @@ package lettersStatistics;
 
 import utilities.FileHandler;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LettersStatisticsSolution {
    private String inputFilePath;
