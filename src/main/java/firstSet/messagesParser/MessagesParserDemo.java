@@ -1,4 +1,4 @@
-package messagesParser;
+package firstSet.messagesParser;
 
 public class MessagesParserDemo {
 

@@ -1,4 +1,4 @@
-package numberFormat;
+package firstSet.numberFormat;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

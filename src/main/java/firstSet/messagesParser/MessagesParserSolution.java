@@ -1,6 +1,6 @@
-package messagesParser;
+package firstSet.messagesParser;
 
-import utilities.FileHandler;
+import firstSet.utilities.FileHandler;
 
 import java.util.Arrays;
 

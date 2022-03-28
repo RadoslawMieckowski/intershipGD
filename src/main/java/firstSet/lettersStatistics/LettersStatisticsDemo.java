@@ -1,4 +1,4 @@
-package lettersStatistics;
+package firstSet.lettersStatistics;
 
 import java.util.Map;
 
