@@ -10,16 +10,13 @@ public final class FileHandler {
 
     public static StringBuilder convertToOneString(String path) {
         File file = new File(path);
-        Scanner in = null;
-        try {
-            in = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            in.close();
-            e.printStackTrace();
-        }
         StringBuilder lineBuilder = new StringBuilder("");
-        while (in.hasNextLine()) {
-            lineBuilder.append(in.nextLine());
+        try (Scanner in = new Scanner(file)){
+            while (in.hasNextLine()) {
+                lineBuilder.append(in.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         return lineBuilder;
     }
