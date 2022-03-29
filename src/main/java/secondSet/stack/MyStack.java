@@ -1,4 +1,8 @@
-package secondSet;
+package secondSet.stack;
+
+import secondSet.stack.stackExceptions.FullMyStackException;
+import secondSet.stack.stackExceptions.NotPrimeNumberException;
+import secondSet.stack.stackExceptions.SmallerNumberException;
 
 import java.util.EmptyStackException;
 import java.util.Iterator;
