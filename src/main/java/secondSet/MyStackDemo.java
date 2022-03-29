@@ -1,6 +1,5 @@
 package secondSet;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MyStackDemo {
