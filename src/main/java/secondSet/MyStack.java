@@ -10,11 +10,8 @@ private List<Integer> innerList;
 private int size;
 
 public MyStack(int size) {
-    innerList = new LinkedList<Integer>();
-    for (int i = 1; i <= size; i++) {
-        innerList.add(null);
-    }
-    size = innerList.size();
+    innerList = new LinkedList<>();
+    this.size = size;
 }
 
     public Iterator<Integer> iterator() {
@@ -32,7 +29,9 @@ public MyStack(int size) {
     }
 
     public Integer push(Integer element) {
-        return innerList.set(size, element);
+    if (innerList.size() == size) throw new RuntimeException();
+    innerList.add(element);
+        return element;
     }
 
     public int size() {
