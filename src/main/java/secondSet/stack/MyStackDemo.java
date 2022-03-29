@@ -1,4 +1,4 @@
-package secondSet;
+package secondSet.stack;
 
 import java.util.Iterator;
 
