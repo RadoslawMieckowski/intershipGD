@@ -20,17 +20,17 @@ public MyStack(int size) {
 
     public Integer peek() {
         if (size == 0) throw new EmptyStackException();
-        return innerList.get(size - 1);
+        return innerList.get(0);
     }
 
     public Integer pop() {
         if (size == 0) throw new EmptyStackException();
-        return innerList.remove(size - 1);
+        return ((LinkedList<Integer>) innerList).pop();
     }
 
     public Integer push(Integer element) {
-    if (innerList.size() == size) throw new RuntimeException();
-    innerList.add(element);
+    if (innerList.size() == size) throw new FullMyStackException("The stack is already full!");
+        ((LinkedList<Integer>) innerList).push(element);
         return element;
     }
 
