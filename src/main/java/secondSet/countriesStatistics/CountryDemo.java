@@ -9,6 +9,6 @@ public class CountryDemo {
         List<String> records = CSVReader.readCSVFile("src/main/resources/data/countriesStatistics.csv");
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
         List<Country> countryList = Country.ToListOfCountries(listOfTables);
-        System.out.println(countryList);
+        Country.sortByPopulationDesc(countryList);
     }
 }
