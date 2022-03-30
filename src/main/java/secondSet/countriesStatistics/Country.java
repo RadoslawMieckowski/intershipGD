@@ -11,6 +11,8 @@ public class Country {
     private String continent;
     private long area;
     private long population;
+    private static Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
+
 
     public long getPopulation() {
         return population;
@@ -31,12 +33,16 @@ public class Country {
     }
 
     public static void sortByPopulationDesc(List countryList) {
-        Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
         countryList.sort(populationComparator.reversed());
         Iterator iterator = countryList.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+    }
+
+    public static void findCountryWithMaxPopulation(List countryList) {
+        System.out.println(countryList.stream()
+                .max(populationComparator).get());
     }
 
     @Override
