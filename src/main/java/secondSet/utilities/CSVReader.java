@@ -3,6 +3,7 @@ package secondSet.utilities;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class CSVReader {
@@ -17,7 +18,15 @@ public final class CSVReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(entries);
+        //System.out.println(entries);
         return entries;
+    }
+
+    public static List<String[]> ToListOfTables(List<String> records) {
+        List<String[]> listOfTables = new LinkedList<>();
+        records.stream()
+                .map(x -> x.split(","))
+                .forEach(x ->listOfTables.add(x));
+        return listOfTables;
     }
 }
