@@ -22,7 +22,7 @@ public final class CSVReader {
         return entries;
     }
 
-    public static List<String[]> ToListOfTables(List<String> records) {
+    public static List<String[]> ToListOfStringTables(List<String> records) {
         List<String[]> listOfTables = new LinkedList<>();
         records.stream()
                 .map(x -> x.split(","))
