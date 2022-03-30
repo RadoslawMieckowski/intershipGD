@@ -5,5 +5,5 @@ public class Country {
     String name;
     String continent;
     double area;
-    long population;
+    double population;
 }
