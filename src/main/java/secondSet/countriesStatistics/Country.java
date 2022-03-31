@@ -36,7 +36,7 @@ public class Country {
         return countries;
     }
 
-    public static void sortByPopulationDesc(List countryList) {
+    public static void sortByPopulationDesc(List<Country> countryList) {
         countryList.sort(populationComparator.reversed());
         Iterator iterator = countryList.iterator();
         while (iterator.hasNext()) {
@@ -44,13 +44,13 @@ public class Country {
         }
     }
 
-    public static void findCountryWithMaxPopulation(List countryList) {
+    public static void findCountryWithMaxPopulation(List<Country> countryList) {
         System.out.println(countryList.stream()
                 .max(populationComparator)
                 .get());
     }
 
-    public static void findCountryWithMinPopulation(List countryList) {
+    public static void findCountryWithMinPopulation(List<Country> countryList) {
         System.out.println(countryList.stream()
                 .min(populationComparator)
                 .get());
