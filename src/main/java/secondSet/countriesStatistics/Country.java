@@ -13,6 +13,7 @@ public class Country {
     private long population;
     private static Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
     private static Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
+    private static Comparator<Country> continentComparator = Comparator.comparing(Country::getContinent);
 
     public long getPopulation() {
         return population;
@@ -20,6 +21,10 @@ public class Country {
 
     public long getArea() {
         return area;
+    }
+
+    public String getContinent() {
+        return continent;
     }
 
     public Country(String name, String continent, long area, long population) {
@@ -66,6 +71,13 @@ public class Country {
         System.out.println(countryList.stream()
                 .min(areaComparator)
                 .orElseThrow());
+    }
+
+    public static void sortByContinentAndArea(List<Country> countryList) {
+        countryList.stream()
+                .sorted(areaComparator.reversed())
+                .sorted(continentComparator)
+                .forEach(e -> System.out.println(e));
     }
 
     public static void findCountryWithMaxPopulationOnContinent(List<Country> countryList, String continent) {
