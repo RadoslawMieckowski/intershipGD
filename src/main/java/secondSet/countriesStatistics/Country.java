@@ -96,6 +96,12 @@ public class Country {
         System.out.println(sum);
     }
 
+    public static void deleteCountriesWithPopulationOverThreshold(List<Country> countryList, long populationLimit) {
+       countryList.stream()
+                .filter(x -> x.population < populationLimit)
+                .forEach(x -> System.out.println(x));
+    }
+
     @Override
     public String toString() {
         return "Country{" +
