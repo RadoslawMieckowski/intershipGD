@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Country {
 
@@ -85,6 +86,14 @@ public class Country {
                 .filter(x -> x.continent.equals(continent))
                 .max(populationComparator)
                 .orElseThrow());
+    }
+
+    public static void sumOfAreaOfContinent(List<Country> countryList, String continent) {
+        AtomicLong sum = new AtomicLong();
+        countryList.stream()
+                .filter(x -> x.continent.equals(continent))
+                .forEach(x -> sum.addAndGet(x.area));
+        System.out.println(sum);
     }
 
     @Override
