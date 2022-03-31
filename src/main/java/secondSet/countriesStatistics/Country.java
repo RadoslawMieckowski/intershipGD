@@ -1,10 +1,9 @@
 package secondSet.countriesStatistics;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Country {
 
@@ -26,6 +25,10 @@ public class Country {
 
     public String getContinent() {
         return continent;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Country(String name, String continent, long area, long population) {
@@ -100,6 +103,18 @@ public class Country {
        countryList.stream()
                 .filter(x -> x.population < populationLimit)
                 .forEach(x -> System.out.println(x));
+    }
+
+    public static void listToMap(List<Country> countryList) {
+        countryList.stream()
+                .collect(Collectors.groupingBy(Country::getFirstLetterOfName,
+                        Collectors.mapping(Country::toString,
+                                Collectors.toList())))
+                .forEach((key,value) -> System.out.println(key + " = " + value));
+    }
+
+    private static char getFirstLetterOfName(Country country) {
+        return country.name.charAt(0);
     }
 
     @Override
