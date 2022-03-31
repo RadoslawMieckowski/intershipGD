@@ -47,25 +47,32 @@ public class Country {
     public static void findCountryWithMaxPopulation(List<Country> countryList) {
         System.out.println(countryList.stream()
                 .max(populationComparator)
-                .get());
+                .orElseThrow());
     }
 
     public static void findCountryWithMinPopulation(List<Country> countryList) {
         System.out.println(countryList.stream()
                 .min(populationComparator)
-                .get());
+                .orElseThrow());
     }
 
     public static void findCountryWithMaxArea(List<Country> countryList) {
         System.out.println(countryList.stream()
                 .max(areaComparator)
-                .get());
+                .orElseThrow());
     }
 
     public static void findCountryWithMinArea(List<Country> countryList) {
         System.out.println(countryList.stream()
                 .min(areaComparator)
-                .get());
+                .orElseThrow());
+    }
+
+    public static void findCountryWithMaxPopulationOnContinent(List<Country> countryList, String continent) {
+        System.out.println(countryList.stream()
+                .filter(x -> x.continent.equals(continent))
+                .max(populationComparator)
+                .orElseThrow());
     }
 
     @Override
