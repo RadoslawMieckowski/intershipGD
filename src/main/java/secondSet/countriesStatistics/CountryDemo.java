@@ -11,6 +11,8 @@ public class CountryDemo {
         List<Country> countryList = Country.ToListOfCountries(listOfTables);
         //Country.sortByPopulationDesc(countryList);
         //Country.findCountryWithMaxPopulation(countryList);
-        Country.findCountryWithMinPopulation(countryList);
+        //Country.findCountryWithMinPopulation(countryList);
+        Country.findCountryWithMaxArea(countryList);
+        Country.findCountryWithMinArea(countryList);
     }
 }

@@ -12,10 +12,14 @@ public class Country {
     private long area;
     private long population;
     private static Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
-
+    private static Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
 
     public long getPopulation() {
         return population;
+    }
+
+    public long getArea() {
+        return area;
     }
 
     public Country(String name, String continent, long area, long population) {
@@ -42,12 +46,26 @@ public class Country {
 
     public static void findCountryWithMaxPopulation(List countryList) {
         System.out.println(countryList.stream()
-                .max(populationComparator).get());
+                .max(populationComparator)
+                .get());
     }
 
     public static void findCountryWithMinPopulation(List countryList) {
         System.out.println(countryList.stream()
-                .min(populationComparator).get());
+                .min(populationComparator)
+                .get());
+    }
+
+    public static void findCountryWithMaxArea(List<Country> countryList) {
+        System.out.println(countryList.stream()
+                .max(areaComparator)
+                .get());
+    }
+
+    public static void findCountryWithMinArea(List<Country> countryList) {
+        System.out.println(countryList.stream()
+                .min(areaComparator)
+                .get());
     }
 
     @Override
