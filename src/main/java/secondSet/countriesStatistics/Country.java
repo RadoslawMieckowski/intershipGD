@@ -45,6 +45,11 @@ public class Country {
                 .max(populationComparator).get());
     }
 
+    public static void findCountryWithMinPopulation(List countryList) {
+        System.out.println(countryList.stream()
+                .min(populationComparator).get());
+    }
+
     @Override
     public String toString() {
         return "Country{" +

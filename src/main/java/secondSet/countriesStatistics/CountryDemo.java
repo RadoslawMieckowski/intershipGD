@@ -9,7 +9,8 @@ public class CountryDemo {
         List<String> records = CSVReader.readCSVFile("src/main/resources/data/countriesStatistics.csv");
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
         List<Country> countryList = Country.ToListOfCountries(listOfTables);
-        Country.sortByPopulationDesc(countryList);
-        Country.findCountryWithMaxPopulation(countryList);
+        //Country.sortByPopulationDesc(countryList);
+        //Country.findCountryWithMaxPopulation(countryList);
+        Country.findCountryWithMinPopulation(countryList);
     }
 }
