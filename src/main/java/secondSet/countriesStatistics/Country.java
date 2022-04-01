@@ -40,10 +40,11 @@ public class Country {
         this.population = population;
     }
     public static List<Country> ToListOfCountries(List<String[]> listOfTables) {
-        List<Country> countries = new LinkedList<>();
-        for (String[] table : listOfTables) {
-            countries.add(new Country(table[0], table[1], Long.valueOf(table[2]), Long.valueOf(table[3])));
-        }
+        List<Country> countries =
+            listOfTables.stream()
+                    .map(table ->
+                            (new Country(table[0], table[1], Long.valueOf(table[2]), Long.valueOf(table[3]))))
+                    .collect(Collectors.toList());
         return countries;
     }
 
