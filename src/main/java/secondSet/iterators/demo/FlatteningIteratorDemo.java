@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FlatteningIteratorDemo {
     public static void main(String[] args) {
-        Iterator<Integer>iter = new FlatteningIterator<Integer>(
+        Iterator<Integer>iter = new FlatteningIterator<>(
                 List.of(42, 5).iterator(),
                 List.of(-4).iterator(),
                 List.of(999, 998, 997).iterator()

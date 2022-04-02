@@ -5,20 +5,20 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class FlatteningIterator<T> implements Iterator {
+public class FlatteningIterator<E> implements Iterator<E> {
 
-    private List<T> listOfElements;
-    private Iterator<T> iterator;
+    private List<E> listOfElements;
+    private Iterator<E> iterator;
 
-    public FlatteningIterator(Iterator<T>... iterators) {
+    public FlatteningIterator(Iterator<E>... iterators) {
         listOfElements = Arrays.stream(iterators)
                 .flatMap(iterator ->getStreamFromIterator(iterator))
                 .collect(Collectors.toList());
         iterator = listOfElements.iterator();
     }
 
-    private Stream<T> getStreamFromIterator(Iterator<T> iterator) {
-        Spliterator<T> spliterator =
+    private Stream<E> getStreamFromIterator(Iterator<E> iterator) {
+        Spliterator<E> spliterator =
                 Spliterators.spliteratorUnknownSize(iterator, 0);
         return StreamSupport.stream(spliterator, false);
     }
@@ -31,7 +31,7 @@ public class FlatteningIterator<T> implements Iterator {
     }
 
     @Override
-    public T next() {
+    public E next() {
         return iterator.next();
     }
 }
