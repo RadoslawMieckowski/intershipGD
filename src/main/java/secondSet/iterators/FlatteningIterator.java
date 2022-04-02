@@ -7,14 +7,14 @@ import java.util.stream.StreamSupport;
 
 public class FlatteningIterator<T> implements Iterator {
 
-    private List<T> listOfIterators;
+    private List<T> listOfElements;
     private Iterator<T> iterator;
 
     public FlatteningIterator(Iterator<T>... iterators) {
-        listOfIterators = Arrays.stream(iterators)
+        listOfElements = Arrays.stream(iterators)
                 .flatMap(iterator ->getStreamFromIterator(iterator))
                 .collect(Collectors.toList());
-        iterator = listOfIterators.iterator();
+        iterator = listOfElements.iterator();
     }
 
     private Stream<T> getStreamFromIterator(Iterator<T> iterator) {
