@@ -7,30 +7,51 @@ import java.util.List;
 public class BufferingIterator<E> implements Iterator<List<E>> {
     private List<List<E>> listOfLists;
     private Iterator<List<E>> listIterator;
+    private int batchSize;
 
     public BufferingIterator(Iterator<E> iterator, int batchSize) {
-        List<E> copiedList = new LinkedList<>();
-        while (iterator.hasNext()) {
-            copiedList.add(iterator.next());
-//        System.out.println(copiedList);
-        }
+        List<E> copiedList = createList(iterator);
         Iterator<E> copiedListIterator = copiedList.iterator();
+        this.batchSize = batchSize;
         listOfLists = new LinkedList<>();
-            int pointer = 0;
-            List<E>smallList;
-            int numberOfLists = copiedList.size() % batchSize == 0 ? copiedList.size()/batchSize : (copiedList.size()/batchSize) + 1;
+            int addedElements = 0;
+            int numberOfLists = getNumberOfSubLists(copiedList);
+            List<E> subList;
             while (numberOfLists > 0) {
-            smallList= new LinkedList<>();
+            subList = new LinkedList<>();
             numberOfLists--;
-            while (copiedListIterator.hasNext() && pointer < batchSize){
-            smallList.add(copiedListIterator.next());
-            pointer++;
+            while (copiedListIterator.hasNext() && addedElements < batchSize){
+            subList.add(copiedListIterator.next());
+            addedElements++;
             }
-            pointer = 0;
-            listOfLists.add(smallList);
+            addedElements = 0;
+            listOfLists.add(subList);
         }
             listIterator = listOfLists.iterator();
         //list.stream().limit(batchSize).collect(Collectors.toList());
+    }
+
+    private List<E> createList(Iterator<E> iterator) {
+        List<E> copiedList = new LinkedList<>();
+        while (iterator.hasNext()) {
+            copiedList.add(iterator.next());
+        }
+        return copiedList;
+    }
+
+    private int getNumberOfSubLists (List<E> list) {
+        return list.size() % batchSize == 0 ?
+                list.size()/batchSize : (list.size()/batchSize) + 1;
+    }
+
+    private List<E> fillSubList(Iterator<E> iterator) {
+        List<E> subList = new LinkedList<>();
+        int addedElements = 0;
+        while (iterator.hasNext() && addedElements < batchSize){
+            subList.add(iterator.next());
+            addedElements++;
+        }
+        return subList;
     }
 
     @Override
