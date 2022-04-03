@@ -8,27 +8,21 @@ public class BufferingIterator<E> implements Iterator<List<E>> {
     private List<List<E>> listOfLists;
     private Iterator<List<E>> listIterator;
     private int batchSize;
+    private int addedElements = 0;
 
     public BufferingIterator(Iterator<E> iterator, int batchSize) {
         List<E> copiedList = createList(iterator);
         Iterator<E> copiedListIterator = copiedList.iterator();
         this.batchSize = batchSize;
         listOfLists = new LinkedList<>();
-            int addedElements = 0;
             int numberOfLists = getNumberOfSubLists(copiedList);
             List<E> subList;
             while (numberOfLists > 0) {
-            subList = new LinkedList<>();
+            subList = fillSubList(copiedListIterator);
             numberOfLists--;
-            while (copiedListIterator.hasNext() && addedElements < batchSize){
-            subList.add(copiedListIterator.next());
-            addedElements++;
-            }
-            addedElements = 0;
             listOfLists.add(subList);
         }
             listIterator = listOfLists.iterator();
-        //list.stream().limit(batchSize).collect(Collectors.toList());
     }
 
     private List<E> createList(Iterator<E> iterator) {
@@ -46,11 +40,11 @@ public class BufferingIterator<E> implements Iterator<List<E>> {
 
     private List<E> fillSubList(Iterator<E> iterator) {
         List<E> subList = new LinkedList<>();
-        int addedElements = 0;
         while (iterator.hasNext() && addedElements < batchSize){
             subList.add(iterator.next());
             addedElements++;
         }
+        addedElements = 0;
         return subList;
     }
 
