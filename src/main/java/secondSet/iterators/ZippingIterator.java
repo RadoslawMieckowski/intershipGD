@@ -8,19 +8,19 @@ import java.util.stream.StreamSupport;
 public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
     private List<E> nameList;
     private List<T> ageList;
-    private Iterator<E> nameListIterator;
-    private Iterator<T> ageListIterator;
     private List<Person> personList;
+    private Iterator<Person> personListIterator;
 
     public ZippingIterator(Iterator<E> nameListIterator, Iterator<T> ageListIterator) {
         nameList = getStreamFromIterator(nameListIterator).collect(Collectors.toList());
         ageList = getStreamFromIterator(ageListIterator).collect(Collectors.toList());
-        nameListIterator = nameList.iterator();
-        ageListIterator = ageList.iterator();
+        Iterator<E> nameIterator = nameList.iterator();
+        Iterator<T> ageIterator = ageList.iterator();
         personList = new LinkedList<>();
-        while (nameListIterator.hasNext() && ageListIterator.hasNext()) {
-            personList.add(new Person(nameListIterator.next(), ageListIterator.next()));
+        while (nameIterator.hasNext() && ageIterator.hasNext()) {
+            personList.add(new Person(nameIterator.next(), ageIterator.next()));
         }
+        personListIterator = personList.iterator();
     }
 
     private <E> Stream<E> getStreamFromIterator(Iterator<E> iterator) {
@@ -31,11 +31,12 @@ public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
 
     @Override
     public boolean hasNext() {
+        if (personListIterator.hasNext()) return true;
         return false;
     }
 
     @Override
     public Person next() {
-        return null;
+        return personListIterator.next();
     }
 }

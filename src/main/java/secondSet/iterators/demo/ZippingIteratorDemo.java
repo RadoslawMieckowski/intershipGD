@@ -10,5 +10,8 @@ public class ZippingIteratorDemo {
                 List.of("John", "Jane", "Jack", "Dennis").iterator(),
                 List.of(24, 25, 27, 12).iterator()
         );
+        while (personIterator.hasNext()) {
+            System.out.println(personIterator.next());
+        }
     }
 }

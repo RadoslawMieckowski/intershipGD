@@ -9,6 +9,14 @@ public class Person <String, Integer>{
         this.name = name;
         this.age = age;
     }
+
+    @Override
+    public java.lang.String toString() {
+        return "Person{" +
+                "name=" + name +
+                ", age=" + age +
+                '}';
+    }
 }
 
 
