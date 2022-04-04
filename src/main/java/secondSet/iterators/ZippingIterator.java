@@ -15,15 +15,23 @@ public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
     private Iterator<Person> personListIterator;
 
     public ZippingIterator(Iterator<E> nameListIterator, Iterator<T> ageListIterator) {
-        nameList = IteratorHandler.getStreamFromIterator(nameListIterator).collect(Collectors.toList());
-        ageList = IteratorHandler.getStreamFromIterator(ageListIterator).collect(Collectors.toList());
+        nameList = IteratorHandler
+                .getStreamFromIterator(nameListIterator)
+                .collect(Collectors.toList());
+        ageList = IteratorHandler
+                .getStreamFromIterator(ageListIterator)
+                .collect(Collectors.toList());
         Iterator<E> nameIterator = nameList.iterator();
         Iterator<T> ageIterator = ageList.iterator();
+        fillPersonList(nameIterator, ageIterator);
+        personListIterator = personList.iterator();
+    }
+
+    private void fillPersonList(Iterator<E> nameIterator, Iterator<T> ageIterator) {
         personList = new LinkedList<>();
         while (nameIterator.hasNext() && ageIterator.hasNext()) {
             personList.add(new Person(nameIterator.next(), ageIterator.next()));
         }
-        personListIterator = personList.iterator();
     }
 
     @Override
