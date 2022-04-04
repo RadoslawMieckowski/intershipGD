@@ -25,6 +25,12 @@ private Iterator<? extends LocalDate> localDateIterator;
                 .collect(Collectors.toList());
     }
 
+//    @Override
+//    public String toString() {
+//        if (localDate == null) return "";
+//        return localDate.getDayOfMonth() + " " + localDate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " " + localDate.getYear() + ", " + localDate.getDayOfWeek().toString();
+//    }
+
     @Override
     public boolean hasNext() {
         if (localDateIterator.hasNext()) return true;
