@@ -1,4 +1,4 @@
-package secondSet.iterators;
+package secondSet.iterators.models;
 
 public class Person <String, Integer>{
     private String name;

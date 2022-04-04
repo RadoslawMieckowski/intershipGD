@@ -1,5 +1,7 @@
 package secondSet.iterators;
 
+import secondSet.iterators.models.Person;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
