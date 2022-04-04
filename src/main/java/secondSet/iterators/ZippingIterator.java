@@ -1,11 +1,12 @@
 package secondSet.iterators;
 
 import secondSet.iterators.models.Person;
+import secondSet.utilities.IteratorHandler;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
     private List<E> nameList;
@@ -14,8 +15,8 @@ public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
     private Iterator<Person> personListIterator;
 
     public ZippingIterator(Iterator<E> nameListIterator, Iterator<T> ageListIterator) {
-        nameList = getStreamFromIterator(nameListIterator).collect(Collectors.toList());
-        ageList = getStreamFromIterator(ageListIterator).collect(Collectors.toList());
+        nameList = IteratorHandler.getStreamFromIterator(nameListIterator).collect(Collectors.toList());
+        ageList = IteratorHandler.getStreamFromIterator(ageListIterator).collect(Collectors.toList());
         Iterator<E> nameIterator = nameList.iterator();
         Iterator<T> ageIterator = ageList.iterator();
         personList = new LinkedList<>();
@@ -23,12 +24,6 @@ public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
             personList.add(new Person(nameIterator.next(), ageIterator.next()));
         }
         personListIterator = personList.iterator();
-    }
-
-    private <E> Stream<E> getStreamFromIterator(Iterator<E> iterator) {
-        Spliterator<E> spliterator =
-                Spliterators.spliteratorUnknownSize(iterator, 0);
-        return StreamSupport.stream(spliterator, false);
     }
 
     @Override

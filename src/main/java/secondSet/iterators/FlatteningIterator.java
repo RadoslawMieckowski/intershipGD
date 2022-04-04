@@ -1,9 +1,11 @@
 package secondSet.iterators;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+
+import static secondSet.utilities.IteratorHandler.getStreamFromIterator;
 
 public class FlatteningIterator<E> implements Iterator<E> {
 
@@ -15,12 +17,6 @@ public class FlatteningIterator<E> implements Iterator<E> {
                 .flatMap(iterator ->getStreamFromIterator(iterator))
                 .collect(Collectors.toList());
         iterator = listOfElements.iterator();
-    }
-
-    private <E> Stream<E> getStreamFromIterator(Iterator<E> iterator) {
-        Spliterator<E> spliterator =
-                Spliterators.spliteratorUnknownSize(iterator, 0);
-        return StreamSupport.stream(spliterator, false);
     }
 
     @Override

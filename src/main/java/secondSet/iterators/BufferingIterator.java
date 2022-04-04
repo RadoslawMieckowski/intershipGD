@@ -1,8 +1,11 @@
 package secondSet.iterators;
 
+import secondSet.utilities.IteratorHandler;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BufferingIterator<E> implements Iterator<List<E>> {
     private List<List<E>> listOfLists;
@@ -18,10 +21,9 @@ public class BufferingIterator<E> implements Iterator<List<E>> {
     }
 
     private List<E> createList(Iterator<E> iterator) {
-        List<E> copiedList = new LinkedList<>();
-        while (iterator.hasNext()) {
-            copiedList.add(iterator.next());
-        }
+        List<E> copiedList = IteratorHandler
+                .getStreamFromIterator(iterator)
+                .collect(Collectors.toList());
         return copiedList;
     }
 
