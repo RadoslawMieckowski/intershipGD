@@ -17,7 +17,7 @@ public class FlatteningIterator<E> implements Iterator<E> {
         iterator = listOfElements.iterator();
     }
 
-    private Stream<E> getStreamFromIterator(Iterator<E> iterator) {
+    private <E> Stream<E> getStreamFromIterator(Iterator<E> iterator) {
         Spliterator<E> spliterator =
                 Spliterators.spliteratorUnknownSize(iterator, 0);
         return StreamSupport.stream(spliterator, false);
