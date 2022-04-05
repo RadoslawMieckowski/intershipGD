@@ -24,7 +24,7 @@ public MyStack(int size) {
         }
 
     public Integer peek() {
-        if (size == 0) throw new EmptyStackException();
+        if (innerList.size() == 0) throw new EmptyStackException();
         return innerList.get(0);
     }
 

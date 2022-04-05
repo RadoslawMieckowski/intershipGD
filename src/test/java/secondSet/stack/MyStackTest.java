@@ -5,9 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import secondSet.stack.stackExceptions.FullMyStackException;
 
+import java.util.EmptyStackException;
 import java.util.Iterator;
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MyStackTest {
@@ -34,7 +36,22 @@ class MyStackTest {
     }
 
     @Test
+    @DisplayName("peek should return the value at the top of the stack")
     void peek() {
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(5);
+        myStack.push(7);
+
+        assertEquals(7, myStack.peek(), "peek should return the value at the top of the stack");
+    }
+
+    @Test
+    @DisplayName("peek should throw EmptyStackException if stack is empty")
+    void peekEmptyStackExceptionTesting() {
+
+        Throwable exception = assertThrows(EmptyStackException.class, () -> myStack.peek());
+        assertTrue(exception instanceof EmptyStackException);
     }
 
     @Test
