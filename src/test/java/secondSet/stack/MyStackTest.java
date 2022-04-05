@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import secondSet.stack.stackExceptions.FullMyStackException;
+import secondSet.stack.stackExceptions.NotPrimeNumberException;
+import secondSet.stack.stackExceptions.SmallerNumberException;
 
 import java.util.EmptyStackException;
 import java.util.Iterator;
@@ -24,14 +26,14 @@ class MyStackTest {
     @Test
     @DisplayName("Creating iterator of myStack instance should work")
     void iterator() {
-        myStack.push(4);
+        myStack.push(3);
         Iterator<Integer> iterator = myStack.iterator();
         int actualValue = 0;
         while (iterator.hasNext()) {
             actualValue = iterator.next();
         }
 
-        assertEquals(4, actualValue, "iterator should return a value from the MyStack instance");
+        assertEquals(3, actualValue, "iterator should return a value from the MyStack instance");
 
     }
 
@@ -94,7 +96,7 @@ class MyStackTest {
     @Test
     @DisplayName("Pushing not prime numbers to myStack instance should throw NotPrimeNumberException")
     void NotPrimeNumberExceptionTesting() {
-        Throwable exception = assertThrows(FullMyStackException.class, () -> myStack.push(11));
+        Throwable exception = assertThrows(NotPrimeNumberException.class, () -> myStack.push(4));
         assertEquals("Given number is not a prime one!", exception.getMessage());
     }
 
@@ -103,7 +105,7 @@ class MyStackTest {
     void SmallerNumberExceptionTesting() {
         myStack.push(7);
 
-        Throwable exception = assertThrows(FullMyStackException.class, () -> myStack.push(3));
+        Throwable exception = assertThrows(SmallerNumberException.class, () -> myStack.push(3));
         assertEquals("Given number must be greater than one on the top of the stack!", exception.getMessage());
     }
 

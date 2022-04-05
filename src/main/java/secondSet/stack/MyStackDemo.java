@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class MyStackDemo {
     public static void main(String[] args) {
         MyStack myStack = new MyStack<>(3);
-//        myStack.push(3);
+        myStack.push(4);
 //        myStack.push(3);
 //        myStack.push(5);
         myStack.pop();
