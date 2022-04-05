@@ -28,10 +28,6 @@ public class Country {
         return continent;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Country(String name, String continent, long area, long population) {
         this.name = name;
         this.continent = continent;
