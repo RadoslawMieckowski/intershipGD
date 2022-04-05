@@ -24,6 +24,10 @@ public class Country {
         return area;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getContinent() {
         return continent;
     }

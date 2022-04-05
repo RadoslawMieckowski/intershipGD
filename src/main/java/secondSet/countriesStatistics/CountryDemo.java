@@ -9,7 +9,7 @@ public class CountryDemo {
         List<String> records = CSVReader.readCSVFile("src/main/resources/data/countriesStatistics.csv");
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
         List<Country> countryList = Country.ToListOfCountries(listOfTables);
-        //Country.sortByPopulationDesc(countryList);
+        Country.sortByPopulationDesc(countryList);
         //Country.findCountryWithMaxPopulation(countryList);
         //Country.findCountryWithMinPopulation(countryList);
         //Country.findCountryWithMaxArea(countryList);
@@ -18,6 +18,6 @@ public class CountryDemo {
         //Country.sortByContinentAndArea(countryList);
         //Country.sumOfAreaOfContinent(countryList,"Europe");
         //Country.deleteCountriesWithPopulationOverThreshold(countryList, 90_000_000);
-        Country.listToMap(countryList);
+//        Country.listToMap(countryList);
     }
 }
