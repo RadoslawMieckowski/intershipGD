@@ -43,6 +43,7 @@ class BufferingIteratorTest {
     }
 
     @Test
+    @DisplayName("next method should throw NoSuchElementException if iterator has nothing to iterate on!")
     void nextOnEmptyIterator() {
         Throwable exception = assertThrows(NoSuchElementException.class,
                 () -> bufferingIterator.next());
