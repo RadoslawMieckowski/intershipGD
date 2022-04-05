@@ -71,16 +71,20 @@ public class Country {
         return country;
     }
 
-    public static void findCountryWithMaxArea(List<Country> countryList) {
-        System.out.println(countryList.stream()
+    public static Country findCountryWithMaxArea(List<Country> countryList) {
+        Country country = countryList.stream()
                 .max(areaComparator)
-                .orElseThrow());
+                .orElseThrow();
+        System.out.println(country);
+        return country;
     }
 
-    public static void findCountryWithMinArea(List<Country> countryList) {
-        System.out.println(countryList.stream()
+    public static Country findCountryWithMinArea(List<Country> countryList) {
+        Country country = countryList.stream()
                 .min(areaComparator)
-                .orElseThrow());
+                .orElseThrow();
+        System.out.println(country);
+        return country;
     }
 
     public static void sortByContinentAndArea(List<Country> countryList) {
