@@ -50,6 +50,7 @@ public MyStack(int size) {
     }
 
     private boolean isPrimeNumber(int number) {
+        if (number == 1) return false;
         boolean flag = true;
         for(int i = 2; i < number; i++){
             if (number % i == 0){
