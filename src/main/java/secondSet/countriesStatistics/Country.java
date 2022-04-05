@@ -93,11 +93,13 @@ public class Country {
         countryList.forEach(e -> System.out.println(e));
     }
 
-    public static void findCountryWithMaxPopulationOnContinent(List<Country> countryList, String continent) {
-        System.out.println(countryList.stream()
+    public static Country findCountryWithMaxPopulationOnContinent(List<Country> countryList, String continent) {
+        Country country = countryList.stream()
                 .filter(x -> x.continent.equals(continent))
                 .max(populationComparator)
-                .orElseThrow());
+                .orElseThrow();
+        System.out.println(country);
+        return country;
     }
 
     public static void sumOfAreaOfContinent(List<Country> countryList, String continent) {

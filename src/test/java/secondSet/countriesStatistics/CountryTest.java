@@ -124,7 +124,21 @@ List<Country> countryList;
     }
 
     @Test
+    @DisplayName("finding country with max population on continent")
     void findCountryWithMaxPopulationOnContinent() {
+        Country expectedCountry = new Country("Egypt", "Africa",
+                1_010_408, 102_674_145);
+        Country actualCountry = Country.findCountryWithMaxPopulationOnContinent(
+                countryList,"Africa");
+
+        assertEquals(expectedCountry.getName(),actualCountry.getName(),
+                "names should be the same!");
+        assertEquals(expectedCountry.getContinent(),actualCountry.getContinent(),
+                "continents should be the same!");
+        assertEquals(expectedCountry.getArea(),actualCountry.getArea(),
+                "areas should be the same!");
+        assertEquals(expectedCountry.getPopulation(),actualCountry.getPopulation(),
+                "population should be the same!");
     }
 
     @Test
