@@ -39,7 +39,7 @@ public MyStack(int size) {
     if (innerList.size() == 0) {
         ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
     } else {
-        if (element <= ((int)innerList.get(0))) throw new SmallerNumberException("Given number is smaller than one on the top of the stack!");
+        if (element <= ((int)innerList.get(0))) throw new SmallerNumberException("Given number must be greater than one on the top of the stack!");
         ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
     }
         return element;
