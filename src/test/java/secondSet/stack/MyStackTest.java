@@ -2,7 +2,6 @@ package secondSet.stack;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import secondSet.stack.stackExceptions.FullMyStackException;
 
@@ -23,7 +22,14 @@ class MyStackTest {
     @Test
     @DisplayName("Creating iterator of myStack instance should work")
     void iterator() {
+        myStack.push(4);
         Iterator<Integer> iterator = myStack.iterator();
+        int actualValue = 0;
+        while (iterator.hasNext()) {
+            actualValue = iterator.next();
+        }
+
+        assertEquals(4, actualValue, "iterator should return a value from the MyStack instance");
 
     }
 
