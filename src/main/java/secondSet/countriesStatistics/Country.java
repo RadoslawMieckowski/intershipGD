@@ -3,6 +3,7 @@ package secondSet.countriesStatistics;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -119,12 +120,14 @@ public class Country {
                 return countries;
     }
 
-    public static void listToMap(List<Country> countryList) {
-        countryList.stream()
+    public static Map<Character, List<String>> listToMap(List<Country> countryList) {
+        Map<Character, List<String>> countryMap = countryList.stream()
                 .collect(Collectors.groupingBy(Country::getFirstLetterOfName,
                         Collectors.mapping(Country::toString,
-                                Collectors.toList())))
-                .forEach((key,value) -> System.out.println(key + " = " + value));
+                                Collectors.toList())));
+
+                countryMap.forEach((key,value) -> System.out.println(key + " = " + value));
+                return countryMap;
     }
 
     private static char getFirstLetterOfName(Country country) {

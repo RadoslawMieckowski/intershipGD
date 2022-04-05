@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import secondSet.utilities.CSVReader;
 
 import java.util.List;
+import java.util.Map;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,8 @@ List<Country> countryList;
 
     @BeforeEach
     void setUp() {
-        List<String> records = CSVReader.readCSVFile("src/main/resources/data/countriesStatistics.csv");
+        List<String> records = CSVReader.readCSVFile(
+                "src/main/resources/data/countriesStatistics.csv");
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
         countryList = Country.ToListOfCountries(listOfTables);
     }
@@ -159,5 +161,9 @@ List<Country> countryList;
 
     @Test
     void listToMap() {
+        Map<Character, List<String>> actualCountryMap = Country.listToMap(countryList);
+        int actualCountryMapSize = actualCountryMap.size();
+
+        assertEquals(10, actualCountryMapSize);
     }
 }
