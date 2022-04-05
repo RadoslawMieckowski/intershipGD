@@ -8,16 +8,9 @@ public class BusinessDaysIteratorDemo {
         Iterator<LocalDate> iter = new secondSet.iterators.BusinessDaysIterator<>(
                 LocalDate.of(2022, 1, 1)
         );
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        System.out.println(iter.next());
+        for (int i = 1; i <= 31; i++) {
+            System.out.println(iter.next());
+        }
+
     }
 }
