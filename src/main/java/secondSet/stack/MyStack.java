@@ -29,7 +29,7 @@ public MyStack(int size) {
     }
 
     public Integer pop() {
-        if (size == 0) throw new EmptyStackException();
+        if (innerList.size() == 0) throw new EmptyStackException();
         return ((LinkedList<Integer>) innerList).pop();
     }
 
