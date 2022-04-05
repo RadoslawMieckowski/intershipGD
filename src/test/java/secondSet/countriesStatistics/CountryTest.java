@@ -73,11 +73,37 @@ List<Country> countryList;
     }
 
     @Test
+    @DisplayName("Find country with max area")
     void findCountryWithMaxArea() {
+        Country expectedCountry = new Country("Canada", "NorthAmerica",
+                9_984_670, 38_526_760);
+        Country actualCountry = Country.findCountryWithMaxArea(countryList);
+
+        assertEquals(expectedCountry.getName(),actualCountry.getName(),
+                "names should be the same!");
+        assertEquals(expectedCountry.getContinent(),actualCountry.getContinent(),
+                "continents should be the same!");
+        assertEquals(expectedCountry.getArea(),actualCountry.getArea(),
+                "areas should be the same!");
+        assertEquals(expectedCountry.getPopulation(),actualCountry.getPopulation(),
+                "population should be the same!");
     }
 
     @Test
+    @DisplayName("Find country with min area")
     void findCountryWithMinArea() {
+        Country expectedCountry = new Country("Austria", "Europe",
+                83_879, 8_935_112);
+        Country actualCountry = Country.findCountryWithMinArea(countryList);
+
+        assertEquals(expectedCountry.getName(),actualCountry.getName(),
+                "names should be the same!");
+        assertEquals(expectedCountry.getContinent(),actualCountry.getContinent(),
+                "continents should be the same!");
+        assertEquals(expectedCountry.getArea(),actualCountry.getArea(),
+                "areas should be the same!");
+        assertEquals(expectedCountry.getPopulation(),actualCountry.getPopulation(),
+                "population should be the same!");
     }
 
     @Test
