@@ -63,10 +63,12 @@ public class Country {
         return country;
     }
 
-    public static void findCountryWithMinPopulation(List<Country> countryList) {
-        System.out.println(countryList.stream()
+    public static Country findCountryWithMinPopulation(List<Country> countryList) {
+        Country country = countryList.stream()
                 .min(populationComparator)
-                .orElseThrow());
+                .orElseThrow();
+        System.out.println(country);
+        return country;
     }
 
     public static void findCountryWithMaxArea(List<Country> countryList) {

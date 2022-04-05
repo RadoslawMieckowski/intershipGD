@@ -10,8 +10,8 @@ public class CountryDemo {
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
         List<Country> countryList = Country.ToListOfCountries(listOfTables);
 //        Country.sortByPopulationDesc(countryList);
-        Country.findCountryWithMaxPopulation(countryList);
-        //Country.findCountryWithMinPopulation(countryList);
+//        Country.findCountryWithMaxPopulation(countryList);
+        Country.findCountryWithMinPopulation(countryList);
         //Country.findCountryWithMaxArea(countryList);
         //Country.findCountryWithMinArea(countryList);
         //Country.findCountryWithMaxPopulationOnContinent(countryList, "Africa");
