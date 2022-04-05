@@ -41,6 +41,10 @@ class MyStackTest {
 
     @Test
     void size() {
-        assertEquals(myStack.size(), 4, "size() method should work");
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(5);
+        myStack.push(7);
+        assertEquals( 4, myStack.size(), "size() method should work");
     }
 }
