@@ -110,10 +110,13 @@ public class Country {
         System.out.println(sum);
     }
 
-    public static void deleteCountriesWithPopulationOverThreshold(List<Country> countryList, long populationLimit) {
-       countryList.stream()
+    public static List<Country> deleteCountriesWithPopulationOverThreshold(List<Country> countryList, long populationLimit) {
+       List<Country> countries = countryList.stream()
                 .filter(x -> x.population < populationLimit)
-                .forEach(x -> System.out.println(x));
+                .collect(Collectors.toList());
+
+                countries.forEach(x -> System.out.println(x));
+                return countries;
     }
 
     public static void listToMap(List<Country> countryList) {

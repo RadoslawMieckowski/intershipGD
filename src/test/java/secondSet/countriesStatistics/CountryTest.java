@@ -143,10 +143,18 @@ List<Country> countryList;
 
     @Test
     void sumOfAreaOfContinent() {
+        // I realised, that it was to calculate for each continent, not for given, I'll change ASAP
     }
 
     @Test
+    @DisplayName("Deleting countries with population over a threshold")
     void deleteCountriesWithPopulationOverThreshold() {
+        List<Country> actualCountryList = Country.deleteCountriesWithPopulationOverThreshold(
+                countryList, 90_000_000
+        );
+        int actualCountryListSize = actualCountryList.size();
+
+        assertEquals(8, actualCountryListSize);
     }
 
     @Test
