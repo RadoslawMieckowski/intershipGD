@@ -33,7 +33,8 @@ class MyStackTest {
             actualValue = iterator.next();
         }
 
-        assertEquals(3, actualValue, "iterator should return a value from the MyStack instance");
+        assertEquals(3, actualValue,
+                "iterator should return a value from the MyStack instance");
 
     }
 
@@ -45,7 +46,8 @@ class MyStackTest {
         myStack.push(5);
         myStack.push(7);
 
-        assertEquals(7, myStack.peek(), "peek should return the value at the top of the stack");
+        assertEquals(7, myStack.peek(),
+                "peek should return the value at the top of the stack");
     }
 
     @Test
@@ -62,7 +64,8 @@ class MyStackTest {
         myStack.push(7);
         myStack.push(11);
 
-        assertEquals(11, myStack.pop(), "pop method should return element at the top of the stack!");
+        assertEquals(11, myStack.pop(),
+                "pop method should return element at the top of the stack!");
     }
 
     @Test
@@ -89,14 +92,16 @@ class MyStackTest {
         myStack.push(5);
         myStack.push(7);
 
-        Throwable exception = assertThrows(FullMyStackException.class, () -> myStack.push(11));
+        Throwable exception = assertThrows(FullMyStackException.class,
+                () -> myStack.push(11));
         assertEquals("The stack is already full!", exception.getMessage());
     }
 
     @Test
     @DisplayName("Pushing not prime numbers to myStack instance should throw NotPrimeNumberException")
     void NotPrimeNumberExceptionTesting() {
-        Throwable exception = assertThrows(NotPrimeNumberException.class, () -> myStack.push(4));
+        Throwable exception = assertThrows(NotPrimeNumberException.class,
+                () -> myStack.push(4));
         assertEquals("Given number is not a prime one!", exception.getMessage());
     }
 
@@ -105,8 +110,10 @@ class MyStackTest {
     void SmallerNumberExceptionTesting() {
         myStack.push(7);
 
-        Throwable exception = assertThrows(SmallerNumberException.class, () -> myStack.push(3));
-        assertEquals("Given number must be greater than one on the top of the stack!", exception.getMessage());
+        Throwable exception = assertThrows(SmallerNumberException.class,
+                () -> myStack.push(3));
+        assertEquals("Given number must be greater than one on the top of the stack!",
+                exception.getMessage());
     }
 
     @Test
