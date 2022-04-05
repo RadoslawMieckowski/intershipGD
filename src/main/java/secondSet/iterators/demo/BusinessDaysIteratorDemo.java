@@ -10,5 +10,14 @@ public class BusinessDaysIteratorDemo {
         );
         System.out.println(iter.next());
         System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        System.out.println(iter.next());
     }
 }
