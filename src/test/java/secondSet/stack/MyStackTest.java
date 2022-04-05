@@ -1,13 +1,28 @@
 package secondSet.stack;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Iterator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MyStackTest {
 
+   MyStack myStack;
+
+    @BeforeEach
+    void setUp() {
+        myStack = new MyStack<>(4);
+    }
+
     @Test
+    @DisplayName("Creating iterator of myStack instance should work")
     void iterator() {
+        Iterator<Integer> iterator = myStack.iterator();
+
     }
 
     @Test
@@ -18,11 +33,14 @@ class MyStackTest {
     void pop() {
     }
 
-    @Test
+    @RepeatedTest(4)
+    @DisplayName("pushing elements to myStack instance should work")
     void push() {
+        assertEquals(myStack.push(7), 7, "Regular pushing should work");
     }
 
     @Test
     void size() {
+        assertEquals(myStack.size(), 4, "size() method should work");
     }
 }
