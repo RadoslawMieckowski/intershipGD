@@ -49,13 +49,25 @@ class MyStackTest {
     @Test
     @DisplayName("peek should throw EmptyStackException if stack is empty")
     void peekEmptyStackExceptionTesting() {
-
         Throwable exception = assertThrows(EmptyStackException.class, () -> myStack.peek());
         assertTrue(exception instanceof EmptyStackException);
     }
 
     @Test
+    @DisplayName("pop method should work")
     void pop() {
+        myStack.push(5);
+        myStack.push(7);
+        myStack.push(11);
+
+        assertEquals(11, myStack.pop(), "pop method should return element at the top of the stack!");
+    }
+
+    @Test
+    @DisplayName("pop method should throw EmptyStackException if myStack instance is empty")
+    void popEmptyStackExceptionTesting() {
+        Throwable exception = assertThrows(EmptyStackException.class, () -> myStack.pop());
+        assertTrue(exception instanceof EmptyStackException);
     }
 
     @Test
