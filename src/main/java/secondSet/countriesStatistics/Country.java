@@ -55,10 +55,12 @@ public class Country {
         }
     }
 
-    public static void findCountryWithMaxPopulation(List<Country> countryList) {
-        System.out.println(countryList.stream()
+    public static Country findCountryWithMaxPopulation(List<Country> countryList) {
+        Country country = countryList.stream()
                 .max(populationComparator)
-                .orElseThrow());
+                .orElseThrow();
+        System.out.println(country);
+        return country;
     }
 
     public static void findCountryWithMinPopulation(List<Country> countryList) {
