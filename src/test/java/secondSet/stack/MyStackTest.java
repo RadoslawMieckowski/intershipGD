@@ -45,6 +45,7 @@ class MyStackTest {
     }
 
     @Test
+    @DisplayName("pushing more than allowed amount of primes to myStack instance should should throw FullMyStackException")
     void FullMyStackExceptionTesting() {
         myStack.push(2);
         myStack.push(3);
@@ -53,6 +54,22 @@ class MyStackTest {
 
         Throwable exception = assertThrows(FullMyStackException.class, () -> myStack.push(11));
         assertEquals("The stack is already full!", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Pushing not prime numbers to myStack instance should throw NotPrimeNumberException")
+    void NotPrimeNumberExceptionTesting() {
+        Throwable exception = assertThrows(FullMyStackException.class, () -> myStack.push(11));
+        assertEquals("Given number is not a prime one!", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Pushing smaller or equal number to myStack instance should SmallerNumberException")
+    void SmallerNumberExceptionTesting() {
+        myStack.push(7);
+
+        Throwable exception = assertThrows(FullMyStackException.class, () -> myStack.push(3));
+        assertEquals("Given number must be greater than one on the top of the stack!", exception.getMessage());
     }
 
     @Test
