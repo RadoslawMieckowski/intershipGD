@@ -11,6 +11,5 @@ public class BusinessDaysIteratorDemo {
         for (int i = 1; i <= 31; i++) {
             System.out.println(iter.next());
         }
-
     }
 }

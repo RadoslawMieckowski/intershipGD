@@ -18,6 +18,7 @@ LocalDate currentDate = null;
     }
 
     private List<LocalDate> getListOfDates(E localDate) {
+        if (localDate == null) throw new NullPointerException("Local date must not be null!");
         LocalDate localDate1 = (LocalDate) localDate;
         List<LocalDate> localDateList;
         return localDateList = Stream

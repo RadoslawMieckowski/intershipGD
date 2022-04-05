@@ -22,7 +22,7 @@ class BufferingIteratorTest {
     }
 
     @Test
-    @DisplayName("hasNext method should return all elements")
+    @DisplayName("next method should return all elements")
     void next() {
         BufferingIterator<Integer> bufferingIterator =
                 new BufferingIterator<>(List.of(1,2,3,4,5).iterator(),2);
@@ -32,7 +32,7 @@ class BufferingIteratorTest {
             counterOfElements++;
         }
 
-        assertEquals(3, counterOfElements, "hasNext method should return all elements!");
+        assertEquals(3, counterOfElements, "next method should return all elements!");
     }
 
     @Test
