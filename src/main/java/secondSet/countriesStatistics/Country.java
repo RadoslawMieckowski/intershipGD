@@ -88,10 +88,9 @@ public class Country {
     }
 
     public static void sortByContinentAndArea(List<Country> countryList) {
-        countryList.stream()
-                .sorted(areaComparator.reversed())
-                .sorted(continentComparator)
-                .forEach(e -> System.out.println(e));
+        countryList.sort(areaComparator.reversed());
+        countryList.sort(continentComparator);
+        countryList.forEach(e -> System.out.println(e));
     }
 
     public static void findCountryWithMaxPopulationOnContinent(List<Country> countryList, String continent) {

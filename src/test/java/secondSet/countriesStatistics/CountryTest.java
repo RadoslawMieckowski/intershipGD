@@ -108,6 +108,19 @@ List<Country> countryList;
 
     @Test
     void sortByContinentAndArea() {
+        Country expectedCountry = new Country("Algeria", "Africa",
+                2_381_741, 44_700_000);
+        Country.sortByContinentAndArea(countryList);
+        Country actualCountry = countryList.get(0);
+
+        assertEquals(expectedCountry.getName(),actualCountry.getName(),
+                "names should be the same!");
+        assertEquals(expectedCountry.getContinent(),actualCountry.getContinent(),
+                "continents should be the same!");
+        assertEquals(expectedCountry.getArea(),actualCountry.getArea(),
+                "areas should be the same!");
+        assertEquals(expectedCountry.getPopulation(),actualCountry.getPopulation(),
+                "population should be the same!");
     }
 
     @Test
