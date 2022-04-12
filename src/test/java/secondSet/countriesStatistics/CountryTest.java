@@ -1,14 +1,19 @@
 package secondSet.countriesStatistics;
 
+import org.hamcrest.collection.IsMapContaining;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import secondSet.utilities.CSVReader;
 
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CountryTest {
@@ -144,8 +149,22 @@ List<Country> countryList;
     }
 
     @Test
-    void sumOfAreaOfContinent() {
-        // I realised, that it was to calculate for each continent, not for given, I'll change ASAP
+    @DisplayName("Summing area of each continent basing on given countries")
+    void sumOfAreaOfContinents() {
+        Map<String, Long> expectedMap = new HashMap<>();
+        expectedMap.put("Asia", 13_262_199L);
+        expectedMap.put("Europe", 753_597L);
+        expectedMap.put("Africa", 3_979_190L);
+        expectedMap.put("SouthAmerica", 12_437_915L);
+        expectedMap.put("NorthAmerica", 19_818_190L);
+
+        Map<String, Long> actualMap = Country.sumOfAreaOfContinents(countryList);
+
+       assertThat(actualMap, is(expectedMap));
+       assertThat(actualMap.size(), is(5));
+       assertThat(actualMap, IsMapContaining.hasEntry("Africa", 3_979_190L));
+       assertThat(actualMap, IsMapContaining.hasKey("Europe"));
+       assertThat(actualMap, IsMapContaining.hasValue(753_597L));
     }
 
     @Test
