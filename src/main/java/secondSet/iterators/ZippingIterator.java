@@ -36,8 +36,7 @@ public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
 
     @Override
     public boolean hasNext() {
-        if (personListIterator.hasNext()) return true;
-        return false;
+       return personListIterator.hasNext();
     }
 
     @Override

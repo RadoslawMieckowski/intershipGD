@@ -36,8 +36,7 @@ public class BufferingIterator<E> implements Iterator<List<E>> {
 
     @Override
     public boolean hasNext() {
-        if (listIterator.hasNext()) return true;
-        return false;
+        return listIterator.hasNext();
     }
 
     @Override

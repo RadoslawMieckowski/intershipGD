@@ -21,8 +21,7 @@ public class FlatteningIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        if (iterator.hasNext()) return true;
-        return false;
+        return iterator.hasNext();
     }
 
     @Override
