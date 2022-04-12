@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CountriesStatistics {
-    private List<Country> countriesList;
 
     private static Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
     private static Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
@@ -70,7 +69,7 @@ public class CountriesStatistics {
 
     public static Country findCountryWithMaxPopulationOnContinent(List<Country> countryList, String continent) {
         Country country = countryList.stream()
-                .filter(x -> x.continent.equals(continent))
+                .filter(x -> x.getContinent().equals(continent))
                 .max(populationComparator)
                 .orElseThrow();
         System.out.println(country);
@@ -90,7 +89,7 @@ public class CountriesStatistics {
 
     public static List<Country> deleteCountriesWithPopulationOverThreshold(List<Country> countryList, long populationLimit) {
         List<Country> countries = countryList.stream()
-                .filter(x -> x.population < populationLimit)
+                .filter(x -> x.getPopulation() < populationLimit)
                 .collect(Collectors.toList());
 
         countries.forEach(x -> System.out.println(x));
@@ -99,16 +98,11 @@ public class CountriesStatistics {
 
     public static Map<Character, List<String>> listToMap(List<Country> countryList) {
         Map<Character, List<String>> countryMap = countryList.stream()
-                .collect(Collectors.groupingBy(Country::getFirstLetterOfName,
+                .collect(Collectors.groupingBy(x -> x.getName().charAt(0),
                         Collectors.mapping(Country::toString,
                                 Collectors.toList())));
 
         countryMap.forEach((key,value) -> System.out.println(key + " = " + value));
         return countryMap;
     }
-
-    private static char getFirstLetterOfName(Country country) {
-        return country.name.charAt(0);
-    }
-
 }
