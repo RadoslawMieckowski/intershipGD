@@ -24,7 +24,7 @@ List<Country> countryList;
         List<String> records = CSVReader.readCSVFile(
                 "src/main/resources/data/countriesStatistics.csv");
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
-        countryList = Country.ToListOfCountries(listOfTables);
+        countryList = CountriesStatistics.ToListOfCountries(listOfTables);
     }
 
     @Test
@@ -32,7 +32,7 @@ List<Country> countryList;
     void sortByPopulationDesc() {
         Country expectedCountry = new Country("Austria", "Europe",
                 83_879, 8_935_112);
-        Country.sortByPopulationDesc(countryList);
+        CountriesStatistics.sortByPopulationDesc(countryList);
         Country actualCountry = countryList.get(countryList.size()-1);
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
@@ -50,7 +50,7 @@ List<Country> countryList;
     void findCountryWithMaxPopulation() {
         Country expectedCountry = new Country("China", "Asia",
                 9_596_961, 1_412_600_000);
-        Country actualCountry = Country.findCountryWithMaxPopulation(countryList);
+        Country actualCountry = CountriesStatistics.findCountryWithMaxPopulation(countryList);
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
                 "names should be the same!");
@@ -67,7 +67,7 @@ List<Country> countryList;
     void findCountryWithMinPopulation() {
         Country expectedCountry = new Country("Austria", "Europe",
                 83_879, 8_935_112);
-        Country actualCountry = Country.findCountryWithMinPopulation(countryList);
+        Country actualCountry = CountriesStatistics.findCountryWithMinPopulation(countryList);
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
                 "names should be the same!");
@@ -84,7 +84,7 @@ List<Country> countryList;
     void findCountryWithMaxArea() {
         Country expectedCountry = new Country("Canada", "NorthAmerica",
                 9_984_670, 38_526_760);
-        Country actualCountry = Country.findCountryWithMaxArea(countryList);
+        Country actualCountry = CountriesStatistics.findCountryWithMaxArea(countryList);
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
                 "names should be the same!");
@@ -101,7 +101,7 @@ List<Country> countryList;
     void findCountryWithMinArea() {
         Country expectedCountry = new Country("Austria", "Europe",
                 83_879, 8_935_112);
-        Country actualCountry = Country.findCountryWithMinArea(countryList);
+        Country actualCountry = CountriesStatistics.findCountryWithMinArea(countryList);
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
                 "names should be the same!");
@@ -117,7 +117,7 @@ List<Country> countryList;
     void sortByContinentAndArea() {
         Country expectedCountry = new Country("Algeria", "Africa",
                 2_381_741, 44_700_000);
-        Country.sortByContinentAndArea(countryList);
+        CountriesStatistics.sortByContinentAndArea(countryList);
         Country actualCountry = countryList.get(0);
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
@@ -135,7 +135,7 @@ List<Country> countryList;
     void findCountryWithMaxPopulationOnContinent() {
         Country expectedCountry = new Country("Egypt", "Africa",
                 1_010_408, 102_674_145);
-        Country actualCountry = Country.findCountryWithMaxPopulationOnContinent(
+        Country actualCountry = CountriesStatistics.findCountryWithMaxPopulationOnContinent(
                 countryList,"Africa");
 
         assertEquals(expectedCountry.getName(),actualCountry.getName(),
@@ -158,7 +158,7 @@ List<Country> countryList;
         expectedMap.put("SouthAmerica", 12_437_915L);
         expectedMap.put("NorthAmerica", 19_818_190L);
 
-        Map<String, Long> actualMap = Country.sumOfAreaOfContinents(countryList);
+        Map<String, Long> actualMap = CountriesStatistics.sumOfAreaOfContinents(countryList);
 
        assertThat(actualMap, is(expectedMap));
        assertThat(actualMap.size(), is(5));
@@ -170,7 +170,7 @@ List<Country> countryList;
     @Test
     @DisplayName("Deleting countries with population over a threshold")
     void deleteCountriesWithPopulationOverThreshold() {
-        List<Country> actualCountryList = Country.deleteCountriesWithPopulationOverThreshold(
+        List<Country> actualCountryList = CountriesStatistics.deleteCountriesWithPopulationOverThreshold(
                 countryList, 90_000_000
         );
         int actualCountryListSize = actualCountryList.size();
@@ -180,7 +180,7 @@ List<Country> countryList;
 
     @Test
     void listToMap() {
-        Map<Character, List<String>> actualCountryMap = Country.listToMap(countryList);
+        Map<Character, List<String>> actualCountryMap = CountriesStatistics.listToMap(countryList);
         int actualCountryMapSize = actualCountryMap.size();
 
         assertEquals(10, actualCountryMapSize);
