@@ -16,8 +16,8 @@ public class CountryDemo {
         //Country.findCountryWithMinArea(countryList);
 //        Country.findCountryWithMaxPopulationOnContinent(countryList, "Africa");
         //Country.sortByContinentAndArea(countryList);
-        //Country.sumOfAreaOfContinent(countryList,"Europe");
+        Country.sumOfAreaOfContinents(countryList);
 //        Country.deleteCountriesWithPopulationOverThreshold(countryList, 90_000_000);
-        Country.listToMap(countryList);
+//        Country.listToMap(countryList);
     }
 }
