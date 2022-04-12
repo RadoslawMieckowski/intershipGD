@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CountriesStatistics {
+public final class CountriesStatistics {
+
+    private CountriesStatistics(){}
 
     private static Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
     private static Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
