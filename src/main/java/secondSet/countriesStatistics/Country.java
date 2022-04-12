@@ -100,16 +100,9 @@ public class Country {
     }
 
     public static  Map<String, Long> sumOfAreaOfContinents(List<Country> countryList) {
-        String[] countriesNames = new String[] {"Europe", "NorthAmerica",
-                "SouthAmerica", "Africa", "Asia"};
-        Map<String, Long> areaContinent = new HashMap<>(5);
-        for(String continent : countriesNames) {
-            long areaSum = countryList.stream()
-                    .filter(x -> x.continent.equals(continent))
-                    .mapToLong(x ->x.area)
-                    .sum();
-            areaContinent.put(continent, areaSum);
-        }
+        Map<String, Long> areaContinent = countryList.stream().
+                collect(Collectors.groupingBy(Country::getContinent,
+                        Collectors.summingLong(Country::getArea)));
         Iterator <String> iterator = areaContinent.keySet().iterator();
         for (String continent : areaContinent.keySet()) {
             System.out.printf("continent: %s, area: %,d \n", continent, areaContinent.get(continent));
