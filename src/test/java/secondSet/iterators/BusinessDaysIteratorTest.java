@@ -3,7 +3,6 @@ package secondSet.iterators;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
-import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -16,7 +15,7 @@ class BusinessDaysIteratorTest {
     @BeforeEach
     void setUp() {
        businessDaysIterator =
-                new BusinessDaysIterator<>(LocalDate.of(2022, 1, 1));
+                new BusinessDaysIterator(LocalDate.of(2022, 1, 1));
     }
     @Test
     void hasNext() {
