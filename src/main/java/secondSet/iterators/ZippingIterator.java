@@ -11,19 +11,14 @@ public class ZippingIterator<String, Integer> implements Iterator<Person>{
     private List<Person> personList;
     private Iterator<Person> personListIterator;
 
-    public ZippingIterator(Iterator<String> nameIterator, Iterator<Integer> ageIterator) {
-        fillPersonList(nameIterator, ageIterator, (name, age) ->
-                new Person((java.lang.String) name, (java.lang.Integer) age));
-        personListIterator = personList.iterator();
-    }
-
-    private <String, Integer, Person> void fillPersonList(Iterator<String> nameIterator,
-                                                       Iterator<Integer> ageIterator,
-                                             BiFunction<String, Integer, Person> combiner) {
+    public ZippingIterator(Iterator<String> nameIterator,
+                           Iterator<Integer> ageIterator,
+                           BiFunction<String, Integer, Person> combiner) {
         personList = new LinkedList<>();
         while (nameIterator.hasNext() && ageIterator.hasNext()) {
-            personList.add((secondSet.iterators.models.Person) combiner.apply(nameIterator.next(), ageIterator.next()));
+            personList.add(combiner.apply(nameIterator.next(), ageIterator.next()));
         }
+        personListIterator = personList.iterator();
     }
 
     @Override

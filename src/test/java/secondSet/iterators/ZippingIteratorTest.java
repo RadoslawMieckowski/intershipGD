@@ -21,7 +21,8 @@ class ZippingIteratorTest {
     void setUp() {
         zippingIterator = new ZippingIterator<>(
                 List.of("John", "Jane", "Jack", "Dennis").iterator(),
-                List.of(24, 25, 27, 12, 23).iterator()
+                List.of(24, 25, 27, 12, 23).iterator(),
+                (name, age) -> new Person(name, age)
         );
     }
 
@@ -55,7 +56,8 @@ class ZippingIteratorTest {
         List<Integer> ageList = List.of();
         zippingIterator = new ZippingIterator<>(
                 nameList.iterator(),
-                ageList.iterator()
+                ageList.iterator(),
+                (name, age) -> new Person(name, age)
         );
 
         Assert.assertEquals("hasNext method should return false if iterator has nothing to iterate on!",
@@ -69,7 +71,8 @@ class ZippingIteratorTest {
         List<Integer> ageList = List.of();
         zippingIterator = new ZippingIterator<>(
                 nameList.iterator(),
-                ageList.iterator()
+                ageList.iterator(),
+                (name, age) -> new Person(name, age)
         );
         Throwable exception = assertThrows(NoSuchElementException.class,
                 () -> zippingIterator.next());
