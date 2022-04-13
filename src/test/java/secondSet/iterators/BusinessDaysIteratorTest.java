@@ -17,6 +17,7 @@ class BusinessDaysIteratorTest {
        businessDaysIterator =
                 new BusinessDaysIterator(LocalDate.of(2022, 1, 1));
     }
+
     @Test
     void hasNext() {
         assertTrue(businessDaysIterator.hasNext());
@@ -42,7 +43,5 @@ class BusinessDaysIteratorTest {
         Throwable exception = assertThrows(NullPointerException.class,
                 () -> new BusinessDaysIterator(localDate));
         assertTrue(exception instanceof NullPointerException);
-
     }
-
 }
