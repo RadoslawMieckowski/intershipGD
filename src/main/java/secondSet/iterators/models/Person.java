@@ -1,11 +1,10 @@
 package secondSet.iterators.models;
 
-public class Person <String, Integer>{
+public class Person {
     private String name;
-    private Integer age;
+    private int age;
 
-
-    public <E extends String, T extends Integer> Person(E name, T age) {
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }

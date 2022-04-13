@@ -45,7 +45,7 @@ class ZippingIteratorTest {
             person = zippingIterator.next();
         }
 
-        assertTrue(person instanceof Person<?,?>, "next method should return Person type!");
+        assertTrue(person instanceof Person, "next method should return Person type!");
     }
 
     @Test

@@ -1,36 +1,28 @@
 package secondSet.iterators;
 
 import secondSet.iterators.models.Person;
-import secondSet.utilities.IteratorHandler;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.BiFunction;
 
-public class ZippingIterator<E,T> implements Iterator<Person<String, Integer>>{
-    private List<E> nameList;
-    private List<T> ageList;
+public class ZippingIterator<String, Integer> implements Iterator<Person>{
     private List<Person> personList;
     private Iterator<Person> personListIterator;
 
-    public ZippingIterator(Iterator<E> nameListIterator, Iterator<T> ageListIterator) {
-        nameList = IteratorHandler
-                .getStreamFromIterator(nameListIterator)
-                .collect(Collectors.toList());
-        ageList = IteratorHandler
-                .getStreamFromIterator(ageListIterator)
-                .collect(Collectors.toList());
-        Iterator<E> nameIterator = nameList.iterator();
-        Iterator<T> ageIterator = ageList.iterator();
-        fillPersonList(nameIterator, ageIterator);
+    public ZippingIterator(Iterator<String> nameIterator, Iterator<Integer> ageIterator) {
+        fillPersonList(nameIterator, ageIterator, (name, age) ->
+                new Person((java.lang.String) name, (java.lang.Integer) age));
         personListIterator = personList.iterator();
     }
 
-    private void fillPersonList(Iterator<E> nameIterator, Iterator<T> ageIterator) {
+    private <String, Integer, Person> void fillPersonList(Iterator<String> nameIterator,
+                                                       Iterator<Integer> ageIterator,
+                                             BiFunction<String, Integer, Person> combiner) {
         personList = new LinkedList<>();
         while (nameIterator.hasNext() && ageIterator.hasNext()) {
-            personList.add(new Person(nameIterator.next(), ageIterator.next()));
+            personList.add((secondSet.iterators.models.Person) combiner.apply(nameIterator.next(), ageIterator.next()));
         }
     }
 
