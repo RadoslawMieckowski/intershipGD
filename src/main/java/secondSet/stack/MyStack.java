@@ -35,7 +35,7 @@ public class MyStack<Integer> {
 
     public int push(int element) {
     if (innerList.size() == size) throw new FullMyStackException("The stack is already full!");
-    if (isPrimeNumber(element) == false) throw new NotPrimeNumberException("Given number is not a prime one!");
+    if (!isPrimeNumber(element)) throw new NotPrimeNumberException("Given number is not a prime one!");
     if (innerList.size() == 0) {
         ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
     } else {
