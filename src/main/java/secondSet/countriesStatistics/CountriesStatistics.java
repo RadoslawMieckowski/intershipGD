@@ -14,7 +14,7 @@ public final class CountriesStatistics {
     private final static Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
     private final static Comparator<Country> continentComparator = Comparator.comparing(Country::getContinent);
 
-    public static List<Country> ToListOfCountries(List<String[]> listOfTables) {
+    public static List<Country> toListOfCountries(List<String[]> listOfTables) {
         List<Country> countries =
                 listOfTables.stream()
                         .map(table ->
