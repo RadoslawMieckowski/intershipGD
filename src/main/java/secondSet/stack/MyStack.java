@@ -11,13 +11,13 @@ import java.util.List;
 import static java.lang.Integer.valueOf;
 
 public class MyStack<Integer> {
-private List<Integer> innerList;
-private int size;
+    private List<Integer> innerList;
+    private int size;
 
-public MyStack(int size) {
-    innerList = new LinkedList<>();
-    this.size = size;
-}
+    public MyStack(int size) {
+        innerList = new LinkedList<>();
+        this.size = size;
+    }
 
     public Iterator<Integer> iterator() {
             return innerList.listIterator();
