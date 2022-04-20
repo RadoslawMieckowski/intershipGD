@@ -1,4 +1,4 @@
-package thirdSet.annotations.pojos;
+package thirdSet.pojos;
 
 import thirdSet.annotations.JsonAttribute;
 import thirdSet.annotations.JsonSerializable;
