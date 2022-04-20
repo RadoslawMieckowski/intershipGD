@@ -1,5 +1,6 @@
 package secondSet.stack;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,11 +8,11 @@ import secondSet.stack.stackExceptions.FullMyStackException;
 import secondSet.stack.stackExceptions.NotPrimeNumberException;
 import secondSet.stack.stackExceptions.SmallerNumberException;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MyStackTest {
@@ -24,18 +25,21 @@ class MyStackTest {
     }
 
     @Test
-    @DisplayName("Creating iterator of myStack instance should work")
+    @DisplayName("iterator of myStack returns elements in pushing order")
     void iterator() {
         myStack.push(3);
+        myStack.push(5);
+        myStack.push(11);
         Iterator<Integer> iterator = myStack.iterator();
-        int actualValue = 0;
-        while (iterator.hasNext()) {
-            actualValue = iterator.next();
+        int actualvalues[] = new int[3];
+       for (int i = 0; i < 3; i++) {
+           if (iterator.hasNext()) {
+               actualvalues[i] = iterator.next();
+           }
         }
+       int expectedValues[] = new int[] {11, 5, 3};
 
-        assertEquals(3, actualValue,
-                "iterator should return a value from the MyStack instance");
-
+       Assertions.assertArrayEquals(expectedValues, actualvalues);
     }
 
     @Test
