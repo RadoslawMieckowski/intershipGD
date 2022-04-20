@@ -24,7 +24,7 @@ List<Country> countryList;
         List<String> records = CSVReader.readCSVFile(
                 "src/main/resources/data/countriesStatistics.csv");
         List<String[]> listOfTables = CSVReader.ToListOfStringTables(records);
-        countryList = CountriesStatistics.ToListOfCountries(listOfTables);
+        countryList = CountriesStatistics.toListOfCountries(listOfTables);
     }
 
     @Test
