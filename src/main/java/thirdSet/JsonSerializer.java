@@ -6,6 +6,7 @@ import thirdSet.exceptions.JsonSerializationException;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class JsonSerializer {
 
     private Map<String, String> createAttributesMap(Object object) {
         Class<?> aClass = object.getClass();
-        Map<String, String> attributesMap = new HashMap<>();
+        Map<String, String> attributesMap = new LinkedHashMap<>();
         for (Field field : aClass.getDeclaredFields()) {
             field.setAccessible(true);
             if (field.isAnnotationPresent(JsonAttribute.class)) {
