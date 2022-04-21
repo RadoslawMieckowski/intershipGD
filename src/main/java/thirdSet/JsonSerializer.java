@@ -5,7 +5,6 @@ import thirdSet.annotations.JsonSerializable;
 import thirdSet.exceptions.JsonSerializationException;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -40,13 +39,19 @@ public class JsonSerializer {
             field.setAccessible(true);
             if (field.isAnnotationPresent(JsonAttribute.class)) {
                 try {
-                    attributesMap.put(field.getName(), (String) field.get(object));
+                    attributesMap.put(getJsonFieldName(field), (String) field.get(object));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
         }
         return attributesMap;
+    }
+
+    private String getJsonFieldName(Field field) {
+        String element = field.getAnnotation(JsonAttribute.class)
+                .jsonFieldName();
+        return element.isEmpty() ? field.getName() : element;
     }
 
     private String mapToJson(Map<String, String> attributesMap) {
