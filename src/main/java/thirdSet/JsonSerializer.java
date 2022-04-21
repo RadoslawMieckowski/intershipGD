@@ -14,11 +14,10 @@ public class JsonSerializer {
 
     public JsonSerializer() {}
 
-    public void serializePojoObject(Object pojoObject) {
+    public String serializePojoObject(Object pojoObject) {
         checkIfSerializable(pojoObject);
         Map<String, String> attributesMap = createAttributesMap(pojoObject);
-        String jsonObject = mapToJson(attributesMap);
-        System.out.println(jsonObject);
+        return mapToJson(attributesMap);
     }
 
     private void checkIfSerializable(Object object) {
