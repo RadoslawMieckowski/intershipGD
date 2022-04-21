@@ -1,7 +1,7 @@
-package thirdSet.pojos;
+package thirdSet.reflection.pojos;
 
-import thirdSet.annotations.JsonAttribute;
-import thirdSet.annotations.JsonSerializable;
+import thirdSet.reflection.annotations.JsonAttribute;
+import thirdSet.reflection.annotations.JsonSerializable;
 
 @JsonSerializable
 public class Intern {

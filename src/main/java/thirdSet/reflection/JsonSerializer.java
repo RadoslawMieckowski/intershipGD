@@ -1,8 +1,8 @@
-package thirdSet;
+package thirdSet.reflection;
 
-import thirdSet.annotations.JsonAttribute;
-import thirdSet.annotations.JsonSerializable;
-import thirdSet.exceptions.JsonSerializationException;
+import thirdSet.reflection.annotations.JsonAttribute;
+import thirdSet.reflection.annotations.JsonSerializable;
+import thirdSet.reflection.exceptions.JsonSerializationException;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;

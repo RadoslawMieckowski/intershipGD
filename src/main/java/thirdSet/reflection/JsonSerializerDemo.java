@@ -1,6 +1,6 @@
-package thirdSet;
+package thirdSet.reflection;
 
-import thirdSet.pojos.Intern;
+import thirdSet.reflection.pojos.Intern;
 
 public class JsonSerializerDemo {
     public static void main(String[] args) {
