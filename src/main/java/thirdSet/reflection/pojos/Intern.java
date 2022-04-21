@@ -57,4 +57,15 @@ public class Intern {
     public void setSurName(String surName) {
         this.surName = surName;
     }
+
+    @Override
+    public String toString() {
+        return "Intern{" +
+                "\"name\":" + "\"" + name + "\"" +
+                ", \"surName\":" + "\"" +surName + "\"" +
+                ", \"age\":" + "\"" + age + "\"" +
+                ", \"hobbies\":" + "\"" + hobbies + "\"" +
+                '}';
+    }
 }
+

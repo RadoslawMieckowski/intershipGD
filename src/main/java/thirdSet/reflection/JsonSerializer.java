@@ -59,7 +59,7 @@ public class JsonSerializer {
                 .stream()
                 .map(entry -> "\"" + entry.getKey() + "\":\""
                         + entry.getValue() + "\"")
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
         return "{" + jsonString + "}";
     }
 }

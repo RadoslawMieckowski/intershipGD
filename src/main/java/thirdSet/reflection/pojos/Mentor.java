@@ -6,14 +6,25 @@ import thirdSet.reflection.annotations.JsonSerializable;
 import java.util.List;
 @JsonSerializable
 public class Mentor {
+    @JsonAttribute()
+    private String name;
     @JsonAttribute(jsonFieldName = "list Of interns")
     private List<Intern> internList;
 
-    public Mentor(List<Intern> internList) {
+    public Mentor(String name, List<Intern> internList) {
+        this.name = name;
         this.internList = internList;
     }
 
     public Mentor() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Intern> getInternList() {
