@@ -6,8 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import thirdSet.reflection.exceptions.JsonSerializationException;
 import thirdSet.reflection.pojos.Intern;
+import thirdSet.reflection.pojos.Student;
 
-import java.util.EmptyStackException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -42,8 +42,22 @@ class JsonSerializerTest {
     @DisplayName("serializing null should throw JsonSerializationException")
     void serializeNullTest() {
         Intern intern = null;
+
         Throwable exception = assertThrows(JsonSerializationException.class, () ->
                 jsonSerializer.serializePojoObject(intern));
+
+        assertTrue(exception instanceof JsonSerializationException);
+    }
+
+    @Test
+    @DisplayName("serializing class without JsonSerializable annotation should" +
+            " throw JsonSerializationException")
+    void serializeBarePojo() {
+        Student student = new Student("John", "Smith", 23);
+
+        Throwable exception = assertThrows(JsonSerializationException.class, () ->
+                jsonSerializer.serializePojoObject(student));
+
         assertTrue(exception instanceof JsonSerializationException);
     }
 }
