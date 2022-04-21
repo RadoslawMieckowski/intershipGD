@@ -4,10 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import thirdSet.reflection.exceptions.JsonSerializationException;
 import thirdSet.reflection.pojos.Intern;
 
+import java.util.EmptyStackException;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 class JsonSerializerTest {
     JsonSerializer jsonSerializer;
@@ -33,4 +38,12 @@ class JsonSerializerTest {
                         "with order according to declared fields in class!");
     }
 
+    @Test
+    @DisplayName("serializing null should throw JsonSerializationException")
+    void serializeNullTest() {
+        Intern intern = null;
+        Throwable exception = assertThrows(JsonSerializationException.class, () ->
+                jsonSerializer.serializePojoObject(intern));
+        assertTrue(exception instanceof JsonSerializationException);
+    }
 }
