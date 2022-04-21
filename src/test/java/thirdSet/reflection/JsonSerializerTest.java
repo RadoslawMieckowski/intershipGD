@@ -52,7 +52,7 @@ class JsonSerializerTest {
     @Test
     @DisplayName("serializing class without JsonSerializable annotation should" +
             " throw JsonSerializationException")
-    void serializeBarePojo() {
+    void serializeBarePojoTest() {
         Student student = new Student("John", "Smith", 23);
 
         Throwable exception = assertThrows(JsonSerializationException.class, () ->
