@@ -39,7 +39,7 @@ public class JsonSerializer {
             field.setAccessible(true);
             if (field.isAnnotationPresent(JsonAttribute.class)) {
                 try {
-                    attributesMap.put(getJsonFieldName(field), (String) field.get(object));
+                    attributesMap.put(getJsonFieldName(field), (String.valueOf(field.get(object))));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
