@@ -13,7 +13,7 @@ public class MapProxyInstanceDemo {
                 StopwatchInvocationHandler.class.getClassLoader(), new Class[] { Map.class },
                 new StopwatchInvocationHandler(new HashMap<>()));
 
-        mapProxyInstance.putAll(Map.of(1,"one",2, "two",3, "three"));
-        mapProxyInstance.get("two");
+        mapProxyInstance.put(1, "one");
+        mapProxyInstance.get(1);
     }
 }
