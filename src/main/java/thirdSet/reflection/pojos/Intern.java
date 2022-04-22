@@ -1,5 +1,6 @@
 package thirdSet.reflection.pojos;
 
+import thirdSet.reflection.JsonSerializer;
 import thirdSet.reflection.annotations.JsonAttribute;
 import thirdSet.reflection.annotations.JsonSerializable;
 
@@ -60,12 +61,16 @@ public class Intern {
 
     @Override
     public String toString() {
+/*
         return "Intern{" +
                 "\"name\":" + "\"" + name + "\"" +
                 ", \"surName\":" + "\"" +surName + "\"" +
                 ", \"age\":" + "\"" + age + "\"" +
                 ", \"hobbies\":" + "\"" + hobbies + "\"" +
                 '}';
+*/
+        JsonSerializer jsonSerializer = new JsonSerializer();
+        return jsonSerializer.serializePojoObject(this);
     }
 }
 
