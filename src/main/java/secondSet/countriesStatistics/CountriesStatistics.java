@@ -10,9 +10,9 @@ public final class CountriesStatistics {
 
     private CountriesStatistics(){}
 
-    private final static Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
-    private final static Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
-    private final static Comparator<Country> continentComparator = Comparator.comparing(Country::getContinent);
+    private static final Comparator<Country> populationComparator = Comparator.comparing(Country::getPopulation);
+    private static final Comparator<Country> areaComparator = Comparator.comparing(Country::getArea);
+    private static final Comparator<Country> continentComparator = Comparator.comparing(Country::getContinent);
 
     public static List<Country> toListOfCountries(List<String[]> listOfTables) {
         List<Country> countries =
