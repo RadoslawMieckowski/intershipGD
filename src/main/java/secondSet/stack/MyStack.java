@@ -34,16 +34,16 @@ public class MyStack<Integer> {
     }
 
     public int push(int element) {
-    if (innerList.size() == size) throw new FullMyStackException("The stack is already full!");
-    if (!isPrimeNumber(element)) throw new NotPrimeNumberException("Given number is not a prime one!");
-    if (innerList.size() == 0) {
-        ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
-    } else {
-        if (element <= ((int)innerList.get(0))) throw new SmallerNumberException("Given number must be greater than one on the top of the stack!");
-        ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
-    }
-        return element;
-    }
+        if (innerList.size() == size) throw new FullMyStackException("The stack is already full!");
+        if (!isPrimeNumber(element)) throw new NotPrimeNumberException("Given number is not a prime one!");
+        if (innerList.size() == 0) {
+            ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
+        } else {
+            if (element <= ((int)innerList.get(0))) throw new SmallerNumberException("Given number must be greater than one on the top of the stack!");
+            ((LinkedList<Integer>) innerList).push((Integer) valueOf(element));
+        }
+            return element;
+        }
 
     public int size() {
         return innerList.size();
@@ -52,7 +52,7 @@ public class MyStack<Integer> {
     private boolean isPrimeNumber(int number) {
         if (number == 1) return false;
         boolean flag = true;
-        for(int i = 2; i < number; i++){
+        for (int i = 2; i < number; i++){
             if (number % i == 0){
                 flag = false;
                 break;
