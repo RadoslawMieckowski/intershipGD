@@ -3,22 +3,35 @@ package thirdSet.dynamicProxy.demos;
 import thirdSet.dynamicProxy.handlers.StopwatchInvocationHandler;
 import thirdSet.dynamicProxy.interfaces.Printable;
 import thirdSet.reflection.pojos.Intern;
+import thirdSet.reflection.pojos.Mentor;
 
 import java.lang.reflect.Proxy;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PrintableProxyInstanceDemo {
     public static void main(String[] args) {
 
-        Intern intern = new Intern("John", "Smith", 23,
+        Intern intern1 = new Intern("John", "Smith", 23,
                 new LinkedHashSet<>(Set.of("film", "music")));
+        Intern intern2 = new Intern("Dave", "Douglas", 21,
+                new LinkedHashSet<>(Set.of("gaming", "music")));
 
-        Printable printableProxyInstance = (Printable) Proxy.newProxyInstance(
+        Printable printableInternProxyInstance = (Printable) Proxy.newProxyInstance(
                 StopwatchInvocationHandler.class.getClassLoader(),
                 new Class[] {Printable.class},
-                new StopwatchInvocationHandler(intern));
+                new StopwatchInvocationHandler(intern1));
 
-        printableProxyInstance.print();
+        printableInternProxyInstance.print();
+
+        Mentor mentor = new Mentor("Will", List.of(intern1, intern2));
+
+        Printable  printableMentorProxyInstance = (Printable) Proxy.newProxyInstance(
+                StopwatchInvocationHandler.class.getClassLoader(),
+                new Class[] {Printable.class},
+                new StopwatchInvocationHandler(mentor)
+        );
+        printableMentorProxyInstance.print();
     }
 }
