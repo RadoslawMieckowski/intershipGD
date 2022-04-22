@@ -1,11 +1,12 @@
 package thirdSet.reflection.pojos;
 
+import thirdSet.dynamicProxy.interfaces.Printable;
 import thirdSet.reflection.annotations.JsonAttribute;
 import thirdSet.reflection.annotations.JsonSerializable;
 
 import java.util.List;
 @JsonSerializable
-public class Mentor {
+public class Mentor implements Printable {
     @JsonAttribute()
     private String name;
     @JsonAttribute(jsonFieldName = "list Of interns")

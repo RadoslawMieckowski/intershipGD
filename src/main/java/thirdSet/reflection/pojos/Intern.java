@@ -1,14 +1,14 @@
 package thirdSet.reflection.pojos;
 
 import thirdSet.reflection.JsonSerializer;
+import thirdSet.dynamicProxy.interfaces.Printable;
 import thirdSet.reflection.annotations.JsonAttribute;
 import thirdSet.reflection.annotations.JsonSerializable;
 
 import java.util.List;
-import java.util.Set;
 
 @JsonSerializable
-public class Intern {
+public class Intern implements Printable{
     @JsonAttribute(jsonFieldName = "internName")
     private String name;
     @JsonAttribute
@@ -64,6 +64,15 @@ public class Intern {
     public String toString() {
         JsonSerializer jsonSerializer = new JsonSerializer();
         return jsonSerializer.serializePojoObject(this);
+    }
+
+    public String toString2() {
+        return "Intern{" +
+                "\"name\":" + "\"" + name + "\"" +
+                ", \"surName\":" + "\"" +surName + "\"" +
+                ", \"age\":" + "\"" + age + "\"" +
+                ", \"hobbies\":" + "\"" + hobbies + "\"" +
+                '}';
     }
 }
 
