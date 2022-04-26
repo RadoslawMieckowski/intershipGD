@@ -1,7 +1,6 @@
 package secondSet.iterators;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import secondSet.iterators.models.Person;
@@ -15,20 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ZippingIteratorTest {
 
-    ZippingIterator<String, Integer> zippingIterator;
-
-    @BeforeEach
-    void setUp() {
-        zippingIterator = new ZippingIterator<>(
+    @Test
+    @DisplayName("next method should return all elements")
+    void nextCounterOfElements() {
+        ZippingIterator<String, Integer> zippingIterator = new ZippingIterator<>(
                 List.of("John", "Jane", "Jack", "Dennis").iterator(),
                 List.of(24, 25, 27, 12, 23).iterator(),
                 (name, age) -> new Person(name, age)
         );
-    }
-
-    @Test
-    @DisplayName("next method should return all elements")
-    void nextCounterOfElements() {
         long counterOfElements = 0;
         while (zippingIterator.hasNext()) {
             zippingIterator.next();
@@ -41,6 +34,11 @@ class ZippingIteratorTest {
     @Test
     @DisplayName("Checking return type")
     void nextTypeToReturn() {
+        ZippingIterator<String, Integer> zippingIterator = new ZippingIterator<>(
+                List.of("John", "Jane", "Jack", "Dennis").iterator(),
+                List.of(24, 25, 27, 12, 23).iterator(),
+                (name, age) -> new Person(name, age)
+        );
         Person person = null;
         if (zippingIterator.hasNext()) {
             person = zippingIterator.next();
@@ -54,7 +52,7 @@ class ZippingIteratorTest {
     void hasNextOnEmptyIterator() {
         List<String> nameList = List.of();
         List<Integer> ageList = List.of();
-        zippingIterator = new ZippingIterator<>(
+        ZippingIterator<String, Integer> zippingIterator = new ZippingIterator<>(
                 nameList.iterator(),
                 ageList.iterator(),
                 (name, age) -> new Person(name, age)
@@ -69,7 +67,7 @@ class ZippingIteratorTest {
     void nextOnEmptyIterator() {
         List<String> nameList = List.of();
         List<Integer> ageList = List.of();
-        zippingIterator = new ZippingIterator<>(
+        ZippingIterator<String, Integer> zippingIterator = new ZippingIterator<>(
                 nameList.iterator(),
                 ageList.iterator(),
                 (name, age) -> new Person(name, age)
