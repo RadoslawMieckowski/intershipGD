@@ -15,7 +15,7 @@ class BufferingIteratorTest {
 
     @Test
     @DisplayName("next method should return all elements")
-    void next() {
+    void retrieveAllElements() {
         BufferingIterator<Integer> bufferingIterator =
                 new BufferingIterator<>(List.of(1,2,3,4,5).iterator(),2);
         long counterOfElements = 0;
