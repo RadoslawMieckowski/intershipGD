@@ -3,6 +3,7 @@ package secondSet.iterators;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -28,6 +29,74 @@ class FlatteningIteratorTest {
         assertEquals(45, sum, "hasNext method should return all elements!");
     }
 
+    @Test
+    void firstIteratorEmptyTest() {
+       List<Integer> emptyList = new LinkedList<>();
+        FlatteningIterator<Integer> flatteningIterator = new FlatteningIterator<>(
+                emptyList.iterator(),
+                List.of(3, 4, 5).iterator(),
+                List.of(6, 7, 8, 9).iterator()
+        );
+        boolean isNullFound = false;
+        int counterOfReturnedElements = 0;
+        while (flatteningIterator.hasNext()) {
+            counterOfReturnedElements++;
+            Integer value = flatteningIterator.next();
+            if (value == null) {
+                isNullFound = true;
+                break;
+            }
+        }
+
+        assertEquals(7, counterOfReturnedElements);
+        assertEquals(false, isNullFound);
+    }
+
+    @Test
+    void secondIteratorEmptyTest() {
+        List<Integer> emptyList = new LinkedList<>();
+        FlatteningIterator<Integer> flatteningIterator = new FlatteningIterator<>(
+                List.of(3, 4, 5).iterator(),
+                emptyList.iterator(),
+                List.of(6, 7, 8, 9).iterator()
+        );
+        boolean isNullFound = false;
+        int counterOfReturnedElements = 0;
+        while (flatteningIterator.hasNext()) {
+            counterOfReturnedElements++;
+            Integer value = flatteningIterator.next();
+            if (value == null) {
+                isNullFound = true;
+                break;
+            }
+        }
+
+        assertEquals(7, counterOfReturnedElements);
+        assertEquals(false, isNullFound);
+    }
+
+    @Test
+    void thirdIteratorEmptyTest() {
+        List<Integer> emptyList = new LinkedList<>();
+        FlatteningIterator<Integer> flatteningIterator = new FlatteningIterator<>(
+                List.of(3, 4, 5).iterator(),
+                List.of(6, 7, 8, 9).iterator(),
+                emptyList.iterator()
+        );
+        boolean isNullFound = false;
+        int counterOfReturnedElements = 0;
+        while (flatteningIterator.hasNext()) {
+            counterOfReturnedElements++;
+            Integer value = flatteningIterator.next();
+            if (value == null) {
+                isNullFound = true;
+                break;
+            }
+        }
+
+        assertEquals(7, counterOfReturnedElements);
+        assertEquals(false, isNullFound);
+    }
 
     @Test
     @DisplayName("hasNext method should return false if iterator has nothing to iterate on!")
