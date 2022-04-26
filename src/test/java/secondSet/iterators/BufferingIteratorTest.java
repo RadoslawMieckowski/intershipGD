@@ -19,12 +19,19 @@ class BufferingIteratorTest {
         BufferingIterator<Integer> bufferingIterator =
                 new BufferingIterator<>(List.of(1,2,3,4,5).iterator(),2);
         long counterOfElements = 0;
+        List <Integer> listOfSizes = new LinkedList<>();
         while (bufferingIterator.hasNext()) {
-            bufferingIterator.next();
+            listOfSizes.add(bufferingIterator.next().size());
             counterOfElements++;
         }
+        int sizeOfElement1 = listOfSizes.get(0);
+        int sizeOfElement2 = listOfSizes.get(1);
+        int sizeOfElement3 = listOfSizes.get(2);
 
         assertEquals(3, counterOfElements, "next method should return all elements!");
+        assertEquals(2, sizeOfElement1);
+        assertEquals(2, sizeOfElement2);
+        assertEquals(1, sizeOfElement3);
     }
 
     @Test
