@@ -14,7 +14,7 @@ class FlatteningIteratorTest {
 
     @Test
     @DisplayName("hasNext method should return all elements")
-    void next() {
+    void retrieveAllElements() {
         FlatteningIterator<Integer> flatteningIterator = new FlatteningIterator<>(
                 List.of(1, 2).iterator(),
                 List.of(3, 4, 5).iterator(),
