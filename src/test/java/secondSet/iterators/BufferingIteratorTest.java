@@ -28,7 +28,8 @@ class BufferingIteratorTest {
         int sizeOfElement2 = listOfSizes.get(1);
         int sizeOfElement3 = listOfSizes.get(2);
 
-        assertEquals(3, counterOfElements, "next method should return all elements!");
+        assertEquals(3, counterOfElements,
+                "next method should return all elements!");
         assertEquals(2, sizeOfElement1);
         assertEquals(2, sizeOfElement2);
         assertEquals(1, sizeOfElement3);
@@ -55,6 +56,21 @@ class BufferingIteratorTest {
         assertEquals(2, counterOfBatches,
                 String.valueOf(System.out.printf("iterator should return %d batches!",
                         multiplication)));
+    }
+
+    @Test
+    @DisplayName("iterator should return one elemnent if it's size is smaller than batch size.")
+    void batchBiggerThanIteratorSizeTest() {
+        BufferingIterator<Integer> bufferingIterator =
+                new BufferingIterator<>(List.of(1, 2, 3, 4, 5).iterator(), 1000);
+        int counterOfElements = 0;
+        while (bufferingIterator.hasNext()) {
+            bufferingIterator.next();
+            counterOfElements++;
+        }
+
+        assertEquals(1, counterOfElements,
+                "iterator should return just one element!");
     }
 
     @Test
