@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BusinessDaysIteratorTest {
 
     @Test
-    void hasNext() {
+    void hasNextTest() {
         BusinessDaysIterator businessDaysIterator =
                 new BusinessDaysIterator(LocalDate.of(2022, 1, 1));
         assertTrue(businessDaysIterator.hasNext());
@@ -19,7 +19,7 @@ class BusinessDaysIteratorTest {
 
     @Test
     @DisplayName("next method should return LocalDate object")
-    void next() {
+    void retrieveAllElements() {
         BusinessDaysIterator businessDaysIterator =
                 new BusinessDaysIterator(LocalDate.of(2022, 1, 1));
         LocalDate localDate;
