@@ -32,14 +32,14 @@ class MyStackTest {
         myStack.push(11);
         Iterator<Integer> iterator = myStack.iterator();
         int actualvalues[] = new int[3];
-       for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
            if (iterator.hasNext()) {
                actualvalues[i] = iterator.next();
            }
         }
-       int expectedValues[] = new int[] {11, 5, 3};
+        int expectedValues[] = new int[] {11, 5, 3};
 
-       Assertions.assertArrayEquals(expectedValues, actualvalues);
+        Assertions.assertArrayEquals(expectedValues, actualvalues);
     }
 
     @Test
