@@ -35,6 +35,29 @@ class BufferingIteratorTest {
     }
 
     @Test
+    @DisplayName("test case in which iterator's size is a multiplication of batch size")
+    void numberOfReturnedElementsTest() {
+        List<Integer> list = new LinkedList<>();
+        int batchSize = 3;
+        int multiplication = 2;
+        int listSize = batchSize * multiplication;
+        for (int i = 1; i <= listSize; i++) {
+            list.add(i);
+        }
+        BufferingIterator<Integer> bufferingIterator =
+                new BufferingIterator<>(list.iterator(), batchSize);
+        int counterOfBatches = 0;
+        while (bufferingIterator.hasNext()) {
+            bufferingIterator.next();
+            counterOfBatches++;
+        }
+
+        assertEquals(2, counterOfBatches,
+                String.valueOf(System.out.printf("iterator should return %d batches!",
+                        multiplication)));
+    }
+
+    @Test
     @DisplayName("hasNext method should return false if iterator has nothing to iterate on!")
     void hasNextOnEmptyIterator() {
         BufferingIterator<Integer> bufferingIterator = new BufferingIterator<>(
