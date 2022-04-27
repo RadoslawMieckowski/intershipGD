@@ -61,14 +61,6 @@ public class Intern {
 
     @Override
     public String toString() {
-/*
-        return "Intern{" +
-                "\"name\":" + "\"" + name + "\"" +
-                ", \"surName\":" + "\"" +surName + "\"" +
-                ", \"age\":" + "\"" + age + "\"" +
-                ", \"hobbies\":" + "\"" + hobbies + "\"" +
-                '}';
-*/
         JsonSerializer jsonSerializer = new JsonSerializer();
         return jsonSerializer.serializePojoObject(this);
     }
