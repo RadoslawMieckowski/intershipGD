@@ -6,17 +6,15 @@ import thirdSet.reflection.pojos.Intern;
 import thirdSet.reflection.pojos.Mentor;
 
 import java.lang.reflect.Proxy;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class PrintableProxyInstanceDemo {
     public static void main(String[] args) {
 
         Intern intern1 = new Intern("John", "Smith", 23,
-                new LinkedHashSet<>(Set.of("film", "music")));
+                List.of("film", "music"));
         Intern intern2 = new Intern("Dave", "Douglas", 21,
-                new LinkedHashSet<>(Set.of("gaming", "music")));
+                List.of("gaming", "music"));
 
         Printable printableInternProxyInstance = (Printable) Proxy.newProxyInstance(
                 StopwatchInvocationHandler.class.getClassLoader(),
