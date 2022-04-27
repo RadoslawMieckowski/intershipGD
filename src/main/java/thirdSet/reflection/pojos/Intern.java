@@ -4,6 +4,7 @@ import thirdSet.reflection.JsonSerializer;
 import thirdSet.reflection.annotations.JsonAttribute;
 import thirdSet.reflection.annotations.JsonSerializable;
 
+import java.util.List;
 import java.util.Set;
 
 @JsonSerializable
@@ -15,9 +16,9 @@ public class Intern {
     @JsonAttribute(jsonFieldName = "internAge")
     private int age;
     @JsonAttribute
-    private Set<String> hobbies;
+    private List<String> hobbies;
 
-    public Intern(String name, String surName, int age, Set<String> hobbies) {
+    public Intern(String name, String surName, int age, List<String> hobbies) {
         this.name = name;
         this.surName = surName;
         this.age = age;
@@ -27,11 +28,11 @@ public class Intern {
     public Intern() {
     }
 
-    public void setHobbies(Set<String> hobbies) {
+    public void setHobbies(List<String> hobbies) {
         this.hobbies = hobbies;
     }
 
-    public Set<String> getHobbies() {
+    public List<String> getHobbies() {
         return hobbies;
     }
 

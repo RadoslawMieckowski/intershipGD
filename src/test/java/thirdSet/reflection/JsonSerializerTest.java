@@ -9,6 +9,8 @@ import thirdSet.reflection.pojos.Intern;
 import thirdSet.reflection.pojos.Student;
 
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -28,11 +30,11 @@ class JsonSerializerTest {
             " according to declared fields in class")
     void serializePojoObjectTest() {
         Intern intern = new Intern("John", "Smith",
-                23, new LinkedHashSet<>(Set.of("music", "film")));
+                23, (List.of("music", "film")));
         String actualJsonString = jsonSerializer.serializePojoObject(intern);
 
         String expectedJsonString = "{\"internName\":\"John\", \"surName\":\"Smith\"," +
-                " \"internAge\":\"23\", \"hobbies\":\"[film, music]\"}";
+                " \"internAge\":\"23\", \"hobbies\":\"[music, film]\"}";
 
         Assertions.assertEquals(expectedJsonString, actualJsonString,
                 "serializePojoObject should return JSON string " +
