@@ -1,6 +1,6 @@
-package lettersStatistics;
+package firstSet.lettersStatistics;
 
-import utilities.FileHandler;
+import firstSet.utilities.FileHandler;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;

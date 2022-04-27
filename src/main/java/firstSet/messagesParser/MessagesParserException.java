@@ -1,4 +1,4 @@
-package messagesParser;
+package firstSet.messagesParser;
 
 public class MessagesParserException extends RuntimeException{
     public MessagesParserException(String message) {
