@@ -1,5 +1,6 @@
 package thirdSet.generics;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public final class Result<T, E extends Exception> {
@@ -25,5 +26,19 @@ public final class Result<T, E extends Exception> {
         } catch (Exception exception) {
             return err(exception);
         }
+    }
+
+    public <N> Result<N, E> map(Function<T, N> mapper) throws IllegalAccessException {
+        if (mapper == null) throw new IllegalAccessException("arg can't be null!");
+        if(operationResult != null) {
+            return new Result<>(mapper.apply(operationResult), null);
+        } else return new Result<>(null, exception);
+    }
+
+    public <N extends Exception> Result<T, N> mapErr(Function<E, N> mapper) throws IllegalAccessException {
+        if (mapper == null) throw new IllegalAccessException("arg can't be null!");
+        if(exception != null) {
+            return new Result<>(null, mapper.apply(exception));
+        } else return new Result<>(operationResult, null);
     }
 }
