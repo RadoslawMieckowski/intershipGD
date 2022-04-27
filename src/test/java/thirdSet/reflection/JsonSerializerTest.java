@@ -11,6 +11,7 @@ import thirdSet.reflection.pojos.Student;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
@@ -42,11 +43,9 @@ class JsonSerializerTest {
     @DisplayName("serializing null should throw JsonSerializationException")
     void serializeNullTest() {
         Intern intern = null;
-
-        Throwable exception = assertThrows(JsonSerializationException.class, () ->
-                jsonSerializer.serializePojoObject(intern));
-
-        assertTrue(exception instanceof JsonSerializationException);
+        assertThatExceptionOfType(JsonSerializationException.class)
+                .isThrownBy(() -> jsonSerializer.serializePojoObject(intern))
+                .withMessage("The object to serialize is null");
     }
 
     @Test
@@ -54,10 +53,10 @@ class JsonSerializerTest {
             " throw JsonSerializationException")
     void serializeBarePojoTest() {
         Student student = new Student("John", "Smith", 23);
-
-        Throwable exception = assertThrows(JsonSerializationException.class, () ->
-                jsonSerializer.serializePojoObject(student));
-
-        assertTrue(exception instanceof JsonSerializationException);
+        assertThatExceptionOfType(JsonSerializationException.class)
+                .isThrownBy(() -> jsonSerializer.serializePojoObject(student))
+                .withMessage("The class "
+                        + Student.class.getSimpleName()
+                        + " is not annotated with JsonSerializable");
     }
 }
