@@ -7,7 +7,7 @@ public final class Result<T, E extends Exception> {
     private final T operationResult;
     private final E exception;
 
-    public Result(T operationResult, E exception) {
+    private Result(T operationResult, E exception) {
         this.operationResult = operationResult;
         this.exception = exception;
     }
