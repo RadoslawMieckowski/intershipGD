@@ -1,6 +1,5 @@
 package thirdSet.generics;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +40,32 @@ class ResultTest {
     }
 
     @Test
-    void err() {
+    @DisplayName("err method should return new instance of Return type")
+    void errTest() {
+        Result<String, Exception> actualResult = Result.err(new NullPointerException());
+        Class<?> aClass = actualResult.getClass();
+        Field[] actualFields = aClass.getDeclaredFields();
+        List<String> actualFieldNames = new ArrayList<>();
+        for (Field field : actualFields)
+            actualFieldNames.add(field.getName());
+
+        List<String> expectedNamesOfFields = List.of("operationResult", "exception");
+
+        assertEquals("Result", aClass.getSimpleName());
+        assertThat(actualFieldNames.equals(expectedNamesOfFields.toArray()));
+        assertThat(actualResult.getException()
+                .getClass()
+                .getSimpleName()
+                .endsWith("Exception"));
+        assertThat(actualResult.getOperationResult() == null);
+    }
+
+    @Test
+    @DisplayName("err method with null arg should throw IllegalArgumentException")
+    void errNullTest() {
+        assertThatThrownBy(() -> Result.err(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("exception can't be null!");
     }
 
     @Test
