@@ -28,17 +28,28 @@ public final class Result<T, E extends Exception> {
         }
     }
 
-    public <N> Result<N, E> map(Function<T, N> mapper) throws IllegalAccessException {
-        if (mapper == null) throw new IllegalAccessException("arg can't be null!");
+    public <N> Result<N, E> map(Function<T, N> mapper) {
+        if (mapper == null) throw new IllegalArgumentException("arg can't be null!");
         if(operationResult != null) {
             return new Result<>(mapper.apply(operationResult), null);
         } else return new Result<>(null, exception);
     }
 
-    public <N extends Exception> Result<T, N> mapErr(Function<E, N> mapper) throws IllegalAccessException {
-        if (mapper == null) throw new IllegalAccessException("arg can't be null!");
+    public <N extends Exception> Result<T, N> mapErr(Function<E, N> mapper) {
+        if (mapper == null) throw new IllegalArgumentException("arg can't be null!");
         if(exception != null) {
             return new Result<>(null, mapper.apply(exception));
         } else return new Result<>(operationResult, null);
+    }
+
+    public T orElse(T value) {
+        if(value == null) throw new IllegalArgumentException("arg can't be null!");
+        if (operationResult != null) return operationResult;
+        return value;
+    }
+
+    public T unwrap() {
+        if (exception != null) throw new RuntimeException(exception);
+        return operationResult;
     }
 }
