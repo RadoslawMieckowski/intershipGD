@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -69,7 +71,23 @@ class ResultTest {
     }
 
     @Test
-    void of() {
+    @DisplayName("of method should return new instance of Return type")
+    void ofTest() {
+        Supplier<LocalDateTime> supplierValue = () -> LocalDateTime.now();
+        Result<LocalDateTime, ?> actualResult = Result.of(supplierValue);
+        if(actualResult.getOperationResult() != null) {
+            okTest();
+        } else {
+            errTest();
+        }
+    }
+
+    @Test
+    @DisplayName("of method with null arg should throw IllegalArgumentException")
+    void ofNullTest() {
+        assertThatThrownBy(() -> Result.of(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("supplier can't be null!");
     }
 
     @Test
