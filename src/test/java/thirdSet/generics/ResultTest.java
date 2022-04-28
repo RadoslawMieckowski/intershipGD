@@ -7,11 +7,13 @@ import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 class ResultTest {
 
@@ -91,7 +93,36 @@ class ResultTest {
     }
 
     @Test
-    void map() {
+    @DisplayName("map method should return new Result with" +
+            " not null operationResult and exception set to null")
+    void mapAfterOkTest() {
+        Result<String, Exception> resultOk = Result.ok("Hello");
+        Function<String, Integer> stringToIntegerFunction = (x) -> x.length();
+        Result<Integer, Exception> actualResult = resultOk.map(stringToIntegerFunction);
+
+        assertEquals(Integer.valueOf(5), actualResult.getOperationResult());
+        assertEquals(null, actualResult.getException());
+    }
+
+    @Test
+    @DisplayName("map method should return new Result with" +
+            " not null exception and operationResult set to null")
+    void mapAfterErrTest() {
+        Result<String, Exception> resultErr = Result.err(new RuntimeException());
+        Function<String, Integer> stringToIntegerFunction = (x) -> x.length();
+        Result<Integer, Exception> actualResult = resultErr.map(stringToIntegerFunction);
+
+        assertNotEquals(null, actualResult.getException());
+        assertEquals(null, actualResult.getOperationResult());
+    }
+
+    @Test
+    @DisplayName("map method with null arg should throw IllegalArgumentException")
+    void mapNullTest() {
+        Result<String, Exception> resultOk = Result.ok("Hello");
+        assertThatThrownBy(() -> resultOk.map(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("arg can't be null!");
     }
 
     @Test
