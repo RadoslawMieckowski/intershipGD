@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertEquals;
 
 class ResultTest {
@@ -29,6 +30,14 @@ class ResultTest {
         assertThat(actualFieldNames.equals(expectedNamesOfFields.toArray()));
         assertThat(actualResult.getOperationResult().equals("Java"));
         assertThat(actualResult.getException() == null);
+    }
+
+    @Test
+    @DisplayName("ok method with null arg should throw IllegalArgumentException")
+    void okNullTest() {
+        assertThatThrownBy(() -> Result.ok(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("operationResult can't be null!");
     }
 
     @Test
