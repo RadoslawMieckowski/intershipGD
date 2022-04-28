@@ -177,6 +177,18 @@ class ResultTest {
     }
 
     @Test
-    void unwrap() {
+    void unwrapAfterOkTest() {
+        Result<String, Exception> resultOK = Result.ok("Hello");
+        String actualValueOk = resultOK.unwrap();
+
+        assertThat(actualValueOk.equals("Hello"));
+    }
+
+    @Test
+    void unwrapAfterErrTest() {
+        Result<String, Exception> resultErr = Result.err(new RuntimeException());
+
+        assertThatThrownBy(() ->resultErr.unwrap())
+                .isInstanceOf(RuntimeException.class);
     }
 }
