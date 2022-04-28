@@ -3,6 +3,7 @@ package thirdSet.generics;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -126,7 +127,33 @@ class ResultTest {
     }
 
     @Test
-    void mapErr() {
+    void mapErrAfterOKTest() {
+        Result<String, Exception> resultOK = Result.ok("Hello");
+        Result<String, IOException> actualResult = resultOK.mapErr(x -> new IOException());
+
+        assertThat(actualResult.getException() == null);
+        assertThat(actualResult.getOperationResult())
+                .isEqualTo("Hello");
+    }
+
+    @Test
+    void mapErrAfterErrTest() {
+        Result<String, Exception> resultErr = Result.err(new RuntimeException());
+        Result<String, IOException> actualResult = resultErr.mapErr(
+                x -> new IOException("mapped exception"));
+
+        assertThat(actualResult.getOperationResult() == null);
+        assertThat(actualResult.getException().
+                getMessage().equals("mapped exception"));
+    }
+
+    @Test
+    void mapErrNullTest() {
+        Result<String, Exception> resultErr = Result.err(new RuntimeException());
+
+        assertThatThrownBy(() -> resultErr.mapErr(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("arg can't be null!");
     }
 
     @Test
