@@ -13,14 +13,18 @@ public final class Result<T, E extends Exception> {
     }
 
     public static <T, E extends Exception> Result<T, E> ok(T operationResult) {
+        if (operationResult == null) throw new IllegalArgumentException("operationResult" +
+                " can't be null!");
         return new Result(operationResult, null);
     }
 
     public static <T, E extends Exception> Result<T, E> err(E exception) {
+        if (exception == null) throw new IllegalArgumentException("exception can't be null!");
         return new Result<>(null, exception);
     }
 
     public static <T> Result<T, ?> of(Supplier<T> supplier) {
+        if (supplier == null) throw new IllegalArgumentException("supplier can't be null!");
         try {
             return ok(supplier.get());
         } catch (Exception exception) {
