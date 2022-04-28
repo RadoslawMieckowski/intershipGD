@@ -12,6 +12,14 @@ public final class Result<T, E extends Exception> {
         this.exception = exception;
     }
 
+    public T getOperationResult() {
+        return operationResult;
+    }
+
+    public E getException() {
+        return exception;
+    }
+
     public static <T, E extends Exception> Result<T, E> ok(T operationResult) {
         if (operationResult == null) throw new IllegalArgumentException("operationResult" +
                 " can't be null!");

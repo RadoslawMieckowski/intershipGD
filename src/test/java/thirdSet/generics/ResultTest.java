@@ -27,6 +27,8 @@ class ResultTest {
 
         assertEquals("Result", aClass.getSimpleName());
         assertThat(actualFieldNames.equals(expectedNamesOfFields.toArray()));
+        assertThat(actualResult.getOperationResult().equals("Java"));
+        assertThat(actualResult.getException() == null);
     }
 
     @Test
