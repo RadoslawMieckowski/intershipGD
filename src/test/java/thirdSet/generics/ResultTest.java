@@ -157,7 +157,23 @@ class ResultTest {
     }
 
     @Test
-    void orElse() {
+    void orElseTest() {
+        Result<String, Exception> resultOK = Result.ok("Hello");
+        String actualValueOk = resultOK.orElse("Java");
+        Result<String, Exception> resultErr = Result.err(new RuntimeException());
+        String actualValueErr = resultErr.orElse("Spring");
+
+        assertThat(actualValueOk.equals("Hello"));
+        assertThat(actualValueErr.equals("C++"));
+    }
+
+    @Test
+    void orElseNullTest() {
+        Result<String, Exception> resultOK = Result.ok("Hello");
+
+        assertThatThrownBy(() -> resultOK.orElse(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("arg can't be null!");
     }
 
     @Test
