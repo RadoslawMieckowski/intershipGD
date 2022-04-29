@@ -23,4 +23,17 @@ public class Mentor implements Serializable {
     public void setInterns(List<Intern> interns) {
         this.interns = interns;
     }
+
+    public List<Intern> getInterns() {
+        return interns;
+    }
+
+    @Override
+    public String toString() {
+        return "Mentor{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", interns=" + interns +
+                '}';
+    }
 }

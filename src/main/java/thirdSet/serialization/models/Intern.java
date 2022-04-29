@@ -13,4 +13,13 @@ public class Intern implements Serializable {
         this.password = password;
         this.mentor = mentor;
     }
+
+    @Override
+    public String toString() {
+        return "Intern{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", mentor=" + mentor +
+                '}';
+    }
 }

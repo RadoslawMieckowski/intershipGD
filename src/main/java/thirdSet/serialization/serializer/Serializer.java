@@ -15,7 +15,7 @@ public final class Serializer {
         }
     }
 
-    static <T> T deserialize(String filePath) {
+    public static <T> T deserialize(String filePath) {
         T retrievedObject = null;
         try (FileInputStream fileInputStream = new FileInputStream(filePath);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
