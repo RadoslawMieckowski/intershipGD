@@ -14,4 +14,13 @@ public class Mentor implements Serializable {
         this.password = password;
         this.interns = interns;
     }
+
+    public Mentor(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public void setInterns(List<Intern> interns) {
+        this.interns = interns;
+    }
 }
