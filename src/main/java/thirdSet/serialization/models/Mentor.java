@@ -6,7 +6,7 @@ import java.util.List;
 public class Mentor implements Serializable {
     private static final long serialVersionUID = 7819523664148063820L;
     private final String name;
-    private final String password;
+    private final transient String password;
     private List<Intern> interns;
 
     public Mentor(String name, String password, List<Intern> interns) {
