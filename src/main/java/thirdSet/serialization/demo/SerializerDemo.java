@@ -14,37 +14,34 @@ public class SerializerDemo {
         Intern intern3 = new Intern("James", "JamesPassword", mentor);
         mentor.setInterns(List.of(intern1, intern2, intern3));
 
-        Serializer.serialize(mentor, "src/main/resources/data/serializationTarget.txt");
-        Mentor mentorDeserialized = Serializer.deserialize("src/main/resources/data/serializationTarget.txt");
-        Intern retrievedIntern1 = mentorDeserialized
-                .getInterns()
+        System.out.println("Before serialization:"+ "\n");
+        System.out.println(mentor);
+        System.out.println(intern1);
+        System.out.println(intern2);
+        System.out.println(intern3);
+        System.out.println();
+
+        Serializer.serialize(mentor, "src/main/resources/data/serializationTarget.ser");
+        Mentor mentorDeserialized = Serializer.deserialize("src/main/resources/data/serializationTarget.ser");
+        Intern intern1Deserialized = mentorDeserialized.getInterns()
                 .get(0);
-        Intern retrievedIntern2 = mentorDeserialized
-                .getInterns()
+        Intern intern2Deserialized = mentorDeserialized.getInterns()
                 .get(1);
-        Intern retrievedIntern3 = mentorDeserialized
-                .getInterns()
+        Intern intern3Deserialized = mentorDeserialized.getInterns()
                 .get(2);
 
-        System.out.printf("Hash code of mentor: %d\t" +
-                "Hash code of mentorDeserialized: %d\t" +
-                " result of equals(): %b\n",
-                mentor.hashCode(), mentorDeserialized.hashCode(), mentor.equals(mentorDeserialized)
-        );
-        System.out.printf("Hash code of intern1: %d\t" +
-                        "Hash code of retrievedIntern1: %d\t" +
-                        " result of equals(): %b\n",
-                intern1.hashCode(), retrievedIntern1.hashCode(), intern1.equals(retrievedIntern1)
-        );
-        System.out.printf("Hash code of intern2: %d\t" +
-                        " Hash code of retrievedIntern2: %d\t" +
-                        " result of equals(): %b\n",
-                intern2.hashCode(), retrievedIntern2.hashCode(), intern2.equals(retrievedIntern1)
-        );
-        System.out.printf("Hash code of intern3: %d\t" +
-                        " Hash code of retrievedIntern3: %d\t" +
-                        " result of equals(): %b\n",
-                intern3.hashCode(), retrievedIntern3.hashCode(), intern3.equals(retrievedIntern1)
-        );
+        System.out.println("After serialization:" + "\n");
+        System.out.println(mentorDeserialized);
+        System.out.println(intern1Deserialized);
+        System.out.println(intern2Deserialized);
+        System.out.println(intern3Deserialized);
+
+        System.out.printf("Hash code of intern1Deserialized's mentor: %d\n",
+                intern1Deserialized.getMentor().hashCode());
+
+        System.out.printf("Hash code of Intern2Deserialized's mentor: %d\n",
+                intern2Deserialized.getMentor().hashCode());
+        System.out.printf("Hash code of intern3Deserialized's mentor: %d\n",
+                intern3Deserialized.getMentor().hashCode());
     }
 }

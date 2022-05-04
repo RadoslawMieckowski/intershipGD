@@ -19,7 +19,19 @@ public class Intern implements Serializable {
         return "Intern{" +
                 "name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", mentor=" + mentor +
+                ", mentor=" + (mentor != null ? mentor.getName() : " null") +
                 '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Mentor getMentor() {
+        return mentor;
     }
 }

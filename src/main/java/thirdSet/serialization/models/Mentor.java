@@ -1,6 +1,8 @@
 package thirdSet.serialization.models;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Mentor implements Serializable {
@@ -28,12 +30,21 @@ public class Mentor implements Serializable {
         return interns;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
+        List internsNames = new LinkedList();
+        if(interns != null) {
+            interns.forEach(intern -> internsNames.add(intern.getName()));
+        }
         return "Mentor{" +
                 "name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", interns=" + interns +
+                ", interns=" +
+                    (interns != null ? Arrays.toString(internsNames.toArray()) : " null") +
                 '}';
     }
 }
