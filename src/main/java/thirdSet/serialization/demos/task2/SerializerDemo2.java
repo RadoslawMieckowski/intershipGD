@@ -15,6 +15,7 @@ public class SerializerDemo2 {
             5)  Client{username='null', password='Willspassword', balance=48000, age=null}
             6)  Client{username='null', balance=48000, age=null}
             7)  ClassCastException
+            8)  in 6) and 7)
          */
     }
 }
