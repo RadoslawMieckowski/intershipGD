@@ -11,10 +11,10 @@ public class SerializerDemo2 {
                 "src/main/resources/data/serializationTarget2.ser");
         System.out.println(clientDeserialized);
         /*
-            4)   Client{name='Will', password='Willspassword', balance=48000, age=null}
+            4)  Client{name='Will', password='Willspassword', balance=48000, age=null}
             5)  Client{username='null', password='Willspassword', balance=48000, age=null}
             6)  Client{username='null', balance=48000, age=null}
-
+            7)  ClassCastException
          */
     }
 }
