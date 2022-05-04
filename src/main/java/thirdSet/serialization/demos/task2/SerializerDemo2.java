@@ -10,5 +10,9 @@ public class SerializerDemo2 {
         Client clientDeserialized = Serializer.deserialize(
                 "src/main/resources/data/serializationTarget2.ser");
         System.out.println(clientDeserialized);
+        /*
+        3)   Client{name='Will', password='Willspassword', balance=48000, age=null}
+        4)
+         */
     }
 }
