@@ -12,7 +12,7 @@ public class SerializerDemo2 {
         System.out.println(clientDeserialized);
         /*
         4)   Client{name='Will', password='Willspassword', balance=48000, age=null}
-        5)
+        5)  Client{username='null', password='Willspassword', balance=48000, age=null}
          */
     }
 }
