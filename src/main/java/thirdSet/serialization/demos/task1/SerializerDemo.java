@@ -1,4 +1,4 @@
-package thirdSet.serialization.demo;
+package thirdSet.serialization.demos.task1;
 
 import thirdSet.serialization.models.Intern;
 import thirdSet.serialization.models.Mentor;
