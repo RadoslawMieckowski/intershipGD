@@ -1,7 +1,7 @@
 package thirdSet.dynamicProxy.interfaces;
 
 public interface Printable {
-    default public void print() {
+    default void print() {
         System.out.println(this);
     }
 }

@@ -65,15 +65,5 @@ public class Intern implements Printable{
         JsonSerializer jsonSerializer = new JsonSerializer();
         return jsonSerializer.serializePojoObject(this);
     }
-
-/*    public String toString2() {
-
-        return "Intern{" +
-                "\"name\":" + "\"" + name + "\"" +
-                ", \"surName\":" + "\"" +surName + "\"" +
-                ", \"age\":" + "\"" + age + "\"" +
-                ", \"hobbies\":" + "\"" + hobbies + "\"" +
-                '}';
-    }*/
 }
 

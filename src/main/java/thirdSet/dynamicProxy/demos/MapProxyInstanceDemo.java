@@ -9,7 +9,7 @@ import java.util.Map;
 public class MapProxyInstanceDemo {
     public static void main(String[] args) {
 
-        Map mapProxyInstance = (Map) Proxy.newProxyInstance(
+        Map<Integer, String> mapProxyInstance = (Map) Proxy.newProxyInstance(
                 StopwatchInvocationHandler.class.getClassLoader(), new Class[] { Map.class },
                 new StopwatchInvocationHandler(new HashMap<>()));
 
