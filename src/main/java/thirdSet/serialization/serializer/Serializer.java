@@ -6,6 +6,7 @@ public final class Serializer {
     private Serializer() {}
 
     public static <T extends Serializable> void serialize(T object, String filePath) {
+        if (object == null) throw new RuntimeException("Serialization of null is not allowed!");
         try (FileOutputStream fileOutputStream = new FileOutputStream(filePath);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
         {
