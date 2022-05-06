@@ -21,8 +21,9 @@ public class SerializerDemo {
         System.out.println(intern3);
         System.out.println();
 
-        Serializer.serialize(mentor, "src/main/resources/data/serializationTarget.ser");
-        Mentor mentorDeserialized = Serializer.deserialize("src/main/resources/data/serializationTarget.ser");
+        String path = "src/main/resources/data/serializationTarget.ser";
+        Serializer.serialize(mentor, path);
+        Mentor mentorDeserialized = Serializer.deserialize(path);
         Intern intern1Deserialized = mentorDeserialized.getInterns()
                 .get(0);
         Intern intern2Deserialized = mentorDeserialized.getInterns()
