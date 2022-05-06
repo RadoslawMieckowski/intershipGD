@@ -21,6 +21,7 @@ public class Demo {
             inputStream = new FileInputStream(path);
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(bytes.length);
+            //output: 125
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
