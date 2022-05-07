@@ -17,12 +17,12 @@ private static final long serialVersionUID = 8372080265705624161L;
         this.userExternalizableList = userExternalizableList;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public List<UserExternalizable> getUserExternalizableList() {
         return userExternalizableList;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -31,7 +31,8 @@ private static final long serialVersionUID = 8372080265705624161L;
                 "name='" + name + '\'' +
                 ", userExternalizableList=" +
                         (userExternalizableList != null ?
-                                Arrays.toString(userExternalizableList.toArray()) : " null") +
+                                Arrays.toString(userExternalizableList.
+                                        toArray()) : " null") +
                 '}';
     }
 }

@@ -27,10 +27,6 @@ public class Intern implements Serializable {
         return name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public Mentor getMentor() {
         return mentor;
     }

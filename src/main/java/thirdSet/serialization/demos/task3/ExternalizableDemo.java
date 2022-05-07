@@ -11,17 +11,16 @@ import java.io.InputStream;
 public class ExternalizableDemo {
     public static void main(String[] args) {
         String path = "src/main/resources/data/serializationTarget3.ser";
-        UserExternalizable userExternalizable = new UserExternalizable(
+        UserExternalizable user = new UserExternalizable(
                 true, false, false,
                 true, true, false
         );
-        Serializer.serialize(userExternalizable, path);
+        Serializer.serialize(user, path);
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(path);
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(bytes.length);
-            //output = 73
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
