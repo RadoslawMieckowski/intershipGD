@@ -45,12 +45,11 @@ public class UserExternalizable implements Externalizable {
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         BitSet bitSet = new BitSet(6);
-        if(isActive) bitSet.set(0);
-        if (isAdmin) bitSet.set(1);
-        if (isModerator) bitSet.set(2);
-        if (isVIP) bitSet.set(3);
-        if (isMuted) bitSet.set(4);
-        if (isBanned) bitSet.set(5);
+        bitSet.set(0, isActive);
+        bitSet.set(1, isModerator);
+        bitSet.set(2, isVIP);
+        bitSet.set(3, isMuted);
+        bitSet.set(4, isBanned);
         out.write(bitSet.toByteArray());
         if (website != null) out.writeObject(website);
         //System.out.println("serialized: " + bitSet);
