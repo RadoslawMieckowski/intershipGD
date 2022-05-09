@@ -4,8 +4,8 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Objects;
 
 public class UserExternalizable implements Externalizable {
     private boolean isActive;
@@ -46,23 +46,23 @@ public class UserExternalizable implements Externalizable {
     public void writeExternal(ObjectOutput out) throws IOException {
         BitSet bitSet = new BitSet(6);
         bitSet.set(0, isActive);
-        bitSet.set(1, isModerator);
-        bitSet.set(2, isVIP);
-        bitSet.set(3, isMuted);
-        bitSet.set(4, isBanned);
+        bitSet.set(1, isAdmin);
+        bitSet.set(2, isModerator);
+        bitSet.set(3, isVIP);
+        bitSet.set(4, isMuted);
+        bitSet.set(5, isBanned);
         out.write(bitSet.toByteArray());
-        if (website != null) out.writeObject(website);
-        //System.out.println("serialized: " + bitSet);
+        out.writeObject(website);
+    }
+
+    public void setWebsite(Website website) {
+        this.website = website;
     }
 
     @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException {
         BitSet bitSet = BitSet.valueOf(new byte[]{in.readByte()});
-       // System.out.println("bitSet deserialized " + bitSet);
-       // System.out.println(Arrays.toString(bitSet.toByteArray()));
-        //System.out.println(bitSet.size());
         isActive = bitSet.get(0);
-        System.out.println("isActive: " + isActive);
         isAdmin = bitSet.get(1);
         isModerator = bitSet.get(2);
         isVIP = bitSet.get(3);
@@ -73,10 +73,6 @@ public class UserExternalizable implements Externalizable {
         } catch (Exception e) {
             System.out.println("serialized object doesn't contain not null website field");
         }
-    }
-
-    public void setWebsite(Website website) {
-        this.website = website;
     }
 
     @Override
@@ -90,5 +86,24 @@ public class UserExternalizable implements Externalizable {
                 ", isBanned=" + isBanned +
                 ", website=" + (website != null ? website.getName() : "null") +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserExternalizable that = (UserExternalizable) o;
+        return isActive == that.isActive &&
+                isAdmin == that.isAdmin &&
+                isModerator == that.isModerator &&
+                isVIP == that.isVIP &&
+                isMuted == that.isMuted &&
+                isBanned == that.isBanned &&
+                Objects.equals(website, that.website);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isActive, isAdmin, isModerator, isVIP, isMuted, isBanned, website);
     }
 }

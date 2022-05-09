@@ -15,16 +15,16 @@ public class CyclicWebsiteDemo {
                 true, false, false,
                 true, true, false
         );
-//        user.setWebsite(facebook);
+        user.setWebsite(facebook);
 
         UserExternalizable user2 = new UserExternalizable(
                 false, true, true,
                 false, true, false
         );
-//        user2.setWebsite(facebook);
-//        facebook.setUserExternalizableList(List.of(user, user2));
-
-       /* System.out.println("Before serialization: \n" + facebook + "\n");
+        user2.setWebsite(facebook);
+        facebook.setUserExternalizableList(List.of(user, user2));
+        /*
+        System.out.println("Before serialization: \n" + facebook + "\n");
         Serializer.serialize(facebook, path);
         Website facebookDeserialized = Serializer.deserialize(path);
         System.out.println("After deserialization: \n" + facebookDeserialized + "\n");
