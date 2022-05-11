@@ -18,6 +18,12 @@ public class Pet implements Printable {
         this.owner = owner;
     }
 
+    public Pet(String species, String name, boolean canFly) {
+        this.species = species;
+        this.name = name;
+        CanFly = canFly;
+    }
+
     public String getSpecies() {
         return species;
     }

@@ -11,6 +11,10 @@ public class Owner implements Printable {
     public Owner() {
     }
 
+    public Owner(String name) {
+        this.name = name;
+    }
+
     public Owner(String name, List<Pet> pets) {
         this.name = name;
         this.pets = pets;
