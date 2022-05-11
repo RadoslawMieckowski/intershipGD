@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
+    public Service() {
+    }
+
     public List<User> fetchData() throws SQLException {
         String SQL_QUERY = Statement.getEverything;
         List<User> users = null;
