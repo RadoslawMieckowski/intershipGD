@@ -1,15 +1,6 @@
 package fourthSet;
 
-import org.postgresql.jdbc3.Jdbc3PoolingDataSource;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
-import java.util.Scanner;
-
-public class Main {
+public class Statement {
    static String createTableStatement = """
             CREATE TABLE [IF NOT EXISTS] users (
                id INT PRIMARY KEY,
