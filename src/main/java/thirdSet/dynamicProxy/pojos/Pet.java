@@ -1,6 +1,8 @@
 package thirdSet.dynamicProxy.pojos;
 
-public class Pet {
+import thirdSet.dynamicProxy.interfaces.Printable;
+
+public class Pet implements Printable {
     private String species;
     private String name;
     private boolean CanFly;

@@ -1,8 +1,10 @@
 package thirdSet.dynamicProxy.pojos;
 
+import thirdSet.dynamicProxy.interfaces.Printable;
+
 import java.util.List;
 
-public class Owner {
+public class Owner implements Printable {
     private String name;
     private List<Pet> pets;
 
