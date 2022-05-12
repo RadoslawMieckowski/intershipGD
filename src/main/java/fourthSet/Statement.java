@@ -2,10 +2,9 @@ package fourthSet;
 
 public class Statement {
    static String createTableStatement = """
-            CREATE TABLE [IF NOT EXISTS] users (
-               id INT PRIMARY KEY,
-               username VARCHAR(20) NOT NULL,
-            );
+            CREATE TABLE IF NOT EXISTS users (
+            id INT PRIMARY KEY,
+            username VARCHAR(20) NOT NULL);
             """;
 
     static String insertIntoTableStatement = """
@@ -15,8 +14,8 @@ public class Statement {
                 (2,'mark'),
                 (3,'tom'),
                 (4,'john'),
-                (4,'john'),
-                (5, 'bruce')
+                (5,'john'),
+                (6, 'bruce')
             RETURNING *;
             """;
 

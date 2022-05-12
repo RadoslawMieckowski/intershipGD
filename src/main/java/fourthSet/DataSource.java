@@ -13,7 +13,7 @@ public class DataSource {
     private static HikariDataSource dataSource;
     static {
         config.setJdbcUrl( "jdbc:postgresql://localhost/users" );
-        config.setUsername( "root" );
+        config.setUsername( "postgres" );
         config.setPassword( "root" );
         config.addDataSourceProperty( "cachePrepStmts" , "true" );
         config.addDataSourceProperty( "prepStmtCacheSize" , "250" );
