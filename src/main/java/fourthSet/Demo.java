@@ -8,7 +8,7 @@ public class Demo {
         try {
             Service service = new Service();
             service.createTable();
-            service.insertData();
+            //service.insertData();
             List<User> users = service.fetchData();
             System.out.println(users);
         } catch (SQLException e) {

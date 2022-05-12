@@ -2,13 +2,13 @@ package fourthSet;
 
 public class Statement {
    static String createTableStatement = """
-            CREATE TABLE IF NOT EXISTS users (
+            CREATE TABLE IF NOT EXISTS usersTable (
             id INT PRIMARY KEY,
             username VARCHAR(20) NOT NULL);
             """;
 
     static String insertIntoTableStatement = """
-            INSERT INTO users (id, username)
+            INSERT INTO usersTable (id, username)
             VALUES
                 (1,'radek'),
                 (2,'mark'),
@@ -19,7 +19,7 @@ public class Statement {
             RETURNING *;
             """;
 
-    static String getEverything = "select * from users";
+    static String getEverything = "select * from usersTable";
 
 
    /* Class driverClass;
