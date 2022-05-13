@@ -58,12 +58,16 @@ public final class Result<T, E extends Exception> {
 
     public T orElse(T value) {
         Objects.requireNonNull(value, "arg can't be null!");
-        if (operationResult != null) return operationResult;
+        if (operationResult != null) {
+            return operationResult;
+        }
         return value;
     }
 
     public T unwrap() {
-        if (exception != null) throw new RuntimeException(exception);
+        if (exception != null) {
+            throw new RuntimeException(exception);
+        }
         return operationResult;
     }
 }
