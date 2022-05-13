@@ -20,18 +20,10 @@ class ResultTest {
     @Test
     void okMethodShouldReturnNewInstanceOfReturnType() {
         Result<String, Exception> actualResult = Result.ok("Java");
-        Class<?> aClass = actualResult.getClass();
-        Field[] actualFields = aClass.getDeclaredFields();
-        List<String> actualFieldNames = new ArrayList<>();
-        for (Field field : actualFields)
-            actualFieldNames.add(field.getName());
 
-        List<String> expectedNamesOfFields = List.of("operationResult", "exception");
-
-        assertEquals("Result", aClass.getSimpleName());
-        assertThat(actualFieldNames.equals(expectedNamesOfFields.toArray()));
-        assertThat(actualResult.getOperationResult().equals("Java"));
-        assertThat(actualResult.getException() == null);
+        assertThat(actualResult).isInstanceOf(Result.class);
+        assertThat(actualResult.getOperationResult()).isEqualTo("Java");
+        assertThat(actualResult.getException()).isNull();
     }
 
     @Test
@@ -58,7 +50,7 @@ class ResultTest {
                 .getClass()
                 .getSimpleName()
                 .endsWith("Exception"));
-        assertThat(actualResult.getOperationResult() == null);
+        assertThat(actualResult.getOperationResult()).isNull();
     }
 
     @Test
@@ -119,9 +111,8 @@ class ResultTest {
         Result<String, Exception> resultOK = Result.ok("Hello");
         Result<String, IOException> actualResult = resultOK.mapErr(x -> new IOException());
 
-        assertThat(actualResult.getException() == null);
-        assertThat(actualResult.getOperationResult())
-                .isEqualTo("Hello");
+        assertThat(actualResult.getException()).isNull();
+        assertThat(actualResult.getOperationResult()).isEqualTo("Hello");
     }
 
     @Test
@@ -130,9 +121,9 @@ class ResultTest {
         Result<String, IOException> actualResult = resultErr.mapErr(
                 x -> new IOException("mapped exception"));
 
-        assertThat(actualResult.getOperationResult() == null);
+        assertThat(actualResult.getOperationResult()).isNull();
         assertThat(actualResult.getException().
-                getMessage().equals("mapped exception"));
+                getMessage()).isEqualTo("mapped exception");
     }
 
     @Test
@@ -151,8 +142,8 @@ class ResultTest {
         Result<String, Exception> resultErr = Result.err(new RuntimeException());
         String actualValueErr = resultErr.orElse("Spring");
 
-        assertThat(actualValueOk.equals("Hello"));
-        assertThat(actualValueErr.equals("C++"));
+        assertThat(actualValueOk).isEqualTo("Hello");
+        assertThat(actualValueErr).isEqualTo("C++");
     }
 
     @Test
@@ -169,7 +160,7 @@ class ResultTest {
         Result<String, Exception> resultOK = Result.ok("Hello");
         String actualValueOk = resultOK.unwrap();
 
-        assertThat(actualValueOk.equals("Hello"));
+        assertThat(actualValueOk).isEqualTo("Hello");
     }
 
     @Test
