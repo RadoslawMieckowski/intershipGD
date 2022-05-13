@@ -137,7 +137,7 @@ class ResultTest {
         String actualValueErr = resultErr.orElse("Spring");
 
         assertThat(actualValueOk).isEqualTo("Hello");
-        assertThat(actualValueErr).isEqualTo("C++");
+        assertThat(actualValueErr).isEqualTo("Spring");
     }
 
     @Test
