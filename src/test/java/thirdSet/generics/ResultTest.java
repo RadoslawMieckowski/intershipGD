@@ -1,6 +1,5 @@
 package thirdSet.generics;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -88,9 +87,7 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("map method should return new Result with" +
-            " not null operationResult and exception set to null")
-    void mapAfterOkTest() {
+    void mapMethodShouldReturnNewResultWithNotNullOperationResultAndExceptionSetToNull() {
         Result<String, Exception> resultOk = Result.ok("Hello");
         Function<String, Integer> stringToIntegerFunction = (x) -> x.length();
         Result<Integer, Exception> actualResult = resultOk.map(stringToIntegerFunction);
@@ -100,9 +97,7 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("map method should return new Result with" +
-            " not null exception and operationResult set to null")
-    void mapAfterErrTest() {
+    void mapMethodShouldReturnNewResultWithNotNullExceptionAndOperationResultSetToNull() {
         Result<String, Exception> resultErr = Result.err(new RuntimeException());
         Function<String, Integer> stringToIntegerFunction = (x) -> x.length();
         Result<Integer, Exception> actualResult = resultErr.map(stringToIntegerFunction);
