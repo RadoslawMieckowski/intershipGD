@@ -19,8 +19,7 @@ import static org.junit.Assert.assertNotEquals;
 class ResultTest {
 
     @Test
-    @DisplayName("ok method should return new instance of Return type")
-    void okTest() {
+    void okMethodShouldReturnNewInstanceOfReturnType() {
         Result<String, Exception> actualResult = Result.ok("Java");
         Class<?> aClass = actualResult.getClass();
         Field[] actualFields = aClass.getDeclaredFields();
@@ -37,16 +36,14 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("ok method with null arg should throw NullPointerException")
-    void okNullTest() {
+    void okMethodWithNullArgShouldThrowNullPointerException() {
         assertThatThrownBy(() -> Result.ok(null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("operationResult can't be null!");
     }
 
     @Test
-    @DisplayName("err method should return new instance of Return type")
-    void errTest() {
+    void errMethodShouldReturnNewInstanceOfReturnType() {
         Result<String, Exception> actualResult = Result.err(new NullPointerException());
         Class<?> aClass = actualResult.getClass();
         Field[] actualFields = aClass.getDeclaredFields();
@@ -66,28 +63,25 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("err method with null arg should throw NullPointerException")
-    void errNullTest() {
+    void errMethodWithNullArgShouldThrowNullPointerException() {
         assertThatThrownBy(() -> Result.err(null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("exception can't be null!");
     }
 
     @Test
-    @DisplayName("of method should return new instance of Return type")
-    void ofTest() {
+    void ofMethodShouldReturnNewInstanceOfReturnType() {
         Supplier<LocalDateTime> supplierValue = () -> LocalDateTime.now();
         Result<LocalDateTime, ?> actualResult = Result.of(supplierValue);
         if(actualResult.getOperationResult() != null) {
-            okTest();
+            okMethodShouldReturnNewInstanceOfReturnType();
         } else {
-            errTest();
+            errMethodShouldReturnNewInstanceOfReturnType();
         }
     }
 
     @Test
-    @DisplayName("of method with null arg should throw NullPointerException")
-    void ofNullTest() {
+    void ofMethodWithNullArgShouldThrowNullPointerException() {
         assertThatThrownBy(() -> Result.of(null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("supplier can't be null!");
@@ -118,8 +112,7 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("map method with null arg should throw NullPointerException")
-    void mapNullTest() {
+    void mapMethodWithNullArgShouldThrowNullPointerException() {
         Result<String, Exception> resultOk = Result.ok("Hello");
         assertThatThrownBy(() -> resultOk.map(null))
                 .isInstanceOf(NullPointerException.class)
