@@ -59,6 +59,15 @@ class ResultTest {
     }
 
     @Test
+    void ofMethodShouldReturnNewInstanceOfReturnTypeWithNotNullExceptionAndOperationResultSetToNull() {
+        Result<Integer, ?> actualResult = Result.of(() ->Integer.valueOf(3/0));
+
+        assertThat(actualResult).isInstanceOf(Result.class);
+        assertThat(actualResult.getOperationResult()).isNull();
+        assertThat(actualResult.getException()).isInstanceOf(Exception.class);
+    }
+
+    @Test
     void ofMethodWithNullArgShouldThrowNullPointerException() {
         assertThatThrownBy(() -> Result.of(null))
                 .isInstanceOf(NullPointerException.class)
