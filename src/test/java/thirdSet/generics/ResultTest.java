@@ -47,14 +47,15 @@ class ResultTest {
     }
 
     @Test
-    void ofMethodShouldReturnNewInstanceOfReturnType() {
-        Supplier<LocalDateTime> supplierValue = () -> LocalDateTime.now();
+    void ofMethodShouldReturnNewInstanceOfReturnTypeWithOperationResultNotNullAndExceptionSetToNull() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        Supplier<LocalDateTime> supplierValue = () -> dateTime;
         Result<LocalDateTime, ?> actualResult = Result.of(supplierValue);
-        if(actualResult.getOperationResult() != null) {
-            okMethodShouldReturnNewInstanceOfReturnType();
-        } else {
-            errMethodShouldReturnNewInstanceOfReturnType();
-        }
+
+        assertThat(actualResult).isInstanceOf(Result.class);
+        assertThat(actualResult.getOperationResult()).isEqualTo(dateTime.toString());
+        assertThat(actualResult.getException()).isNull();
+
     }
 
     @Test
