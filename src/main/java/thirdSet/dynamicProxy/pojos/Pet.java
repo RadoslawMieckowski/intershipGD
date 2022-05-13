@@ -5,7 +5,7 @@ import thirdSet.dynamicProxy.interfaces.Printable;
 public class Pet implements Printable {
     private String species;
     private String name;
-    private boolean CanFly;
+    private boolean canFly;
     private Owner owner;
 
     public Pet() {
@@ -14,14 +14,14 @@ public class Pet implements Printable {
     public Pet(String species, String name, boolean canFly, Owner owner) {
         this.species = species;
         this.name = name;
-        this.CanFly = canFly;
+        this.canFly = canFly;
         this.owner = owner;
     }
 
     public Pet(String species, String name, boolean canFly) {
         this.species = species;
         this.name = name;
-        CanFly = canFly;
+        this.canFly = canFly;
     }
 
     public String getSpecies() {
@@ -41,11 +41,11 @@ public class Pet implements Printable {
     }
 
     public boolean isCanFly() {
-        return CanFly;
+        return canFly;
     }
 
     public void setCanFly(boolean canFly) {
-        CanFly = canFly;
+        this.canFly = canFly;
     }
 
     public Owner getOwner() {
@@ -61,7 +61,7 @@ public class Pet implements Printable {
         return "Pet{" +
                 "species='" + species + '\'' +
                 ", name='" + name + '\'' +
-                ", CanFly=" + CanFly +
+                ", canFly=" + canFly +
                 ", owner=" + owner.getName() +
                 '}';
     }
