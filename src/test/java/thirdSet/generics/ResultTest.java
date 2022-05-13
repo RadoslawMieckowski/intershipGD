@@ -37,10 +37,10 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("ok method with null arg should throw IllegalArgumentException")
+    @DisplayName("ok method with null arg should throw NullPointerException")
     void okNullTest() {
         assertThatThrownBy(() -> Result.ok(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage("operationResult can't be null!");
     }
 
@@ -66,10 +66,10 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("err method with null arg should throw IllegalArgumentException")
+    @DisplayName("err method with null arg should throw NullPointerException")
     void errNullTest() {
         assertThatThrownBy(() -> Result.err(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage("exception can't be null!");
     }
 
@@ -86,10 +86,10 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("of method with null arg should throw IllegalArgumentException")
+    @DisplayName("of method with null arg should throw NullPointerException")
     void ofNullTest() {
         assertThatThrownBy(() -> Result.of(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage("supplier can't be null!");
     }
 
@@ -118,11 +118,11 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("map method with null arg should throw IllegalArgumentException")
+    @DisplayName("map method with null arg should throw NullPointerException")
     void mapNullTest() {
         Result<String, Exception> resultOk = Result.ok("Hello");
         assertThatThrownBy(() -> resultOk.map(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage("arg can't be null!");
     }
 
@@ -152,7 +152,7 @@ class ResultTest {
         Result<String, Exception> resultErr = Result.err(new RuntimeException());
 
         assertThatThrownBy(() -> resultErr.mapErr(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage("arg can't be null!");
     }
 
@@ -172,7 +172,7 @@ class ResultTest {
         Result<String, Exception> resultOK = Result.ok("Hello");
 
         assertThatThrownBy(() -> resultOK.orElse(null))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(NullPointerException.class)
                 .hasMessage("arg can't be null!");
     }
 
