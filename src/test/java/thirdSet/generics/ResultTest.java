@@ -9,8 +9,6 @@ import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 class ResultTest {
 
@@ -80,8 +78,8 @@ class ResultTest {
         Function<String, Integer> stringToIntegerFunction = (x) -> x.length();
         Result<Integer, Exception> actualResult = resultOk.map(stringToIntegerFunction);
 
-        assertEquals(Integer.valueOf(5), actualResult.getOperationResult());
-        assertEquals(null, actualResult.getException());
+        assertThat(actualResult.getOperationResult()).isEqualTo(5);
+        assertThat(actualResult.getException()).isNull();
     }
 
     @Test
@@ -90,8 +88,8 @@ class ResultTest {
         Function<String, Integer> stringToIntegerFunction = (x) -> x.length();
         Result<Integer, Exception> actualResult = resultErr.map(stringToIntegerFunction);
 
-        assertNotEquals(null, actualResult.getException());
-        assertEquals(null, actualResult.getOperationResult());
+        assertThat(actualResult.getException()).isNotNull();
+        assertThat(actualResult.getOperationResult()).isNull();
     }
 
     @Test
