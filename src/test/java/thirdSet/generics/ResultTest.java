@@ -36,20 +36,9 @@ class ResultTest {
     @Test
     void errMethodShouldReturnNewInstanceOfReturnType() {
         Result<String, Exception> actualResult = Result.err(new NullPointerException());
-        Class<?> aClass = actualResult.getClass();
-        Field[] actualFields = aClass.getDeclaredFields();
-        List<String> actualFieldNames = new ArrayList<>();
-        for (Field field : actualFields)
-            actualFieldNames.add(field.getName());
 
-        List<String> expectedNamesOfFields = List.of("operationResult", "exception");
-
-        assertEquals("Result", aClass.getSimpleName());
-        assertThat(actualFieldNames.equals(expectedNamesOfFields.toArray()));
-        assertThat(actualResult.getException()
-                .getClass()
-                .getSimpleName()
-                .endsWith("Exception"));
+        assertThat(actualResult).isInstanceOf(Result.class);
+        assertThat(actualResult.getException()).isInstanceOf(Exception.class);
         assertThat(actualResult.getOperationResult()).isNull();
     }
 
