@@ -64,4 +64,14 @@ public class Service {
            return rowAffected;
         }
     }
+
+    public void insert100Users() throws SQLException {
+        try (Connection connection = DataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     Statement.insertIntoTable100Users)
+        ) {
+            int numberOfRows = preparedStatement.executeUpdate();
+            System.out.println("Number of rows inserted: " + numberOfRows);
+        }
+    }
 }

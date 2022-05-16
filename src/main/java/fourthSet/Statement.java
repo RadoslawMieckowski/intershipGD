@@ -19,6 +19,12 @@ public class Statement {
             RETURNING *;
             """;
 
+    static String insertIntoTable100Users = """
+            INSERT INTO usersTable (id, username)
+            VALUES
+                
+            """;
+
     static String getEverything = "select * from usersTable";
 
     static String deleteUserFromUsers = "DELETE FROM users WHERE id = ?";
