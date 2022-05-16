@@ -55,4 +55,13 @@ public class Service {
             return rowAffected;
         }
     }
+
+    public int deleteEverything() throws SQLException {
+        try(Connection connection = DataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                Statement.deleteEverything)) {
+           int rowAffected = preparedStatement.executeUpdate();
+           return rowAffected;
+        }
+    }
 }
