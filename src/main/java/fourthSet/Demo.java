@@ -9,6 +9,7 @@ public class Demo {
             Service service = new Service();
             service.createTable();
             //service.insertData();
+            service.deleteRow(DataSource.getConnection(), 3);
             List<User> users = service.fetchData();
             System.out.println(users);
         } catch (SQLException e) {

@@ -21,6 +21,7 @@ public class Statement {
 
     static String getEverything = "select * from usersTable";
 
+    static String deleteUserFromUsers = " DELETE FROM users WHERE id = ?";
 
    /* Class driverClass;
 

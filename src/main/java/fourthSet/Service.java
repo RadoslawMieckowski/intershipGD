@@ -46,4 +46,13 @@ public class Service {
         preparedStatement.executeUpdate();
         }
     }
+
+    public int deleteRow(Connection connection, int id) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(
+                Statement.deleteUserFromUsers)){
+            preparedStatement.setInt(1, id);
+            int rowAffected = preparedStatement.executeUpdate();
+            return rowAffected;
+        }
+    }
 }
