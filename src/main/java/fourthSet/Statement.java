@@ -15,21 +15,18 @@ public class Statement {
                 (3,'tom'),
                 (4,'john'),
                 (5,'john'),
-                (6, 'bruce')
-            RETURNING *;
+                (6, 'bruce');
             """;
 
-    static String insertIntoTable100Users = """
-            INSERT INTO usersTable (id, username)
-            VALUES
-                
-            """;
+    static String insertIntoTable100Users = "INSERT INTO usersTable (id, username) VALUES";
+
+
 
     static String getEverything = "select * from usersTable";
 
-    static String deleteUserFromUsers = "DELETE FROM users WHERE id = ?";
+    static String deleteUserFromUsers = "DELETE FROM usersTable WHERE id = ?";
 
-    static String deleteEverything = "DELETE * FROM users;";
+    static String deleteEverything = "DELETE FROM usersTable;";
 
    /* Class driverClass;
 

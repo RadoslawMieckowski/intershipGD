@@ -8,13 +8,21 @@ public class Demo {
         try {
             Service service = new Service();
             service.createTable();
-            //service.insertData();
+            service.insertData();
             List<User> users = service.fetchData();
-            System.out.println(users);
+
+            System.out.println("Users after creation of the table:\n" + users);
             service.deleteRow(DataSource.getConnection(), 3);
-            System.out.println(users);
+            users = service.fetchData();
+
+            System.out.println("Users after deleting third row:\n" + users);
             service.deleteEverything();
-            System.out.println(users);
+            users = service.fetchData();
+            System.out.println("Users after deleting everything\n" + users);
+
+            service.insert100Users();
+            users = service.fetchData();
+            System.out.println("Users after inserting 100 users\n" + users);
         } catch (SQLException e) {
             e.printStackTrace();
         }

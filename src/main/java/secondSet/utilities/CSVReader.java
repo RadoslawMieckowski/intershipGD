@@ -57,6 +57,7 @@ public final class CSVReader {
         list.stream()
                 .forEach(line -> sqlValues.append(line.concat(",\n")));
         return sqlValues.delete(sqlValues.length() - 2, sqlValues.length())
+                .append(";")
                 .toString();
     }
 }

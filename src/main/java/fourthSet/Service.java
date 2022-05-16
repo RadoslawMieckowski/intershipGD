@@ -1,5 +1,7 @@
 package fourthSet;
 
+import secondSet.utilities.CSVReader;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,7 +70,9 @@ public class Service {
     public void insert100Users() throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     Statement.insertIntoTable100Users)
+                     Statement.insertIntoTable100Users +
+                             CSVReader.prepareToInsertSQLValues(
+                                     "src/main/resources/MOCK_DATA.csv") )
         ) {
             int numberOfRows = preparedStatement.executeUpdate();
             System.out.println("Number of rows inserted: " + numberOfRows);
