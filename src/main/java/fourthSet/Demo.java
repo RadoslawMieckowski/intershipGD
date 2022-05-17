@@ -1,5 +1,7 @@
 package fourthSet;
 
+import fourthSet.utilities.ConnectionMaster;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class Demo {
             service.insert100Users();
             users = service.fetchData();
             System.out.println("Users after inserting 100 users\n" + users);
+
+            ConnectionMaster connectionMaster = new ConnectionMaster(DataSource.getConnection());
+            connectionMaster.findOne(Statement.findOneStatement, new Object {2,})
         } catch (SQLException e) {
             e.printStackTrace();
         }

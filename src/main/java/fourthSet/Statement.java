@@ -28,6 +28,12 @@ public class Statement {
 
     static String deleteEverything = "DELETE FROM usersTable;";
 
+    static String findOneStatement = """
+           Select id, username 
+           FROM usersTable 
+           WHERE id = ? AND username = ?;
+           """;
+
    /* Class driverClass;
 
     {
