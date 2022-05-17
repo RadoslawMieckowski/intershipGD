@@ -5,7 +5,6 @@ import thirdSet.reflection.annotations.JsonAttribute;
 import thirdSet.reflection.annotations.JsonSerializable;
 
 import java.util.List;
-import java.util.Set;
 
 @JsonSerializable
 public class Intern {

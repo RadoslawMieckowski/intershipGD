@@ -1,5 +1,6 @@
 package thirdSet.reflection.pojos;
 
+import thirdSet.reflection.JsonSerializer;
 import thirdSet.reflection.annotations.JsonAttribute;
 import thirdSet.reflection.annotations.JsonSerializable;
 
@@ -33,5 +34,11 @@ public class Mentor {
 
     public void setInternList(List<Intern> internList) {
         this.internList = internList;
+    }
+
+    @Override
+    public String toString() {
+        JsonSerializer jsonSerializer = new JsonSerializer();
+        return jsonSerializer.serializePojoObject(this);
     }
 }
