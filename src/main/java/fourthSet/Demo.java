@@ -27,7 +27,12 @@ public class Demo {
             System.out.println("Users after inserting 100 users\n" + users);
 
             ConnectionMaster connectionMaster = new ConnectionMaster(DataSource.getConnection());
-            connectionMaster.findOne(Statement.findOneStatement, new Object {2,})
+            User user17 = connectionMaster.findOne(
+                    Statement.findOneStatement,
+                    new Object[] {17, "Kris"},
+                    (id, name) -> new User((Integer)id, (String)name)
+            );
+            System.out.println("user17: " + user17);
         } catch (SQLException e) {
             e.printStackTrace();
         }
