@@ -6,10 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.BiFunction;
 
 public final class ConnectionMaster {
-    private Connection connection;
+    private final Connection connection;
 
     public ConnectionMaster(Connection connection) {
         this.connection = connection;
@@ -44,10 +46,30 @@ public final class ConnectionMaster {
                         " Expected one result");
             }
             if (resultSetSize == 0) {
-                System.out.printf("can't find any results in the table with the given args.\n");
+                System.out.print("can't find any results in the table with the given args.\n");
             } else {
                 resultSet.beforeFirst();
                 result = mapper.apply((S)args[0],(V)args[1]);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public <S, V, T> List<T> findMany(String query, Object[] args, BiFunction<S, V, T> mapper) {
+        List<T> result = new LinkedList<>();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            int i = 1;
+            for (Object arg : args) {
+                preparedStatement.setObject(i++, arg);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(mapper.apply(
+                        (S)resultSet.getObject(1),
+                        (V)resultSet.getObject(2))
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();

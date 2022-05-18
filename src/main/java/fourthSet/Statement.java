@@ -22,9 +22,9 @@ public class Statement {
 
 
 
-    static String getEverything = "select * from usersTable";
+    static String getEverything = "select * from usersTable;";
 
-    static String deleteUserFromUsers = "DELETE FROM usersTable WHERE id = ?";
+    static String deleteUserFromUsers = "DELETE FROM usersTable WHERE id = ?;";
 
     static String deleteEverything = "DELETE FROM usersTable;";
 
@@ -36,6 +36,9 @@ public class Statement {
            WHERE id = ? AND username = ?;
            """;
 
+    static  String findManyWithGivenIDsStatement = "select * from usersTable where id between ? and ?;";
+
+    static  String findManyWithGivenNamesStatement = "select * from usersTable where username like ?;";
    /* Class driverClass;
 
     {

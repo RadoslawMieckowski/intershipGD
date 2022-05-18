@@ -17,14 +17,14 @@ public class Service {
         String SQL_QUERY = Statement.getEverything;
         List<User> users = null;
         try (Connection connection = DataSource.getConnection();
-             PreparedStatement prepareStatement = connection.prepareStatement( SQL_QUERY );
+             PreparedStatement prepareStatement = connection.prepareStatement(SQL_QUERY);
              ResultSet resultSet = prepareStatement.executeQuery()) {
              users = new ArrayList<>();
              User user;
-             while ( resultSet.next() ) {
+             while (resultSet.next()) {
                 user = new User();
-                user.setId( resultSet.getInt( "id" ) );
-                user.setUsername( resultSet.getString( "username" ) );
+                user.setId(resultSet.getInt("id"));
+                user.setUsername(resultSet.getString("username"));
                 users.add(user);
              }
         }
@@ -34,7 +34,7 @@ public class Service {
     public void insertData() throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     Statement.insertIntoTableStatement )
+                     Statement.insertIntoTableStatement)
              ) {
             int numberOfRows = preparedStatement.executeUpdate();
             System.out.println("Number of rows inserted: " + numberOfRows);

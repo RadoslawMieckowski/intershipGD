@@ -34,12 +34,32 @@ public class Demo {
             );
             System.out.println("user17: " + user17);
 
-            connectionMaster.execute(Statement.executeInsertRowStatement, new Object[] {101, "Radek"});
-            User user101 = connectionMaster.findOne(Statement.findOneStatement,
+            connectionMaster.execute(
+                    Statement.executeInsertRowStatement,
+                    new Object[] {101, "Radek"}
+            );
+
+            User user101 = connectionMaster.findOne(
+                    Statement.findOneStatement,
                     new Object[] {101, "Radek"},
                     (id, name) -> new User((Integer)id, (String)name)
             );
             System.out.println("user101: " + user101);
+
+            List<User> resultUsers1 = connectionMaster.findMany(
+                    Statement.findManyWithGivenIDsStatement,
+                    new Object[] {5, 10},
+                    (id, name) -> new User((Integer)id, (String)name)
+            );
+            System.out.println("resultUsers1: " + resultUsers1);
+
+            List<User> resultUsers2 = connectionMaster.findMany(
+                    Statement.findManyWithGivenNamesStatement,
+                    new Object[] {"J%"},
+                    (id, name) -> new User((Integer)id, (String)name)
+            );
+            System.out.println("resultUsers2: " + resultUsers2);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
