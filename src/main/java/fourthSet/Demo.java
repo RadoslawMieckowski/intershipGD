@@ -33,6 +33,13 @@ public class Demo {
                     (id, name) -> new User((Integer)id, (String)name)
             );
             System.out.println("user17: " + user17);
+
+            connectionMaster.execute(Statement.executeInsertRowStatement, new Object[] {101, "Radek"});
+            User user101 = connectionMaster.findOne(Statement.findOneStatement,
+                    new Object[] {101, "Radek"},
+                    (id, name) -> new User((Integer)id, (String)name)
+            );
+            System.out.println("user101: " + user101);
         } catch (SQLException e) {
             e.printStackTrace();
         }

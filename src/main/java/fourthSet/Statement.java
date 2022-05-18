@@ -28,6 +28,8 @@ public class Statement {
 
     static String deleteEverything = "DELETE FROM usersTable;";
 
+    static String executeInsertRowStatement = "INSERT INTO  usersTable (id, username) VALUES (?, ?);";
+
     static String findOneStatement = """
            Select id, username 
            FROM usersTable 
