@@ -16,9 +16,7 @@ public class Demo {
                 true, true, false
         );
         Serializer.serialize(user, path);
-        InputStream inputStream;
-        try {
-            inputStream = new FileInputStream(path);
+        try (InputStream inputStream = new FileInputStream(path)){
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(bytes.length);
             //output: 125
