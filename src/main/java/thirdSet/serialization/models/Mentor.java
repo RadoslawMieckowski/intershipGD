@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mentor implements Serializable {
     private static final long serialVersionUID = 7819523664148063820L;
@@ -36,15 +37,12 @@ public class Mentor implements Serializable {
 
     @Override
     public String toString() {
-        List internsNames = new LinkedList();
-        if(interns != null) {
-            interns.forEach(intern -> internsNames.add(intern.getName()));
-        }
         return "Mentor{" +
                 "name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", interns=" +
-                    (interns != null ? Arrays.toString(internsNames.toArray()) : " null") +
+                    (interns == null ? null : interns.stream().map(Intern::getName)
+                            .collect(Collectors.joining(", ", "{", "}"))) +
                 '}';
     }
 }
