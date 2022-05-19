@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Getter
 public class Website implements Serializable {
@@ -26,9 +27,9 @@ private static final long serialVersionUID = 8372080265705624161L;
         return "Website{" +
                 "name='" + name + '\'' +
                 ", userExternalizableList=" +
-                        (userExternalizableList != null ?
-                                Arrays.toString(userExternalizableList.
-                                        toArray()) : " null") +
+                        (userExternalizableList == null ? "null" : userExternalizableList.stream()
+                                .map(UserExternalizable::toString)
+                                .collect(Collectors.joining(", ", "{", "}"))) +
                 '}';
     }
 

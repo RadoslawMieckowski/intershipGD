@@ -42,7 +42,7 @@ public class UserExternalizable implements Externalizable {
     }
 
     @Override
-    public void readExternal(ObjectInput in) throws IOException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         BitSet bitSet = BitSet.valueOf(new byte[]{in.readByte()});
         isActive = bitSet.get(0);
         isAdmin = bitSet.get(1);
@@ -54,6 +54,7 @@ public class UserExternalizable implements Externalizable {
             website = (Website) in.readObject();
         } catch (Exception e) {
             System.out.println("serialized object doesn't contain not null website field");
+            throw e;
         }
     }
 

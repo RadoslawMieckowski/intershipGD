@@ -8,8 +8,7 @@ public final class Serializer {
     public static <T extends Serializable> void serialize(T object, String filePath) {
         if (object == null) throw new RuntimeException("Serialization of null is not allowed!");
         try (FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))
-        {
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(object);
         } catch (IOException exception) {
             System.out.println("Serialization failed.");
