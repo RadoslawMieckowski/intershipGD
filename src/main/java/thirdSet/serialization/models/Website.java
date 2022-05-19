@@ -1,10 +1,13 @@
 package thirdSet.serialization.models;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 public class Website implements Serializable {
 private final String name;
 private List<UserExternalizable> userExternalizableList;
@@ -16,14 +19,6 @@ private static final long serialVersionUID = 8372080265705624161L;
 
     public void setUserExternalizableList(List<UserExternalizable> userExternalizableList) {
         this.userExternalizableList = userExternalizableList;
-    }
-
-    public List<UserExternalizable> getUserExternalizableList() {
-        return userExternalizableList;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

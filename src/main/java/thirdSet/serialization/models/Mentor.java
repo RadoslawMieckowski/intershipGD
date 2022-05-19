@@ -1,22 +1,21 @@
 package thirdSet.serialization.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
+@Getter
 public class Mentor implements Serializable {
     private static final long serialVersionUID = 7819523664148063820L;
     private final String name;
     private final transient String password;
     private List<Intern> interns;
-
-    public Mentor(String name, String password, List<Intern> interns) {
-        this.name = name;
-        this.password = password;
-        this.interns = interns;
-    }
 
     public Mentor(String name, String password) {
         this.name = name;
@@ -25,14 +24,6 @@ public class Mentor implements Serializable {
 
     public void setInterns(List<Intern> interns) {
         this.interns = interns;
-    }
-
-    public List<Intern> getInterns() {
-        return interns;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

@@ -11,10 +11,15 @@ import java.io.InputStream;
 public class ExternalizableDemo {
     public static void main(String[] args) {
         String path = "src/main/resources/data/serializationTarget3.ser";
-        UserExternalizable user = new UserExternalizable(
-                true, false, false,
-                true, true, false
-        );
+        UserExternalizable user =
+                UserExternalizable.builder()
+                    .isActive(true)
+                    .isAdmin(false)
+                    .isModerator(false)
+                    .isVIP(true)
+                    .isMuted(true)
+                    .isBanned(false)
+                .build();
         Serializer.serialize(user, path);
         InputStream inputStream;
         try {

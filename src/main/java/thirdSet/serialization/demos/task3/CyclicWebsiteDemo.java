@@ -11,16 +11,28 @@ public class CyclicWebsiteDemo {
         String path = "src/main/resources/data/serializationTargetCyclic.ser";
         Website facebook = new Website("Facebook");
 
-        UserExternalizable user = new UserExternalizable(
-                true, false, false,
-                true, true, false
-        );
+        UserExternalizable user =
+                UserExternalizable.builder()
+                    .isActive(true)
+                    .isAdmin(false)
+                    .isModerator(false)
+                    .isVIP(true)
+                    .isMuted(true)
+                    .isBanned(false)
+                    .build();
+
         user.setWebsite(facebook);
 
-        UserExternalizable user2 = new UserExternalizable(
-                false, true, true,
-                false, true, false
-        );
+        UserExternalizable user2 =
+                UserExternalizable.builder()
+                        .isActive(false)
+                        .isAdmin(true)
+                        .isModerator(true)
+                        .isVIP(false)
+                        .isMuted(true)
+                        .isBanned(false)
+                        .build();
+
         user2.setWebsite(facebook);
         facebook.setUserExternalizableList(List.of(user, user2));
         Serializer.serialize(user, path);

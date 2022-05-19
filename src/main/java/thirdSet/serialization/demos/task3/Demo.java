@@ -11,10 +11,14 @@ import java.io.InputStream;
 public class Demo {
     public static void main(String[] args) {
         String path = "src/main/resources/data/serializationTarget3.ser";
-        User user = new User(
-                true, false, false,
-                true, true, false
-        );
+        User user = User.builder()
+                        .isActive(true)
+                        .isAdmin(false)
+                        .isModerator(false)
+                        .isVIP(true)
+                        .isMuted(true)
+                        .isBanned(false)
+                    .build();
         Serializer.serialize(user, path);
         try (InputStream inputStream = new FileInputStream(path)){
             byte[] bytes = inputStream.readAllBytes();

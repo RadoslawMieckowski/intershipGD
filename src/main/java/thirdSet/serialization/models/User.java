@@ -1,7 +1,9 @@
 package thirdSet.serialization.models;
 
-import java.io.Serializable;
+import lombok.Builder;
 
+import java.io.Serializable;
+@Builder
 public class User implements Serializable {
     private final boolean isActive;
     private final boolean isAdmin;
@@ -10,13 +12,4 @@ public class User implements Serializable {
     private final boolean isMuted;
     private final boolean isBanned;
     private static final long serialVersionUID = -4118549117442895705L;
-
-    public User(boolean isActive, boolean isAdmin, boolean isModerator, boolean isVIP, boolean isMuted, boolean isBanned) {
-        this.isActive = isActive;
-        this.isAdmin = isAdmin;
-        this.isModerator = isModerator;
-        this.isVIP = isVIP;
-        this.isMuted = isMuted;
-        this.isBanned = isBanned;
-    }
 }

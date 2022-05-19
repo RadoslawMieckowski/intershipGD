@@ -1,5 +1,9 @@
 package thirdSet.serialization.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -7,6 +11,9 @@ import java.io.ObjectOutput;
 import java.util.BitSet;
 import java.util.Objects;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserExternalizable implements Externalizable {
     private boolean isActive;
     private boolean isAdmin;
@@ -16,31 +23,6 @@ public class UserExternalizable implements Externalizable {
     private boolean isBanned;
     private Website website;
     private static final long serialVersionUID = 5602506335384173830L;
-
-    public UserExternalizable(boolean isActive, boolean isAdmin, boolean isModerator,
-                              boolean isVIP, boolean isMuted, boolean isBanned,
-                              Website website) {
-        this.isActive = isActive;
-        this.isAdmin = isAdmin;
-        this.isModerator = isModerator;
-        this.isVIP = isVIP;
-        this.isMuted = isMuted;
-        this.isBanned = isBanned;
-        this.website = website;
-    }
-
-    public UserExternalizable(boolean isActive, boolean isAdmin, boolean isModerator,
-                              boolean isVIP, boolean isMuted, boolean isBanned) {
-        this.isActive = isActive;
-        this.isAdmin = isAdmin;
-        this.isModerator = isModerator;
-        this.isVIP = isVIP;
-        this.isMuted = isMuted;
-        this.isBanned = isBanned;
-    }
-
-    public UserExternalizable() {
-    }
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
