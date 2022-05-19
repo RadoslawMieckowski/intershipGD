@@ -12,7 +12,7 @@ public final class Serializer {
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(object);
         } catch (IOException exception) {
-            System.out.println("Serialization failed.");
+            System.err.println("Serialization failed.");
             exception.printStackTrace();
         }
     }
