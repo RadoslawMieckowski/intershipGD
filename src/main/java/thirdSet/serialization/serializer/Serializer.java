@@ -1,17 +1,19 @@
 package thirdSet.serialization.serializer;
 
 import java.io.*;
+import java.util.Objects;
 
 public final class Serializer {
     private Serializer() {}
 
     public static <T extends Serializable> void serialize(T object, String filePath) {
-        if (object == null) throw new RuntimeException("Serialization of null is not allowed!");
+        Objects.requireNonNull(object, "Serialization of null is not allowed!");
         try (FileOutputStream fileOutputStream = new FileOutputStream(filePath);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(object);
         } catch (IOException exception) {
             System.out.println("Serialization failed.");
+            exception.printStackTrace();
         }
     }
 
