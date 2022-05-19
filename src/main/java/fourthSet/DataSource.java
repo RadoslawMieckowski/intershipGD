@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DataSource {
-    //private static String path = "src/main/resources/databaseConf/datasource.properties";
     private static HikariConfig config = new HikariConfig();
 
     private static HikariDataSource dataSource;

@@ -1,5 +1,9 @@
-package fourthSet;
+package fourthSet.demos;
 
+import fourthSet.DataSource;
+import fourthSet.Service;
+import fourthSet.Statement;
+import fourthSet.User;
 import fourthSet.utilities.ConnectionMaster;
 
 import java.sql.SQLException;
