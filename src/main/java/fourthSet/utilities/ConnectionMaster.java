@@ -1,5 +1,6 @@
 package fourthSet.utilities;
 
+import fourthSet.DataSource;
 import fourthSet.exceptions.IllegalSizeOfRezultSet;
 
 import java.sql.Connection;
@@ -13,8 +14,8 @@ import java.util.function.BiFunction;
 public final class ConnectionMaster {
     private final Connection connection;
 
-    public ConnectionMaster(Connection connection) {
-        this.connection = connection;
+    public ConnectionMaster() throws SQLException {
+        connection = DataSource.getConnection();
     }
 
     public void execute(String query, Object[] args) {

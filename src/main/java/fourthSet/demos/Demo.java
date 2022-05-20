@@ -30,7 +30,7 @@ public class Demo {
             users = service.fetchData();
             System.out.println("Users after inserting 100 users\n" + users);
 
-            ConnectionMaster connectionMaster = new ConnectionMaster(DataSource.getConnection());
+            ConnectionMaster connectionMaster = new ConnectionMaster();
             User user17 = connectionMaster.findOne(
                     Statement.findOneStatement,
                     new Object[] {17, "Kris"},
