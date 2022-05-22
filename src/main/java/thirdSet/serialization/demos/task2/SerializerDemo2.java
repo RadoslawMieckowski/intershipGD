@@ -7,8 +7,8 @@ public class SerializerDemo2 {
     public static void main(String[] args) {
 //        Client client = new Client("Will", "Willspassword", 48_000);
 //        Serializer.serialize(client, "src/main/resources/data/serializationTarget2.ser");
-        Client clientDeserialized = Serializer.deserialize(
-                "src/main/resources/data/serializationTarget2.ser");
+        final String filePath = "src/main/resources/data/serializationTarget2.ser";
+        Client clientDeserialized = Serializer.deserialize(filePath);
         System.out.println(clientDeserialized);
         /*
             4)  Client{name='Will', password='Willspassword', balance=48000, age=null}

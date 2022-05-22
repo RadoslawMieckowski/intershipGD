@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class ExternalizableDemo {
     public static void main(String[] args) {
-        String path = "src/main/resources/data/serializationTarget3.ser";
+        final String path = "src/main/resources/data/serializationTarget3.ser";
         UserExternalizable user =
                 UserExternalizable.builder()
                     .isActive(true)
@@ -26,8 +26,6 @@ public class ExternalizableDemo {
             inputStream = new FileInputStream(path);
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(bytes.length);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class Demo {
     public static void main(String[] args) {
-        String path = "src/main/resources/data/serializationTarget3.ser";
+        final String path = "src/main/resources/data/serializationTarget3.ser";
         User user = User.builder()
                         .isActive(true)
                         .isAdmin(false)
@@ -24,8 +24,6 @@ public class Demo {
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(bytes.length);
             //output: 125
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

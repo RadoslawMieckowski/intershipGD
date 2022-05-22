@@ -53,7 +53,7 @@ public class UserExternalizable implements Externalizable {
         try{
             website = (Website) in.readObject();
         } catch (Exception e) {
-            System.err.println("serialized object doesn't contain not null website field");
+            System.err.println("unexpected null value of website field!");
             throw e;
         }
     }

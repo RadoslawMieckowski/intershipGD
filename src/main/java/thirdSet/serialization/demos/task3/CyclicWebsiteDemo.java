@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CyclicWebsiteDemo {
     public static void main(String[] args) {
-        String path = "src/main/resources/data/serializationTargetCyclic.ser";
+        final String path = "src/main/resources/data/serializationTargetCyclic.ser";
         Website facebook = new Website("Facebook");
 
         UserExternalizable user =
