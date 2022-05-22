@@ -4,6 +4,7 @@ import thirdSet.serialization.models.UserExternalizable;
 import thirdSet.serialization.models.Website;
 import thirdSet.serialization.serializer.Serializer;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CyclicWebsiteDemo {
@@ -36,7 +37,12 @@ public class CyclicWebsiteDemo {
         user2.setWebsite(facebook);
         facebook.setUserExternalizableList(List.of(user, user2));
         Serializer.serialize(user, path);
-        UserExternalizable userDeserialized = Serializer.deserialize(path);
+        UserExternalizable userDeserialized = null;
+        try {
+            userDeserialized = Serializer.deserialize(path);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         System.out.println(user);
         System.out.println(userDeserialized);
         System.out.println(user.equals(userDeserialized));

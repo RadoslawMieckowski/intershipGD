@@ -18,13 +18,13 @@ public final class Serializer {
         }
     }
 
-    public static <T> T deserialize(String filePath) {
+    public static <T> T deserialize(String filePath) throws IOException, ClassNotFoundException {
         try (FileInputStream fileInputStream = new FileInputStream(filePath);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             return (T) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException exception) {
-            exception.getMessage();
-            return null;
+            System.err.printf("Deserialization from %s file has failed.\n", filePath);
+            throw exception;
         }
     }
 }

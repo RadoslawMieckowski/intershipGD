@@ -4,6 +4,7 @@ import thirdSet.serialization.models.Intern;
 import thirdSet.serialization.models.Mentor;
 import thirdSet.serialization.serializer.Serializer;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SerializerDemo {
@@ -23,7 +24,12 @@ public class SerializerDemo {
 
         final String path = "src/main/resources/data/serializationTarget.ser";
         Serializer.serialize(mentor, path);
-        Mentor mentorDeserialized = Serializer.deserialize(path);
+        Mentor mentorDeserialized = null;
+        try {
+            mentorDeserialized = Serializer.deserialize(path);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         Intern intern1Deserialized = mentorDeserialized.getInterns()
                 .get(0);
         Intern intern2Deserialized = mentorDeserialized.getInterns()
