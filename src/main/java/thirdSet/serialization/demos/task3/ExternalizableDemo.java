@@ -26,6 +26,7 @@ public class ExternalizableDemo {
             inputStream = new FileInputStream(path);
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(bytes.length);
+            //output: 74
         } catch (IOException e) {
             e.printStackTrace();
         }

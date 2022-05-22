@@ -82,7 +82,7 @@ public class UserExternalizable implements Externalizable {
                 isVIP == that.isVIP &&
                 isMuted == that.isMuted &&
                 isBanned == that.isBanned &&
-                Objects.equals(website, that.website);
+                Objects.equals(website.getName(), that.website.getName());
     }
 
     @Override
