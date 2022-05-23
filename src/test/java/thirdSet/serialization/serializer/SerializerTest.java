@@ -14,19 +14,14 @@ class SerializerTest {
     final String pathUsers = "src/main/resources/data/serializationTarget3.ser";
 
     @Test
-    void checkDeserializedInternsHaveSameMentor() {
+    void checkDeserializedInternsHaveSameMentor() throws IOException, ClassNotFoundException {
        Mentor mentor = new Mentor("John" ,"MentorPassWord");
        Intern intern1 = new Intern("Mike", "MikePassword", mentor);
        Intern intern2 = new Intern("Tom", "TomPassword", mentor);
        mentor.setInterns(List.of(intern1, intern2));
 
         Serializer.serialize(mentor, path);
-        Mentor mentorDeserialized = null;
-        try {
-            mentorDeserialized = Serializer.deserialize(path);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Mentor mentorDeserialized = Serializer.deserialize(path);
         Intern intern1Deserialized = mentorDeserialized.getInterns()
                 .get(0);
         Intern intern2Deserialized = mentorDeserialized.getInterns()
@@ -37,7 +32,7 @@ class SerializerTest {
     }
 
     @Test
-    void serializeUserExternalizable() {
+    void serializeUserExternalizable() throws IOException, ClassNotFoundException {
         Website facebook = new Website("Facebook");
         UserExternalizable user =
                 UserExternalizable.builder()
@@ -62,18 +57,13 @@ class SerializerTest {
         facebook.setUserExternalizableList(List.of(user, user2));
 
         Serializer.serialize(user, pathCyclic);
-        UserExternalizable userDeserialized = null;
-        try {
-            userDeserialized = Serializer.deserialize(pathCyclic);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        UserExternalizable userDeserialized = Serializer.deserialize(pathCyclic);
 
         Assertions.assertThat(user).isEqualTo(userDeserialized);
     }
 
     @Test
-    void serializeWebsite() {
+    void serializeWebsite() throws IOException, ClassNotFoundException {
         Website facebook = new Website("Facebook");
         UserExternalizable user =
                 UserExternalizable.builder()
@@ -98,18 +88,13 @@ class SerializerTest {
         facebook.setUserExternalizableList(List.of(user, user2));
 
         Serializer.serialize(facebook, pathCyclic);
-        Website facebookDeserialized = null;
-        try {
-            facebookDeserialized = Serializer.deserialize(pathCyclic);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Website facebookDeserialized = Serializer.deserialize(pathCyclic);
 
         Assertions.assertThat(facebook).isEqualTo(facebookDeserialized);
     }
 
     @Test
-    void serializeUser() {
+    void serializeUser() throws IOException, ClassNotFoundException {
         User user = User.builder()
                 .isActive(true)
                 .isAdmin(false)
@@ -120,12 +105,7 @@ class SerializerTest {
                 .build();
 
         Serializer.serialize(user, pathUsers);
-        User userDeserialized = null;
-        try {
-           userDeserialized = Serializer.deserialize(pathUsers);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        User userDeserialized = Serializer.deserialize(pathUsers);
 
         Assertions.assertThat(user.toString()).isEqualTo(userDeserialized.toString());
     }
