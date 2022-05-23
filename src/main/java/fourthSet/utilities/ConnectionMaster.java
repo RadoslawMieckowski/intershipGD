@@ -2,6 +2,7 @@ package fourthSet.utilities;
 
 import fourthSet.DataSource;
 import fourthSet.exceptions.IllegalSizeOfRezultSet;
+import lombok.NonNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public final class ConnectionMaster {
         connection = DataSource.getConnection();
     }
 
-    public void execute(String query, Object[] args) {
+    public void execute(@NonNull String query, @NonNull Object[] args) {
         try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;
             for (Object arg : args) {
@@ -30,7 +31,9 @@ public final class ConnectionMaster {
         }
     }
 
-    public <S, V, T> T findOne(String query, Object[] args, BiFunction<S, V, T> mapper) {
+    public <S, V, T> T findOne(@NonNull String query,
+                               @NonNull Object[] args,
+                               @NonNull BiFunction<S, V, T> mapper) {
         T result = null;
         try(PreparedStatement preparedStatement = connection.prepareStatement(
                 query, ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -58,7 +61,9 @@ public final class ConnectionMaster {
         return result;
     }
 
-    public <S, V, T> List<T> findMany(String query, Object[] args, BiFunction<S, V, T> mapper) {
+    public <S, V, T> List<T> findMany(@NonNull String query,
+                                      @NonNull Object[] args,
+                                      @NonNull BiFunction<S, V, T> mapper) {
         List<T> result = new LinkedList<>();
         try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;

@@ -1,5 +1,6 @@
 package fourthSet;
 
+import lombok.NonNull;
 import secondSet.utilities.CSVReader;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class Service {
 
     public List<User> fetchData() throws SQLException {
         String SQL_QUERY = Statement.getEverything;
-        List<User> users = null;
+        List<User> users;
         try (Connection connection = DataSource.getConnection();
              PreparedStatement prepareStatement = connection.prepareStatement(SQL_QUERY);
              ResultSet resultSet = prepareStatement.executeQuery()) {
@@ -49,7 +50,7 @@ public class Service {
         }
     }
 
-    public int deleteRow(Connection connection, int id) throws SQLException {
+    public int deleteRow(@NonNull Connection connection, int id) throws SQLException {
         try(PreparedStatement preparedStatement = connection.prepareStatement(
                 Statement.deleteUserFromUsers)){
             preparedStatement.setInt(1, id);

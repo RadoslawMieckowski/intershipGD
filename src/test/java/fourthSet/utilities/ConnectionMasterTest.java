@@ -3,9 +3,11 @@ package fourthSet.utilities;
 import fourthSet.DataSource;
 import fourthSet.Statement;
 import fourthSet.User;
-import org.assertj.core.api.Assertions;
+import org.junit.Rule;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,21 +15,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.BiFunction;
 
+import static org.mockito.Mockito.*;
+
 class ConnectionMasterTest {
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
+    @Mock
+    private ConnectionMaster connectionMaster;
+    @Mock
+    private Connection connection;
+    @Mock
+    private PreparedStatement preparedStatement;
+    @Mock
+    private ResultSet resultSet;
+    private User user;
 
     @Test
     void executeTest() throws SQLException {
-        ConnectionMaster connectionMaster = Mockito.mock(ConnectionMaster.class);
-        //Connection connection = Mockito.mock(DataSource.getConnection().getClass());
-        //PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-        ResultSet resultSet = Mockito.mock(ResultSet.class);
-        Object[] args = Mockito.mock(Object[].class);
-        BiFunction mapper = Mockito.mock(BiFunction.class);
 
-        Mockito.when(new ConnectionMaster()).thenReturn(connectionMaster);
-        //Mockito.when(DataSource.getConnection()).thenReturn(connection);
-        Mockito.when(connectionMaster.findOne(Mockito.anyString(), args, mapper)).thenReturn(resultSet);
-        //Mockito.when(connection.prepareStatement(Mockito.anyString())).thenReturn(preparedStatement);
+        Object[] args = mock(Object[].class);
+        BiFunction mapper = mock(BiFunction.class);
+
+       when(new ConnectionMaster()).thenReturn(connectionMaster);
+       when(DataSource.getConnection()).thenReturn(connection);
+       when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+       when(connectionMaster.findOne(anyString(), args, mapper)).thenReturn(resultSet);
         //Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
 
         ConnectionMaster actualConnectionMaster = new ConnectionMaster();
@@ -37,6 +49,6 @@ class ConnectionMasterTest {
                 (id, name) -> new User((Integer)id, (String)name)
         );
 
-        Assertions.assertThat()
+        //Assertions.assertThat()
     }
 }
