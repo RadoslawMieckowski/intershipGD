@@ -1,9 +1,11 @@
 package thirdSet.serialization.models;
 
 import lombok.Builder;
+import lombok.ToString;
 
 import java.io.Serializable;
 @Builder
+@ToString
 public class User implements Serializable {
     private final boolean isActive;
     private final boolean isAdmin;
