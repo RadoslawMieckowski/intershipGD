@@ -1,6 +1,6 @@
 package thirdSet.serialization.serializer;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import thirdSet.serialization.models.*;
 
@@ -27,7 +27,7 @@ class SerializerTest {
         Intern intern2Deserialized = mentorDeserialized.getInterns()
                 .get(1);
 
-        Assertions.assertThat(intern1Deserialized.getMentor())
+       assertThat(intern1Deserialized.getMentor())
                 .isEqualTo(intern2Deserialized.getMentor());
     }
 
@@ -59,7 +59,7 @@ class SerializerTest {
         Serializer.serialize(user, pathCyclic);
         UserExternalizable userDeserialized = Serializer.deserialize(pathCyclic);
 
-        Assertions.assertThat(user).isEqualTo(userDeserialized);
+        assertThat(user).isEqualTo(userDeserialized);
     }
 
     @Test
@@ -90,7 +90,7 @@ class SerializerTest {
         Serializer.serialize(facebook, pathCyclic);
         Website facebookDeserialized = Serializer.deserialize(pathCyclic);
 
-        Assertions.assertThat(facebook).isEqualTo(facebookDeserialized);
+        assertThat(facebook).isEqualTo(facebookDeserialized);
     }
 
     @Test
@@ -107,6 +107,6 @@ class SerializerTest {
         Serializer.serialize(user, pathUsers);
         User userDeserialized = Serializer.deserialize(pathUsers);
 
-        Assertions.assertThat(user.toString()).isEqualTo(userDeserialized.toString());
+        assertThat(user.toString()).isEqualTo(userDeserialized.toString());
     }
 }
