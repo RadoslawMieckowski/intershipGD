@@ -15,7 +15,7 @@ import java.util.function.BiFunction;
 public final class ConnectionMaster {
     private final DataSource dataSource;
 
-    public ConnectionMaster(DataSource dataSource) throws SQLException {
+    public ConnectionMaster(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

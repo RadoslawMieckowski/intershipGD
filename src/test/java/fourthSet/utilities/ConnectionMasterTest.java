@@ -2,20 +2,13 @@ package fourthSet.utilities;
 
 import fourthSet.DataSource;
 import fourthSet.Statement;
-import fourthSet.User;
-import org.junit.Rule;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class ConnectionMasterTest {
@@ -25,39 +18,34 @@ class ConnectionMasterTest {
     PreparedStatement preparedStatement = mock(PreparedStatement.class);
     ConnectionMaster connectionMaster = new ConnectionMaster(dataSource);
 
-    ConnectionMasterTest() throws SQLException {
+
+    @BeforeEach
+    void stubMethods() throws SQLException {
+        when(dataSource.getConnection()).thenReturn(connection);
+        when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
     }
 
 
     @Test
     void executeTest() throws SQLException {
+       String query = Statement.executeInsertRowStatement;
+       Object[] args = new Object[] {101, "Radek"};
 
-//        Object[] args = mock(Object[].class);
-//        BiFunction mapper = mock(BiFunction.class);
+       connectionMaster.execute(query, args);
 
-       when(new ConnectionMaster()).thenReturn(connectionMaster);
-       when(DataSource.getConnection()).thenReturn(connection);
-       when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-       //when(connectionMaster.findOne(anyString(), args, mapper)).thenReturn(resultSet);
-       user = new User();
-       user.setId(17);
-       user.setUsername("Kris");
-       when(resultSet.getInt(1)).thenReturn(17);
-       when(resultSet.getString(2)).thenReturn("Kris");
-       when(preparedStatement.executeQuery()).thenReturn(resultSet);
-        //Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+       verify(dataSource).getConnection();
+       verify(connection).prepareStatement(eq(query));
+       verify(preparedStatement, times(2)).setObject(anyInt(),any());
+       verify(preparedStatement).executeUpdate();
+    }
 
-        ConnectionMaster actualConnectionMaster = new ConnectionMaster();
-        actualConnectionMaster.execute(
-                Statement.executeInsertRowStatement,
-                new Object[] {17, "Kris"}
-        );
-        User actualUser = actualConnectionMaster.findOne(
-                Statement.findOneStatement,
-                new Object[] {user.getId(), user.getUsername()},
-                (id, name) -> new User((Integer)id, (String)name)
-        );
+    @Test
+    void findOne() {
 
-        assertThat(user).isEqualTo(actualUser);
+    }
+
+    @Test
+    void findMany() {
+
     }
 }
