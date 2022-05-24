@@ -17,7 +17,7 @@ public class Service {
     public List<User> fetchData() throws SQLException {
         String SQL_QUERY = Statement.getEverything;
         List<User> users;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = new DataSource().getConnection();
              PreparedStatement prepareStatement = connection.prepareStatement(SQL_QUERY);
              ResultSet resultSet = prepareStatement.executeQuery()) {
              users = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Service {
     }
 
     public void insertData() throws SQLException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = new DataSource().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      Statement.insertIntoTableStatement)
              ) {
@@ -43,7 +43,7 @@ public class Service {
     }
 
     public void createTable() throws SQLException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = new DataSource().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      Statement.createTableStatement)) {
         preparedStatement.executeUpdate();
@@ -60,7 +60,7 @@ public class Service {
     }
 
     public int deleteEverything() throws SQLException {
-        try(Connection connection = DataSource.getConnection();
+        try(Connection connection = new DataSource().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(
                 Statement.deleteEverything)) {
            int rowAffected = preparedStatement.executeUpdate();
@@ -69,7 +69,7 @@ public class Service {
     }
 
     public void insert100Users() throws SQLException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = new DataSource().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      Statement.insertIntoTable100Users +
                              CSVReader.prepareToInsertSQLValues(

@@ -13,14 +13,15 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 public final class ConnectionMaster {
-    private final Connection connection;
+    private final DataSource dataSource;
 
-    public ConnectionMaster() throws SQLException {
-        connection = DataSource.getConnection();
+    public ConnectionMaster(DataSource dataSource) throws SQLException {
+        this.dataSource = dataSource;
     }
 
     public void execute(@NonNull String query, @NonNull Object[] args) {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;
             for (Object arg : args) {
                 preparedStatement.setObject(i++, arg);
@@ -35,8 +36,9 @@ public final class ConnectionMaster {
                                @NonNull Object[] args,
                                @NonNull BiFunction<S, V, T> mapper) {
         T result = null;
-        try(PreparedStatement preparedStatement = connection.prepareStatement(
-                query, ResultSet.TYPE_SCROLL_INSENSITIVE,
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    query, ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_UPDATABLE)) {
             int i = 1;
             for (Object arg : args) {
@@ -65,7 +67,8 @@ public final class ConnectionMaster {
                                       @NonNull Object[] args,
                                       @NonNull BiFunction<S, V, T> mapper) {
         List<T> result = new LinkedList<>();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;
             for (Object arg : args) {
                 preparedStatement.setObject(i++, arg);

@@ -17,8 +17,9 @@ public class Demo {
             service.insertData();
             List<User> users = service.fetchData();
 
+            DataSource dataSource = new DataSource();
             System.out.println("Users after creation of the table:\n" + users);
-            service.deleteRow(DataSource.getConnection(), 3);
+            service.deleteRow(new DataSource().getConnection(), 3);
             users = service.fetchData();
 
             System.out.println("Users after deleting third row:\n" + users);
@@ -30,7 +31,7 @@ public class Demo {
             users = service.fetchData();
             System.out.println("Users after inserting 100 users\n" + users);
 
-            ConnectionMaster connectionMaster = new ConnectionMaster();
+            ConnectionMaster connectionMaster = new ConnectionMaster(dataSource);
             User user17 = connectionMaster.findOne(
                     Statement.findOneStatement,
                     new Object[] {17, "Kris"},
