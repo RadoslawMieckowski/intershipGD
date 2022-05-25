@@ -55,7 +55,8 @@ public final class ConnectionMaster {
                 System.out.print("can't find any results in the table with the given args.\n");
             } else {
                 resultSet.beforeFirst();
-                result = mapper.apply((S)args[0],(V)args[1]);
+                resultSet.next();
+                result = mapper.apply((S)resultSet.getObject(1),(V)resultSet.getObject(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();
