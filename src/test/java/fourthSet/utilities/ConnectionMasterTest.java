@@ -3,7 +3,7 @@ package fourthSet.utilities;
 import fourthSet.DataSource;
 import fourthSet.Statement;
 import fourthSet.User;
-import org.junit.jupiter.api.Assertions;
+import fourthSet.exceptions.IllegalSizeOfRezultSet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.function.BiFunction;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -46,7 +47,7 @@ class ConnectionMasterTest {
     }
 
     @Test
-    void findOne() throws SQLException {
+    void findOneCorrect() throws SQLException {
         ResultSet resultSet = mock(ResultSet.class);
         String query = Statement.findOneStatement;
         Object[] args = new Object[] {101, "Radek"};
@@ -71,6 +72,59 @@ class ConnectionMasterTest {
         verify(resultSet).beforeFirst();
 
         assertThat(actualUser).isEqualTo(expectedUser);
+    }
+
+    @Test
+    void findOneZeroFound() throws SQLException {
+        ResultSet resultSet = mock(ResultSet.class);
+        String query = Statement.findOneStatement;
+        Object[] args = new Object[] {101, "Radek"};
+        BiFunction<Integer, String, User> mapper =
+                (id, name) -> new User(id, name);
+
+        User expectedUser = null;
+
+        when(connection.prepareStatement(anyString(), anyInt(),
+                anyInt())).thenReturn(preparedStatement);
+        when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        when(resultSet.getRow()).thenReturn(0);
+
+        User actualUser = connectionMaster.findOne(query, args, mapper);
+
+        verify(dataSource).getConnection();
+        verify(connection).prepareStatement(anyString(), anyInt(), anyInt());
+        verify(preparedStatement, times(2)).setObject(anyInt(),any());
+        verify(preparedStatement).executeQuery();
+        verify(resultSet).last();
+        verify(resultSet).getRow();
+
+        assertThat(actualUser).isEqualTo(expectedUser);
+    }
+
+    @Test
+    void findOneThrowIllegalSizeOfRezultSet() throws SQLException {
+        ResultSet resultSet = mock(ResultSet.class);
+        String query = Statement.findOneStatement;
+        Object[] args = new Object[] {101, "Radek"};
+        BiFunction<Integer, String, User> mapper =
+                (id, name) -> new User(id, name);
+
+        when(connection.prepareStatement(anyString(), anyInt(),
+                anyInt())).thenReturn(preparedStatement);
+        when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        when(resultSet.getRow()).thenReturn(2);
+
+         assertThatExceptionOfType(IllegalSizeOfRezultSet.class)
+                 .isThrownBy(() ->connectionMaster.findOne(query, args, mapper))
+                 .withMessage("ResultSet contains too many results!" +
+                         " Expected one result");
+
+        verify(dataSource).getConnection();
+        verify(connection).prepareStatement(anyString(), anyInt(), anyInt());
+        verify(preparedStatement, times(2)).setObject(anyInt(),any());
+        verify(preparedStatement).executeQuery();
+        verify(resultSet).last();
+        verify(resultSet).getRow();
     }
 
     @Test
