@@ -1,13 +1,13 @@
 package fourthSet;
 
 public class Statement {
-   public static String createTableStatement = """
+   public static final String createTableStatement = """
             CREATE TABLE IF NOT EXISTS usersTable (
             id INT PRIMARY KEY,
             username VARCHAR(20) NOT NULL);
             """;
 
-   public static String insertIntoTableStatement = """
+   public static final String insertIntoTableStatement = """
             INSERT INTO usersTable (id, username)
             VALUES
                 (1,'radek'),
@@ -18,15 +18,15 @@ public class Statement {
                 (6, 'bruce');
             """;
 
-  public static String insertIntoTable100Users = "INSERT INTO usersTable (id, username) VALUES";
+  public static final String insertIntoTable100Users = "INSERT INTO usersTable (id, username) VALUES";
 
 
 
-  public static String getEverything = "select * from usersTable;";
+  public static final String getEverything = "select * from usersTable;";
 
   public static String deleteUserFromUsers = "DELETE FROM usersTable WHERE id = ?;";
 
-  public static String deleteEverything = "DELETE FROM usersTable;";
+  public static final String deleteEverything = "DELETE FROM usersTable;";
 
   public static String executeInsertRowStatement = "INSERT INTO  usersTable (id, username) VALUES (?, ?);";
 
