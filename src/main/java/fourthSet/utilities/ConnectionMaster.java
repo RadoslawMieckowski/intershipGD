@@ -2,6 +2,7 @@ package fourthSet.utilities;
 
 import fourthSet.DataSource;
 import fourthSet.exceptions.IllegalSizeOfRezultSet;
+import fourthSet.exceptions.MySQLWrapperException;
 import lombok.NonNull;
 
 import java.sql.Connection;
@@ -28,7 +29,7 @@ public final class ConnectionMaster {
             }
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new MySQLWrapperException("MySQLWrapperException was thrown", e);
         }
     }
 
@@ -59,7 +60,7 @@ public final class ConnectionMaster {
                 result = mapper.apply((S)resultSet.getObject(1),(V)resultSet.getObject(2));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new MySQLWrapperException("MySQLWrapperException was thrown", e);
         }
         return result;
     }
@@ -82,7 +83,7 @@ public final class ConnectionMaster {
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new MySQLWrapperException("MySQLWrapperException was thrown", e);
         }
         return result;
     }
