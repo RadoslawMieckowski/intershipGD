@@ -21,7 +21,7 @@ public final class ConnectionMaster {
     }
 
     public void execute(@NonNull String query, @NonNull Object[] args) {
-        try(Connection connection = dataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;
             for (Object arg : args) {
@@ -37,7 +37,7 @@ public final class ConnectionMaster {
                                @NonNull Object[] args,
                                @NonNull BiFunction<S, V, T> mapper) {
         T result = null;
-        try(Connection connection = dataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
                     query, ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_UPDATABLE)) {
@@ -69,7 +69,7 @@ public final class ConnectionMaster {
                                       @NonNull Object[] args,
                                       @NonNull BiFunction<S, V, T> mapper) {
         List<T> result = new LinkedList<>();
-        try(Connection connection = dataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;
             for (Object arg : args) {

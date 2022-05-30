@@ -11,14 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
-    public Service() {
-    }
 
     public List<User> fetchData() throws SQLException {
-        String SQL_QUERY = Statement.getEverything;
+        String query = Statement.getEverything;
         List<User> users;
         try (Connection connection = new DataSource().getConnection();
-             PreparedStatement prepareStatement = connection.prepareStatement(SQL_QUERY);
+             PreparedStatement prepareStatement = connection.prepareStatement(query);
              ResultSet resultSet = prepareStatement.executeQuery()) {
              users = new ArrayList<>();
              User user;
@@ -51,7 +49,7 @@ public class Service {
     }
 
     public int deleteRow(@NonNull Connection connection, int id) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
                 Statement.deleteUserFromUsers)){
             preparedStatement.setInt(1, id);
             int rowAffected = preparedStatement.executeUpdate();
@@ -60,7 +58,7 @@ public class Service {
     }
 
     public int deleteEverything() throws SQLException {
-        try(Connection connection = new DataSource().getConnection();
+        try (Connection connection = new DataSource().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(
                 Statement.deleteEverything)) {
            int rowAffected = preparedStatement.executeUpdate();

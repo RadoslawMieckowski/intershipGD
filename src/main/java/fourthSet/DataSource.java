@@ -11,16 +11,13 @@ public class DataSource {
 
     private static HikariDataSource dataSource;
     static {
-        config.setJdbcUrl( "jdbc:postgresql://localhost/users" );
-        config.setUsername( "postgres" );
-        config.setPassword( "root" );
-        config.addDataSourceProperty( "cachePrepStmts" , "true" );
-        config.addDataSourceProperty( "prepStmtCacheSize" , "250" );
-        config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
+        config.setJdbcUrl("jdbc:postgresql://localhost/users");
+        config.setUsername("postgres");
+        config.setPassword("root");
+        config.addDataSourceProperty("cachePrepStmts" , "true");
+        config.addDataSourceProperty("prepStmtCacheSize" , "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit" , "2048");
         dataSource = new HikariDataSource( config );
-    }
-
-    public DataSource() {
     }
 
     public Connection getConnection() throws SQLException {
