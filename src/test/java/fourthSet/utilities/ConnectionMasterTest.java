@@ -128,6 +128,6 @@ public class ConnectionMasterTest {
         List<User> actualListOfUsers = connectionMaster.findMany(query, args, mapper);
 
         assertThat(actualListOfUsers).isEqualTo(expectedListOfUsers);
-        assertThat(actualListOfUsers).hasSize(0);
+        assertThat(actualListOfUsers).isEmpty();
     }
 }
