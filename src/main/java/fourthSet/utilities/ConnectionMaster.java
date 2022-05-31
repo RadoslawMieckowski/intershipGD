@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 
 public final class ConnectionMaster {
@@ -36,7 +37,7 @@ public final class ConnectionMaster {
     public <S, V, T> T findOne(@NonNull String query,
                                @NonNull Object[] args,
                                @NonNull BiFunction<S, V, T> mapper) {
-        T result = null;
+        T result;
         try (Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
                     query, ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -53,7 +54,8 @@ public final class ConnectionMaster {
                         " Expected one result");
             }
             if (resultSetSize == 0) {
-                System.out.print("can't find any results in the table with the given args.\n");
+                throw new NoSuchElementException("can't find any results in the table " +
+                        "with the given args.");
             } else {
                 resultSet.beforeFirst();
                 resultSet.next();

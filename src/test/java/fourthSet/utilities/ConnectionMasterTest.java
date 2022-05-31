@@ -11,8 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class ConnectionMasterTest {
@@ -46,36 +48,39 @@ public class ConnectionMasterTest {
     }
 
     @Test
-    void findOneZeroFoundWithExistingUsernameTest() {
+    void findOneZeroFoundWithExistingUsernameTestThrowsNoSuchElementException() {
         String query = Statement.findOneStatement;
         Object[] args = new Object[] {105, "Milton"};
         BiFunction<Integer, String, User> mapper = (id, name) -> new User(id, name);
 
-        User actualUser = connectionMaster.findOne(query, args, mapper);
-
-        assertThat(actualUser).isNull();
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> connectionMaster.findOne(query, args, mapper))
+                .withMessage("can't find any results in the table " +
+                        "with the given args.");
     }
 
     @Test
-    void findOneZeroFoundWithExistingIdTest() {
+    void findOneZeroFoundWithExistingIdTestThrowsNoSuchElementException() {
         String query = Statement.findOneStatement;
         Object[] args = new Object[] {1, "Radek"};
         BiFunction<Integer, String, User> mapper = (id, name) -> new User(id, name);
 
-        User actualUser = connectionMaster.findOne(query, args, mapper);
-
-        assertThat(actualUser).isNull();
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> connectionMaster.findOne(query, args, mapper))
+                .withMessage("can't find any results in the table " +
+                        "with the given args.");
     }
 
     @Test
-    void findOneZeroFoundWithNotExistingUsernameAndNotExsistingIdTest() {
+    void findOneZeroFoundWithNotExistingUsernameAndNotExsistingIdTestThrowsNoSuchElementException() {
         String query = Statement.findOneStatement;
         Object[] args = new Object[] {105, "Radek"};
         BiFunction<Integer, String, User> mapper = (id, name) -> new User(id, name);
 
-        User actualUser = connectionMaster.findOne(query, args, mapper);
-
-        assertThat(actualUser).isNull();
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> connectionMaster.findOne(query, args, mapper))
+                .withMessage("can't find any results in the table " +
+                        "with the given args.");
     }
 
     @Test

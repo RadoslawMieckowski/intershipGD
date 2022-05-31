@@ -12,9 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -79,21 +81,22 @@ class ConnectionMasterMocksTest {
     }
 
     @Test
-    void findOneZeroFound() throws SQLException {
+    void findOneZeroFoundthrowsNoSuchElementException() throws SQLException {
         ResultSet resultSet = mock(ResultSet.class);
         String query = Statement.findOneStatement;
         Object[] args = new Object[] {101, "Radek"};
         BiFunction<Integer, String, User> mapper =
                 (id, name) -> new User(id, name);
 
-        User expectedUser = null;
-
         when(connection.prepareStatement(anyString(), anyInt(),
                 anyInt())).thenReturn(preparedStatement);
         when(preparedStatement.executeQuery()).thenReturn(resultSet);
         when(resultSet.getRow()).thenReturn(0);
 
-        User actualUser = connectionMaster.findOne(query, args, mapper);
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> connectionMaster.findOne(query, args, mapper))
+                        .withMessage("can't find any results in the table " +
+                                "with the given args.");
 
         verify(dataSource).getConnection();
         verify(connection).prepareStatement(anyString(), anyInt(), anyInt());
@@ -101,8 +104,6 @@ class ConnectionMasterMocksTest {
         verify(preparedStatement).executeQuery();
         verify(resultSet).last();
         verify(resultSet).getRow();
-
-        assertThat(actualUser).isEqualTo(expectedUser);
     }
 
     @Test
