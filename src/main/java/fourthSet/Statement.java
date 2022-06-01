@@ -24,19 +24,19 @@ public class Statement {
 
   public static final String getEverything = "select * from usersTable;";
 
-  public static String deleteUserFromUsers = "DELETE FROM usersTable WHERE id = ?;";
+  public static final String deleteUserFromUsers = "DELETE FROM usersTable WHERE id = ?;";
 
   public static final String deleteEverything = "DELETE FROM usersTable;";
 
-  public static String executeInsertRowStatement = "INSERT INTO  usersTable (id, username) VALUES (?, ?);";
+  public static final String executeInsertRowStatement = "INSERT INTO  usersTable (id, username) VALUES (?, ?);";
 
-  public  static String findOneStatement = """
+  public static final String findOneStatement = """
            Select id, username 
            FROM usersTable 
            WHERE id = ? AND username = ?;
            """;
 
-  public static  String findManyWithGivenIDsStatement = "select * from usersTable where id between ? and ?;";
+  public static final String findManyWithGivenIDsStatement = "select * from usersTable where id between ? and ?;";
 
-  public static  String findManyWithGivenNamesStatement = "select * from usersTable where username like ?;";
+  public static  final String findManyWithGivenNamesStatement = "select * from usersTable where username like ?;";
 }
